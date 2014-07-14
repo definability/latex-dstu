@@ -1,4 +1,4 @@
-practise
+Practice
 ========
 
-My summer practise report
+My summer practice report
