@@ -1,0 +1,108 @@
+\ProvidesPackage{dsturep}
+\usepackage{cmap}                            % поиск по тексту в готовом pdf
+\usepackage[T2A]{fontenc}                    % поддержка кодировок, отличных от латиницы
+\usepackage[utf8]{inputenc}                  % поддержка UTF8
+\usepackage[ukrainian]{babel}                  % поддержка русского языка
+\usepackage[hidelinks]{hyperref}             % гиперссылки в содержании и ссылках
+\usepackage{titlesec}                        % оформление разделов, пунктов и т. п.
+\usepackage{graphicx}                        % вставка картинок
+\usepackage{amssymb,amsfonts,amsmath,amsthm} % математические дополнения от American Math. Society
+\usepackage{icomma}                          % запятая, разделяющая целую и дробную части
+\usepackage{indentfirst}                     % отделять первую строку раздела абзацным отступом
+\usepackage{multirow}                        % улучшенное форматирование таблиц
+\usepackage{fancyhdr}                        % колонтитулы
+\usepackage[tableposition=top]{caption}      % подписи к рисункам/таблицам
+\usepackage{subcaption}                      % подписи к подрисункам/подтаблицам
+\usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm]{geometry} % отступы от края страницы
+\usepackage{enumitem}                        % списки
+\usepackage{titletoc}                        % содержание документа
+\usepackage[title,titletoc]{appendix}        % приложения
+
+\frenchspacing                    % для одиночного пробела после точки в конце предложения
+\linespread{1.5}                  % увеличение междустрочного интервала
+\setlength\parindent{5ex}         % абзацный отступ
+\renewcommand{\arraystretch}{1.3} % увеличение вертикального пробела в массивах и таблицах
+
+% Колонтитулы
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\thepage}
+\fancyheadoffset{0mm}
+\fancyfootoffset{0mm}
+\setlength{\headheight}{17pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{ 
+    \fancyhf{}
+    \rhead{\small\thepage}}
+
+% Подписи к рисункам/таблицам
+\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
+\DeclareCaptionLabelFormat{gosttable}{Таблица #2}
+\DeclareCaptionLabelSeparator{gost}{~---~}
+\captionsetup{labelsep=gost}
+\captionsetup[figure]{labelformat=gostfigure, justification=centering}
+\captionsetup[table]{labelformat=gosttable}
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
+
+% Заголовки структурных элементов
+\titleformat{\chapter}[block]
+    {\filcenter\bfseries}
+    {\thechapter}
+    {1ex}
+    {\MakeUppercase}{}
+ 
+\titleformat{\section}[block]
+    {\hspace{\parindent}\bfseries}
+    {\thesection}
+    {1ex}{}
+
+\titleformat{\subsection}[block]
+    {\hspace{\parindent}}
+    {\thesubsection}
+    {1ex}{}
+    
+\titlespacing*{\chapter}{0pt}{-30pt}{*4}
+\titlespacing*{\section}{0pt}{*4}{*4}
+\titlespacing*{\subsection}{0pt}{*4}{*4}
+
+% Списки
+\makeatletter
+    \AddEnumerateCounter{\asbuk}{\@asbuk}{ю)}
+\makeatother
+\setlist{nolistsep}
+\renewcommand{\labelitemi}{-}
+\renewcommand{\labelenumi}{\arabic{enumi})}
+\renewcommand{\labelenumii}{\asbuk{enumii})}
+
+% Заголовок раздела в содержании
+%\dottedcontents{chapter}[1.6em]{}{1.6em}{1pc}
+\dottedcontents{chapter}[1em]{}{1em}{1pc}
+\dottedcontents{section}[2em]{}{2em}{1pc}
+
+% Заголовки приложений
+\newcommand{\empline}{\mbox{}\newline}
+ 
+\newcommand{\append}[1]{ 
+    \clearpage
+    \stepcounter{chapter}
+    \begin{center}
+        \chaptertitlename~\Asbuk{chapter}
+    \end{center}
+    \begin{center}{#1}\end{center}
+    \empline
+    \addcontentsline{toc}{chapter}{\Asbuk{chapter}\hspace{0.6em}~#1}}
+
+% Заголовок содержания
+\addto{\captionsrussian}{\renewcommand*{\contentsname}{Содержание}}
+
+% Ненумерованные разделы в содержании
+\newcommand\chap[1]{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}}
+
+% Номер сноски со скобкой
+\renewcommand*{\thefootnote}{\arabic{footnote})}
+
+\usepackage{listings}             % Include the listings-package

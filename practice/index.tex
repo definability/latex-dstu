@@ -1,113 +1,36 @@
 \input{../common/head.tex}
 
-\title{Практика}
-
-\makeindex
 \begin{document}
 
-%\maketitle
+\input{title.tex}
 
-%\setcounter{page}{2} % начать нумерацию страниц с №5
-
-
-%\input{part1/part1.tex}
-%\input{part2/part2.tex}
-
-%\bibliography{../common/bibliography.bib}
-%\printindex
-\fancypagestyle{firststyle}
-{
-    \fancyfoot[C]{\textbf{Київ 2014}}
-    \fancyhead{}
-}
-\thispagestyle{firststyle}
-\begin{center}
-    \MakeUppercase{\textbf{міністерство освіти і науки україни}}\\[-0.5ex]
-    \MakeUppercase{\textbf{національний технічний університет україни}}\\[-0.5ex]
-    \MakeUppercase{\textbf{``київський політехнічний інститут''}}\\[-0.5ex]
-    \MakeUppercase{\textbf{фізико-технічний інститут}}\\[1ex]
-    \textbf{Кафедра математичних методів захисту інформації}\\[4ex]
-    \MakeUppercase{\textbf{\Large звіт}}\\[1ex]
-    \MakeUppercase{\textbf{з виробничої практики}}\\[1ex]
-
-    Напрям підготовки: 6.040301 <<Прикладна математика>>
-
-    Тема : <<Безпека розподілених геоінформаційних систем>>
-\end{center}
-\begin{flushright}
-    \begin{tabular}{l}
-        Виконав студент 3 курсу\\
-        групи ФІ-13\\
-        Кригін Валерій Михайлович\\
-        Керівник:\\
-        д.т.н. Куссуль Наталія Миколаївна\\
-        $\underset{\text{\textit{\tiny(підпис)}}}
-        {\text{\underline{\phantom{д.т.н. Куссуль Наталія Миколаївна}}}}$\\
-        Захистив з оцінкою:\\
-        \underline{\phantom{Захистив з оцінкою}}
-    \end{tabular}
-\end{flushright}
+\clearpage
+\setcounter{page}{2}
 
 \tableofcontents
 \thispagestyle{empty}
 
+\clearpage
+\pagestyle{fancy}
+
 \chapter*{Вступ}
 \addcontentsline{toc}{chapter}{Вступ}
-\pagestyle{fancy}
-\setcounter{page}{3}
-Вступ такий:
+\input{preface.tex}
 
-\lipsum
+\chapter{Індивідуальне завдання}
+\input{task.tex}
 
-\chapter{Ого}
-aaaa
-\section{Отак}
-\section{Отак от}
+\chapter{Огляд літературних джерел}
+\input{literature_overview.tex}
 
-\chapter{Огого}
-\section{Какая}
-\lipsum[1]
-\section{страна}
-\lipsum[2]
-\section{такие}
-\lipsum[3]
-\section{отчёты}
-\lipsum[4]
+\chapter{Теоретичні відомості про метод розв’язання, його обґрунтування}
+\input{theory.tex}
 
-\chapter{Ололо}
-\begin{enumerate}
-    \item Адын
-        \begin{enumerate}
-            \item Альфа
-            \item Бэта
-        \end{enumerate}
-    \item Два
-\end{enumerate}
-
-\chapter{Код всякий}
-%\renewcommand{\ttdefault}{pcr}
-%\lstset{basicstyle=\ttfamily}
-%\lstset{framextopmargin=50pt,frame=bottomline}
-%\lstset{language=C++}
-%\begin{lstlisting}
-
-%\begin{minted}{c++}
-%GL_first_hmw.h
-%#include <iostream>
-%#include <math.h>
-%#include <conio.h>
-
-%using namespace std;
-
-%//сравнения будем проводить с epsilon. Так как оно очень маленькое - то заменяем его в сравнении с нулем
-%float epsilon=1.0e-7;
-
-%void functionF();
-%\end{minted}
-%\end{lstlisting}
+\chapter{Програмна реалізація розроблених алгоритмів}
+\input{program_realization.tex}
 
 \chapter*{Висновки}
 \addcontentsline{toc}{chapter}{Висновки}
-Крутая работа, заслуживающая наивысший балл, президентскую стипендию
-и отпуск на год.
+\input{conclusions.tex}
+
 \end{document}
