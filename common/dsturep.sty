@@ -24,7 +24,7 @@
 \renewcommand{\arraystretch}{1.3} % увеличение вертикального пробела в массивах и таблицах
 
 % Колонтитулы
-\pagestyle{fancy}
+%\pagestyle{fancy}
 \fancyhf{}
 \fancyhead[R]{\small\thepage}
 \fancyheadoffset{0mm}
@@ -59,7 +59,7 @@
     {1ex}{}
 
 \titleformat{\subsection}[block]
-    {\hspace{\parindent}}
+    {\hspace{\parindent}\bfseries}
     {\thesubsection}
     {1ex}{}
     
@@ -75,11 +75,13 @@
 \renewcommand{\labelitemi}{-}
 \renewcommand{\labelenumi}{\arabic{enumi})}
 \renewcommand{\labelenumii}{\asbuk{enumii})}
+\setenumerate{topsep=1.5ex,leftmargin=\parindent}
 
 % Заголовок раздела в содержании
 %\dottedcontents{chapter}[1.6em]{}{1.6em}{1pc}
 \dottedcontents{chapter}[1em]{}{1em}{1pc}
 \dottedcontents{section}[2em]{}{2em}{1pc}
+\dottedcontents{subsection}[3em]{}{3em}{1pc}
 
 % Заголовки приложений
 \newcommand{\empline}{\mbox{}\newline}
@@ -94,9 +96,6 @@
     \empline
     \addcontentsline{toc}{chapter}{\Asbuk{chapter}\hspace{0.6em}~#1}}
 
-% Заголовок содержания
-\addto{\captionsrussian}{\renewcommand*{\contentsname}{Содержание}}
-
 % Ненумерованные разделы в содержании
 \newcommand\chap[1]{%
   \chapter*{#1}%
@@ -104,7 +103,3 @@
 
 % Номер сноски со скобкой
 \renewcommand*{\thefootnote}{\arabic{footnote})}
-
-\usepackage{listings}             % Include the listings-package
-
-\setenumerate{topsep=1.5ex,leftmargin=\parindent}
