@@ -37,8 +37,11 @@
 \chapter*{Висновки}
 \addcontentsline{toc}{chapter}{Висновки}
 \input{conclusions.tex}
+\clearpage
 
-\chapter{Перелік посилань}
+\renewcommand\bibname{Перелік посилань}
 \bibliography{../common/bibliography.bib}
+% Workaround. Try to make two-paged bibliography
+\addcontentsline{toc}{chapter}{Перелік посилань}
 
 \end{document}
