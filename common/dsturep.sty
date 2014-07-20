@@ -38,12 +38,15 @@
     \rhead{\small\thepage}}
 
 % Подписи к рисункам/таблицам
+%\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+%\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 \DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
 \DeclareCaptionLabelFormat{gosttable}{Таблиця #2}
 \DeclareCaptionLabelSeparator{gost}{~---~}
 \captionsetup{labelsep=gost}
-\captionsetup[figure]{labelformat=gostfigure, justification=centering}
-\captionsetup[table]{labelformat=gosttable}
+\captionsetup[figure]{labelformat=gostfigure, justification=centering,
+labelsep=gost}
+\captionsetup[table]{labelformat=gosttable, labelsep=gost}
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}
 
 % Заголовки структурных элементов
