@@ -7,7 +7,7 @@ git pull https://github.com/char-lie/diploma
 git add common/*.tex common/*.sty common/*.inc common/*.bib
 git add README.md
 git add practice/*.tex practice/index.pdf practice/*.latexmain practice/images/*.png
-git add thesis/*.tex thesis/index.pdf thesis/*.latexmain thesis/images/*.png
+git add thesis/*.tex thesis/index.pdf thesis/*.latexmain
 git add thesis/*/*.tex
 git add pull.sh
 git commit -m "$1"
