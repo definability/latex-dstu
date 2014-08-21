@@ -55,6 +55,8 @@ labelsep=gost}
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}
 
 % Заголовки структурных элементов
+\setcounter{secnumdepth}{5}
+
 \titleformat{\chapter}[block]
     {\filcenter\bfseries}
     {\thechapter}
@@ -71,9 +73,15 @@ labelsep=gost}
     {\thesubsection}
     {1em}{}
     
+\titleformat{\subsubsection}[block]
+    {\hspace{\parindent}\bfseries}
+    {\thesubsubsection}
+    {1em}{}
+    
 \titlespacing*{\chapter}{0pt}{-30pt}{2em}
 \titlespacing*{\section}{0pt}{2em}{2em}
 \titlespacing*{\subsection}{0pt}{2em}{2em}
+\titlespacing*{\subsubsection}{0pt}{2em}{2em}
 
 % Списки
 \makeatletter
@@ -90,6 +98,7 @@ labelsep=gost}
 \dottedcontents{chapter}[1em]{}{1em}{1pc}
 \dottedcontents{section}[2em]{}{2em}{1pc}
 \dottedcontents{subsection}[3em]{}{3em}{1pc}
+\dottedcontents{subsubsection}[3em]{}{3em}{1pc}
 
 % Заголовки приложений
 \newcommand{\empline}{\mbox{}\newline}
