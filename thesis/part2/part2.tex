@@ -1,0 +1,137 @@
+\chapter{Метод головних компонент}
+Метод головних компонент (Principal component analysis) --- метод, що дозволяє
+зменшити розмірність вибірки що потрібно досліджувати з мінімальними втратами
+інформації.
+
+Маємо $m$ об’єктів, з яких треба зняти по $n$ певних властивостей.
+На вході в нас є виборки $\vec{X}_k$ --- сукупність властивостей $k$-го об’єкту
+\begin{equation*}
+  \vec{X}_k = \begin{bmatrix}
+    x_k^1  \\
+    x_k^2  \\
+    \vdots \\
+    x_k^n
+  \end{bmatrix},
+  \qquad k = \overline{1,m}
+\end{equation*}
+Згрупуємо всі вимірювання в одну матрицю $X$
+\begin{equation*}
+  X = \begin{bmatrix}
+    x_1^1  & x_2^1  & \dots  & x_m^1  \\
+    x_1^2  & x_2^2  & \dots  & x_m^2  \\
+    \vdots & \vdots & \ddots & \vdots \\
+    x_1^n  & x_2^n  & \dots  & x_m^n
+  \end{bmatrix}
+\end{equation*}
+
+Спочатку нам знадобиться знайти вибіркові середні значення для кожної
+властивості
+\begin{equation*}
+  a_i = \frac{1}{m} \cdot \sum_{k=1}^{m} x_k^i, \qquad i = \overline{1,n}
+\end{equation*}
+Тобто маємо вектор вибіркових середніх значень
+\begin{equation*}
+  \vec{a} = \begin{bmatrix}
+    \frac{1}{m} \sum_{k=1}^{m} x_k^1 \\
+    \frac{1}{m} \sum_{k=1}^{m} x_k^2 \\
+    \vdots                           \\
+    \frac{1}{m} \sum_{k=1}^{m} x_k^n \\
+  \end{bmatrix}
+\end{equation*}
+
+Центруємо отримані дані, що містяться в матриці $X$, віднявши від кожного
+стовбця вектор вибіркових середніх $\vec{a}$
+\begin{equation*}
+  \tilde{x}_k^i = x_k^i - a_i,\qquad k = \overline{1,m}, i = \overline{1,n}
+\end{equation*}
+Кожен стовбець матриці вимірювань прийме вигляд
+\begin{equation*}
+  \tilde{X}_k
+  = \vec{X}_k - \vec{a}
+  = \begin{bmatrix}
+    x_k^1 - a_1 \\
+    x_k^2 - a_2 \\
+    \vdots      \\
+    x_k^n - a_n
+  \end{bmatrix},
+  \qquad k = \overline{1,m}
+\end{equation*}
+
+Маємо матрицю центрованих вимірювань $\tilde{X}$
+\begin{equation*}
+  \tilde{X}
+  = \begin{bmatrix}
+    \tilde{x}_1^1  & \tilde{x}_2^1  & \dots  & \tilde{x}_m^1  \\
+    \tilde{x}_1^2  & \tilde{x}_2^2  & \dots  & \tilde{x}_m^2  \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \tilde{x}_1^n  & \tilde{x}_2^n  & \dots  & \tilde{x}_m^n
+  \end{bmatrix}
+  = \begin{bmatrix}
+    x_1^1 - a_1  & x_2^1 - a_1  & \dots  & x_m^1 - a_1 \\
+    x_1^2 - a_2  & x_2^2 - a_2  & \dots  & x_m^2 - a_2 \\
+    \vdots       & \vdots       & \ddots & \vdots      \\
+    x_1^n - a_n  & x_2^n - a_n  & \dots  & x_m^n - a_n
+  \end{bmatrix}
+\end{equation*}
+
+Далі треба обчислити вибіркову коваріаційну матрицю властивостей.
+Вибіркову коваріацію $i$ та $j$ властивості рахуємо за формулою
+\begin{equation*}
+  \sigma_i^j
+  = \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^i \cdot \tilde{x}_k^j
+  = \frac{1}{m} \cdot \sum_{k=1}^{m}
+    \left[ \left( x_k^i - a_i \right) \cdot \left( x_k^j - a_j \right) \right],
+    \qquad i,j = \overline{1,n}
+\end{equation*}
+Маємо вибіркову коваріаційну матрицю
+\begin{equation*}
+  K = \begin{bmatrix}
+    \sigma_1^1 & \sigma_2^1 & \dots & \sigma_n^1 \\
+    \sigma_1^2 & \sigma_2^2 & \dots & \sigma_n^2 \\
+    \vdots     & \vdots     & \dots & \vdots     \\
+    \sigma_1^n & \sigma_2^n & \dots & \sigma_n^n \\
+  \end{bmatrix}
+\end{equation*}
+\begin{comment}
+\begin{equation*}
+  K =
+  \begin{bmatrix}
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^1 \cdot \tilde{x}_k^1
+    &
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^1 \cdot \tilde{x}_k^2
+    &
+    \dots
+    &
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^1 \cdot \tilde{x}_k^n
+    \\
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^2 \cdot \tilde{x}_k^1
+    &
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^2 \cdot \tilde{x}_k^2
+    &
+    \dots
+    &
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^2 \cdot \tilde{x}_k^n
+    \\
+    \vdots & \vdots & \dots & \vdots \\
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^n \cdot \tilde{x}_k^1
+    &
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^n \cdot \tilde{x}_k^2
+    &
+    \dots
+    &
+    \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^n \cdot \tilde{x}_k^n
+  \end{bmatrix}
+\end{equation*}
+\end{comment}
+
+Щоб отримувати лише потрібну інформацію, ми хочемо знайти таке лінійне
+перетворення $L$ вхідної матриці $\tilde{X}$, щоб отримати матрицю
+$Y = L \cdot \tilde{X}$, що має діагональну вибіркову ковариаційну матрицю з
+незростаючими зверху вниз значеннями.
+Діагональна матриця гарантує той факт, що отримані значення будуть
+некорельованими.
+Рангування значень діагональних елементів за величиною дасть більш наглядне
+представлення про будову досліджуваних об’єктів, адже на діагональні
+елементи --- вибіркові дисперсії, а чим більше дисперсія, тим більше
+змінюється властивість від об’єкту до об’єкту і тим більше корисної інформації
+вона нам надає.
