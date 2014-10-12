@@ -3,7 +3,27 @@
 \begin{document}
 
 \import{1_title/}{title.tex}
+
+\clearpage
+\setcounter{page}{2}
+
+%\pagestyle{empty}
+\tableofcontents
+\thispagestyle{empty}
+
+\clearpage
+\pagestyle{fancy}
+
+\clearpage
+
 \import{4_preface/}{preface.tex}
 \import{5_main/}{main.tex}
+
+\clearpage
+
+\renewcommand\bibname{Перелік посилань}
+\bibliography{../common/bibliography.bib}
+% Workaround. Try to make two-paged bibliography
+\addcontentsline{toc}{chapter}{Перелік посилань}
 
 \end{document}
