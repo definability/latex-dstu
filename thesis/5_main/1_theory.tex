@@ -246,7 +246,7 @@ $\left[ \min\limits_{i=\overline{1,m}}{y_i^k};
 \subsection{Поліноміальний розподіл}
 Введемо матрицю частот $\nu$
 \begin{equation*}
-  \nu = p \cdot H
+  \nu = m \cdot H
 \end{equation*}
 Кожна компонента --- кількість елементів вибірки, що потрапили у відповідний
 напівінтервал
@@ -258,10 +258,17 @@ $\left[ \min\limits_{i=\overline{1,m}}{y_i^k};
 
 Розглянемо вектор
 \begin{equation*}
-  \nu^k = \left[ \nu_1^k, \dots, \nu_N^k \right]
+  \nu^k = \left[ \nu_1^k, \dots, \nu_N^k \right],
+  \qquad k = \overline{1,p}
 \end{equation*}
 Маємо серію з $m$ незалежних експериментів, кожен з яких може закінчитися
-одним з $N$ результатів $E_1^k$, $\dots$, $E_N^k$.
+одним з $N$ результатів $E_1^k$, $\dots$, $E_N^k$, що взаємно виключаються
+\begin{equation*}
+  \probability{E_i^k \cap E_j^k} = 0,
+  %\qquad E_i^k \neq E_j^k
+  \qquad i \neq j,
+  \qquad k = \overline{1,p}
+\end{equation*}
 Якщо випадкові величини $y_i^k$ мають заздалегіть відомий
 розподіл, який однаковий в межах однієї строки $Y^k$, маємо ймовірності
 кожного результату експерименту
@@ -284,14 +291,28 @@ $\left[ \min\limits_{i=\overline{1,m}}{y_i^k};
 Коваріація двох різних елементів вектора $\nu^k$ рахується за формулою
 \cite{Mukhopadhyay:2000}
 \begin{equation*}
-  \cov{\nu_j^k, \nu_i^k} = - N \cdot \rho_j^k \cdot \rho_i^k,
+  \cov{\nu_i^k, \nu_j^k} = - N \cdot \rho_i^k \cdot \rho_j^k,
   \qquad i \neq j
   %\qquad k = \overline{1,p},
   %\qquad i,j = \overline{1,N},
 \end{equation*}
-Отже, коваріаційна матриця $A$ вектора $\nu^k$ виглядає наступним чином
+Введемо дельта-функцію
 \begin{equation*}
-  A^k = N \cdot
+  \delta_{i, j} = \begin{cases}
+    1,& i = j \\
+    0,& i \neq j
+  \end{cases}
+\end{equation*}
+Отримаємо загальну формулу для коваріації
+\begin{equation*}
+  \cov{\nu_i^k, \nu_j^k}
+  = N \cdot \rho_i^k \cdot \left( \delta_{i, j} - \rho_j^k \right)
+\end{equation*}
+Отже, коваріаційна матриця $A^k$ вектора $\nu^k$ виглядає наступним чином
+\begin{equation*}
+  A^k
+  = \left| \cov{\nu_i^k, \nu_j^k} \right|_{i,j=1}^N
+  = N \cdot
    \begin{bmatrix}
       \rho_1^k \cdot \left( 1 - \rho_1^k \right) & - \rho_1^k \cdot \rho_2^k
               & \cdots & - \rho_1^k \cdot \rho_N^k \\
@@ -420,4 +441,4 @@ $\alpha$ і шукаємо відповідне до кількості ступ
 проміжок, в який дозволяється потрапити значенню $R^k$.
 Тобто, більша ймовірність відхилити вірну гіпотезу щодо розподілу,
 але при цьому є більше впевненості в правильності результату.
-Зазвичай $\alpha$ обирають рівним $0.1$, $0.05$, $0.001$.
+Зазвичай $\alpha$ обирають рівним $0.1$, $0.05$, $0.01$.
