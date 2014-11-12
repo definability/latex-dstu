@@ -474,3 +474,180 @@ $\sqrt{m}$, що є достатньо великою швидкістю.
 В цьому випадку зростає ймовірність відхилити вірну гіпотезу щодо розподілу,
 але при цьому є більше впевненості в правильності результату.
 Зазвичай $\alpha$ обирають рівним $0.1$, $0.05$, $0.01$.
+\subsection{$\chi^2$}
+Розглянемо вектор
+\begin{equation*}
+    \eta^k
+    = \left[ \frac{\nu_1^k - m \cdot \rho_1^k}{\sqrt{m \cdot \rho_1^k}}, \dots,
+      \frac{\nu_N^k - m \cdot \rho_N^k}{\sqrt{m \cdot \rho_N^k}} \right]
+\end{equation*}
+Та розпишемо його характеристичну функцію
+\begin{equation*}
+  \varphi_{\eta^k}\left( \lambda\right)
+  = \mean{e^{i \cdot \lambda \cdot \eta^k}},\qquad
+  \lambda \in \mathbb{R}^N
+\end{equation*}
+Для зручності перепозначимо індикатор
+\begin{equation*}
+  \mathfrak{I}_{i,j}^k = \Indicator{y_i^k \in I_j^k}
+\end{equation*}
+Подивимось, чому дорівнює скалярний добуток в експоненті
+\begin{equation*}
+  \begin{split}
+    \left( \lambda, \eta^k \right)
+    &= \sum_{j=1}^{N} \lambda_j \cdot \frac{\nu_j^k - m \cdot \rho_j^k}{
+      \sqrt{m \cdot \rho_j^k}}
+    = \sum_{j=1}^{N}\frac{\lambda_j}{\sqrt{m \cdot \rho_j^k}}
+      \cdot \sum_{i=1}^{m}\left( \mathfrak{I}_{i,j}^k - \rho_j^k \right) = \\
+    &= \sum_{j=1}^{N} \sum_{i=1}^{m}
+      \frac{\lambda_j}{\sqrt{m \cdot \rho_j^k}}
+      \cdot \left( \mathfrak{I}_{i,j}^k - \rho_j^k \right)
+    = \sum_{i=1}^{m} \sum_{j=1}^{N} \lambda_j \cdot
+      \frac{\mathfrak{I}_{i,j}^k - \rho_j^k}{\sqrt{m \cdot \rho_j^k}}
+  \end{split}
+\end{equation*}
+Бачимо суму $m$ незалежних однаково розподілених випадкових величин.
+Введемо позначення
+\begin{equation*}
+  \mathfrak{I}_j^k = \Indicator{y_1^k \in I_j^k}
+\end{equation*}
+А також позначимо новий випадковий вектор
+\begin{equation*}
+  \zeta^k
+  = \left[ \frac{\mathfrak{I}_1^k - \rho_1^k}{\sqrt{m \cdot \rho_1^k}},
+    \dots
+    \frac{\mathfrak{I}_N^k - \rho_N^k}{\sqrt{m \cdot \rho_N^k}} \right]
+\end{equation*}
+Тоді скалярний добуток прийме вигляд
+\begin{equation*}
+    \left( \lambda, \eta^k \right)
+    = \sum_{i=1}^{m} \sum_{j=1}^{N} \lambda_j \cdot \zeta_j^k
+    = \sum_{i=1}^{m} \lambda \cdot \zeta^k
+    = m \cdot \lambda \cdot \zeta^k
+    = m \cdot \left( \lambda, \zeta^k \right)
+\end{equation*}
+Отже, тепер характеристичну функцію буде значно легше рахувати: вона згортається
+в добуток більш простих характеристичних функцій
+\begin{equation}\label{eq:cf:eta}
+  \varphi_{\eta^k}\left( \lambda\right)
+  = \mean{e^{i \cdot \lambda \cdot \eta^k}}
+  = \mean{e^{m \cdot i \cdot \lambda \cdot \zeta^k}}
+  = \left( \mean{e^{i \cdot \lambda \cdot \zeta^k}} \right)^m
+\end{equation}
+Розглянемо характеристичну функцію випадкового вектора $\zeta^k$
+\begin{equation}\label{eq:cf:zeta}
+  \varphi_{\zeta^k}\left( \lambda \right)
+  = \Mean{\exp{\left\{ i
+    \cdot \sum_{j=1}^{N} \lambda_j \cdot \zeta_j^k \right\}}}
+\end{equation}
+Легко побачити, що
+\begin{equation*}
+  \begin{split}
+    \left( \lambda, \zeta^k \right)
+    = \sum_{j=1}^{N} \lambda_j \cdot \zeta_j^k
+    = \sum_{j=1}^{N} \lambda_j
+      \cdot \frac{\mathfrak{I}_j^k - \rho_j^k}{\sqrt{m \cdot \rho_j^k}}
+    &= \sum_{j=1}^{N} \left(
+       \frac{\lambda_j}{\sqrt{m \cdot \rho_j^k}} \cdot \mathfrak{I}_j^k
+       - \frac{\sqrt{\rho_j^k} \cdot \lambda_j}{\sqrt{m}} \right) = \\
+    &= \sum_{j=1}^{N} \mathfrak{I}_j^k \cdot \left( 
+        \frac{\lambda_j}{\sqrt{m \cdot \rho_j^k}}
+        - \sum_{l=1}^{N} \frac{\sqrt{\rho_l^k} \cdot \lambda_l}{\sqrt{m}}
+      \right)
+  \end{split}
+\end{equation*}
+Тобто, характеристична функція \eqref{eq:cf:zeta} приймає вигляд
+\begin{equation*}
+  \varphi_{\zeta^k}\left( \lambda \right)
+  = \Mean{\sum_{j=1}^{N} \mathfrak{I}_j^k
+    \cdot \exp{\left\{ \frac{i}{\sqrt{m}} \left(
+      \frac{\lambda_j}{\sqrt{\rho_j^k}}
+      - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right) \right\}}}
+\end{equation*}
+Перепозначимо вираз в круглих дужках
+\begin{equation*}
+  \mathfrak{z}^k
+  = \frac{\lambda_j}{\sqrt{\rho_j^k}}
+    - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l
+\end{equation*}
+Математичне очікування індикатора --- ймовірність події, яку він перевіряє.
+Отже
+\begin{equation*}
+  \varphi_{\zeta^k}\left( \lambda \right)
+  = \sum_{j=1}^{N} \rho_j^k
+    \cdot \exp{\left\{ \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right\}}
+\end{equation*}
+
+Якщо розмір вибірки $m$ буде зростати, то характеристична функція $\eta^k$
+\eqref{eq:cf:eta} буде поводитись наступним чином
+\begin{equation*}
+  \begin{split}
+    \lim_{m \to \infty} \varphi_{\eta^k}\left( \lambda \right)
+    &= \lim_{m \to \infty} \left(
+      1 + \varphi_{\eta^k}\left( \lambda \right) - 1 \right) = \\
+    &= \lim_{m \to \infty} \left( 1 + \sum_{k=1}^{N} p_k \cdot \left[
+      \exp{\left\{ \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right\}}
+      - 1 \right] \cdot \frac{m}{m} \right)^m = \\
+    &= \lim_{m \to \infty} \exp{ \left\{ m \cdot \sum_{k=1}^{N} p_k \cdot \left[
+      \exp{\left\{ \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right\}}
+      - 1 \right] \right\}}
+  \end{split}
+\end{equation*}
+Маємо експоненту з дуже малим показником. Пам’ятаємо, що
+\begin{equation*}
+  e^{\alpha} - 1 \approx \alpha + \frac{\alpha^2}{2},\qquad \alpha \ll 1
+\end{equation*}
+Перший ступінь приближення зникає
+\begin{equation*}
+  \begin{split}
+    \sum_{j=1}^{N} \rho_j^k \cdot \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}}
+    &= \sum_{j=1}^{N} \rho_j^k \cdot \frac{i}{\sqrt{m}}
+      \cdot \left( \frac{\lambda_j}{\sqrt{\rho_j^k}}
+        - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right) = \\
+    &= \frac{i}{\sqrt{m}} \cdot \left(
+      \sum_{j=1}^{N} \sqrt{\rho_j^k} \cdot \lambda_j
+      - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right)
+    = 0
+  \end{split}
+\end{equation*}
+Отже, маємо справу лише з другим
+\begin{equation*}
+  \begin{split}
+    \sum_{j=1}^{N} \rho_j^k
+      \cdot \left( \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right)^2
+      = - \sum_{j=1}^{N} \frac{\rho_j^k}{m}
+        \cdot \left( \frac{\lambda_j}{\sqrt{\rho_j^k}}
+          - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right)^2 = \\
+      = - \frac{1}{m} \cdot \left[ \sum_{j=1}^{N} \lambda_j
+        - \left( \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right)^2
+          \right]
+  \end{split}
+\end{equation*}
+Перепишемо характеристичну функцію вектора $\eta^k$
+\begin{equation*}
+  \begin{split}
+    \lim_{m \to \infty} \varphi_{\eta^k}\left( \lambda \right)
+    &= \lim_{m \to \infty} \exp{\left\{ -\frac{m}{m \cdot 2}
+      \cdot \left[ \sum_{j=1}^{N} \lambda_j
+        - \left( \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right)^2
+        \right]\right\}} = \\
+    &= \exp{\left\{ -\frac{1}{2} \cdot
+      \left[ \sum_{j=1}^{N} \lambda_j
+        - \left( \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right)^2
+        \right] \right\}}
+    = e^{-\frac{1}{2} \cdot \left( A^k \lambda, \lambda \right)}
+  \end{split}
+\end{equation*}
+Згадуємо символ Кронекера
+\begin{equation*}
+  \delta_{ij} = \begin{cases}
+    1, &i = j \\
+    0, &i \neq j
+    \end{cases}
+\end{equation*}
+Та бачимо, що маємо характеристичну функцію, що відповідає гаусовському вектору
+з нульовим вектором математичного сподівання і коваріаційною матрицею $A^k$
+\begin{equation*}
+  A^k
+  = \left\| \delta_{ij} - \sqrt{\rho_i^k} \cdot \sqrt{\rho_j^k} \right\|_{i=1}^n
+\end{equation*}
