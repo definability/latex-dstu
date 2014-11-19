@@ -243,245 +243,19 @@ $\left[ \min\limits_{i=\overline{1,m}}{y_i^k};
   \end{bmatrix}
 \end{equation*}
 
-\subsection{Поліноміальний розподіл}
-Введемо матрицю частот $\nu$
-\begin{equation*}
-  \nu = m \cdot H
-\end{equation*}
-Кожна компонента --- кількість елементів вибірки, що потрапили у відповідний
-напівінтервал
-\begin{equation*}
-  \nu_j^k = \sum_{i=1}^{m} \indicator{y_i^k \in I_j^k},
-  \qquad j = \overline{1, N},
-  \qquad k = \overline{1, p}
-\end{equation*}
-
-Розглянемо вектор
-\begin{equation}\label{eq:vector:multinomial}
-  \nu^k = \left[ \nu_1^k, \dots, \nu_N^k \right],
-  \qquad k = \overline{1,p}
-\end{equation}
-Маємо серію з $m$ незалежних експериментів, кожен з яких може закінчитися
-одним з $N$ результатів $E_1^k$, $\dots$, $E_N^k$, що взаємно виключаються
-\begin{equation*}
-  \probability{E_i^k \cap E_j^k} = 0,
-  %\qquad E_i^k \neq E_j^k
-  \qquad i \neq j,
-  \qquad k = \overline{1,p}
-\end{equation*}
-Якщо випадкові величини $y_i^k$ мають заздалегіть відомий
-розподіл, який однаковий в межах однієї строки $Y^k$, маємо ймовірності
-кожного результату експерименту
-\begin{equation*}
-  \rho_j^k = \probability{E_j^k} = \probability{y_1^k \in I_j^k}
-  = \dots = \probability{y_m^k \in I_j^k},
-  \qquad j = \overline{1,N},
-  \qquad k = \overline{1,p}
-\end{equation*}
-Ймовірність того, що вектор $\nu^k$ буде дорівнювати вектору
-$X = \left[ x_1, \dots, x_N \right]$, рахується за формулою
-\begin{equation*}
-  f_{multi}^k\left( X \right)
-  = \probability{\nu^k = X}
-  = m! \cdot \prod_{j=1}^N \frac{\left( \rho_j^k \right)^{x_j}}{x_j!},
-  \qquad \sum_{j=1}^{N}x_j = m
-\end{equation*}
-
-Математичне сподівання і дисперсія кожного елементу співпадає з математичним
-сподіванням і дисперсією біноміального розподілу з відповідними
-характеристиками, адже випадкові величини $\nu_j^k$ не залежать одна від одної
-\begin{equation*}
-  \mean{\nu_j^k} = N \cdot \rho_j^k,\qquad
-  \dispersion{\nu_j^k} = N \cdot \rho_j^k \cdot \left( 1 - \rho_j^k \right),
-  \qquad j = \overline{1,N},
-  \qquad k = \overline{1,p}
-\end{equation*}
-Коваріація двох різних елементів вектора $\nu^k$ рахується за формулою
-\cite{Mukhopadhyay:2000}
-\begin{equation*}
-  \cov{\nu_i^k, \nu_j^k} = - N \cdot \rho_i^k \cdot \rho_j^k,
-  \qquad i \neq j
-  %\qquad k = \overline{1,p},
-  %\qquad i,j = \overline{1,N},
-\end{equation*}
-Введемо дельта-функцію
-\begin{equation*}
-  \delta_{i, j} = \begin{cases}
-    1,& i = j \\
-    0,& i \neq j
-  \end{cases}
-\end{equation*}
-Отримаємо загальну формулу для коваріації
-\begin{equation*}
-  \cov{\nu_i^k, \nu_j^k}
-  = N \cdot \rho_i^k \cdot \left( \delta_{i, j} - \rho_j^k \right)
-\end{equation*}
-Отже, коваріаційна матриця $A^k$ вектора $\nu^k$ виглядає наступним чином
-\begin{equation*}
-  A^k
-  = \left| \cov{\nu_i^k, \nu_j^k} \right|_{i,j=1}^N
-  = N \cdot
-   \begin{bmatrix}
-      \rho_1^k \cdot \left( 1 - \rho_1^k \right) & - \rho_1^k \cdot \rho_2^k
-              & \cdots & - \rho_1^k \cdot \rho_N^k \\
-
-      - \rho_2^k \cdot \rho_1^k                  & \rho_2^k \cdot
-          \left( 1 - \rho_2^k \right) & \cdots & - \rho_2^k \cdot \rho_N^k \\
-
-      \vdots                                     & \vdots
-              & \ddots & \vdots \\
-
-       - \rho_N^k \cdot \rho_1^k                 & - \rho_N^k \cdot \rho_2^k
-              & \cdots & \rho_N^k \cdot \left( 1 - \rho_N^k \right)
-    \end{bmatrix}
-\end{equation*}
-Додамо всі її строки до першої
-\begin{equation*}
-  A^k
-  = N \cdot
-   \begin{bmatrix}
-     \rho_1^k \cdot \left( 1 - \sum_{j}^{N}\rho_j^k \right) &
-     \rho_2^k \cdot \left( 1 - \sum_{j}^{N}\rho_j^k \right)
-     & \cdots & \rho_N^k \cdot \left( 1 - \sum_{j}^{N}\rho_j^k \right) \\
-
-      - \rho_2^k \cdot \rho_1^k                  & \rho_2^k \cdot
-          \left( 1 - \rho_2^k \right) & \cdots & - \rho_2^k \cdot \rho_N^k \\
-
-      \vdots                                     & \vdots
-              & \ddots & \vdots \\
-
-       - \rho_N^k \cdot \rho_1^k                 & - \rho_N^k \cdot \rho_2^k
-              & \cdots & \rho_N^k \cdot \left( 1 - \rho_N^k \right)
-    \end{bmatrix}
-\end{equation*}
-Пам’ятаємо те, що сума ймовірностей дорівнює одиниці
-\begin{equation*}
-  \sum_{j=1}^{N}\rho_j^k = 1
-\end{equation*}
-Отже
-\begin{equation*}
-  A^k
-  = N \cdot
-   \begin{bmatrix}
-     0 & 0 & \cdots & 0 \\
-      - \rho_2^k \cdot \rho_1^k                  & \rho_2^k \cdot
-          \left( 1 - \rho_2^k \right) & \cdots & - \rho_2^k \cdot \rho_N^k \\
-
-      \vdots                                     & \vdots
-              & \ddots & \vdots \\
-
-       - \rho_N^k \cdot \rho_1^k                 & - \rho_N^k \cdot \rho_2^k
-              & \cdots & \rho_N^k \cdot \left( 1 - \rho_N^k \right)
-    \end{bmatrix}
-\end{equation*}
-Отже, матриця $A$ є виродженою і має ранг $N-1$ \cite{Kendall:1966}.
-
-Лагранжем було показано, що функція ймовірності поліноміального розподілу,
-помножена на $\sqrt{m^{N-1}}$, прямує до щільності ймовірності нормального
-вектора, що має $N-1$ компонент, де константа $\sqrt{2 \cdot \pi}$ з’являється
-завдяки застосуванню формули Стірлінґа \cite{Lagrange:1868}
-\begin{equation}\label{eq:probability:normal}
-  m^{\frac{N-1}{2}} \cdot f_{multi}^k\left( X \right)
-  \Covergencen{m} f_{norm}^k\left( H^k \right)
-  = \frac{\exp{\left\{ -\frac{1}{2} \cdot \sum_{j=1}^{N}
-        \frac{m \cdot \left( \rho_j^k - h_j^k \right)^2}{h_j^k} \right\}}}
-      {\sqrt{\left( 2 \cdot \pi \right)^{N-1} \cdot h_1^k \cdots h_N^k}}
-\end{equation}
-
 \subsection{Критерій узгодженості Пірсона $\chi^2$}
 Гістограма може використовуватися не тільки для графічної інтерпретації
 отриманих даних, але й для віднесення вибірки до якогось відомого розподілу.
 Відповідь на питання ``Чи дійсно вибірка $y_1^k$, $\dots$, $y_p^k$ має розподіл
-$F^k$?'' може надати критерій узгодженості Пірсона. %\cite{Pearson:1900}.
+$F^k$?'' може надати критерій узгодженості Пірсона.
 
-Знову розглянемо вектор \eqref{eq:vector:multinomial}
-\begin{equation*}
-  \nu^k = \left[ \nu_1^k, \dots, \nu_N^k \right],
-  \qquad k = \overline{1,p}
-\end{equation*}
-Пам’ятаємо, що функція ймовірності цього вектора прямує до функції ймовірності
-нормального $\left( N - 1 \right)$-вимірного вектора.
-Розглянемо квадратичну форму, що знаходиться в експоненті
-\eqref{eq:probability:normal}
-\begin{equation}\label{eq:pearson:Rk}
-  R^k
-  = \sum_{j=1}^{N}\frac{\left( m \cdot \rho_j^k - \nu_j^k \right)^2}{\nu_j^k}
-  = m \cdot \sum_{j=1}^{N}\frac{\left( \rho_j^k - h_j^k \right)^2}{h_j^k}
-\end{equation}
-Спираючись на результати, отримані Лагранжем, Пірсон показав, що квадратична
-форма має розподіл $\chi^2$ з $N-1$ ступенями вільності
-\cite{Pearson:1900} \cite{Hald:2010}.
-
-З таблиці для функції розподілу $\chi_{N-1}^2$ обираємо рівень значущості
-$\alpha$ і шукаємо відповідне до кількості ступенів вільності $r_{\alpha}$.
-Рівень значущості --- ймовірність помилки першого роду, тобто ймовірність того,
-що буде відкинуто вірну гіпотезу
-\begin{equation*}
-  \probability{\chi_{N-1}^2 \ge r_{\alpha}} = \alpha
-\end{equation*}
-Якщо $R^k \le r_{\alpha}$, то гіпотеза про те, що вибірка $Y^k$ дійсно має
-розподіл $F^k$, не відхиляється.
-
-Без втрати загальності розглянемо той випадок, коли ймовірність $\rho_i^k$
-відгадана невірно. Повернемося до формули \eqref{eq:pearson:Rk}
-\begin{equation*}
-  R^k
-  = \sum_{j=1}^{N}\frac{\left( m \cdot \rho_j^k - \nu_j^k \right)^2}{\nu_j^k}
-\end{equation*}
-Всі члени суми є невід’ємними. Якщо хоча б один елемент буде завеликим,
-то великою буде вся сума. Маємо випадкову величину $\eta$
-\begin{equation*}
-  \eta
-  = \nu_i^k - m \cdot \rho_i^k
-  = \sum_{j=1}^{m} \left( \xi_j - \rho_i^k \right),
-  \qquad \indicator{y_j^k \in I_i^k} = \xi_j
-\end{equation*}
-Якщо $\rho_i^k$ вгадано невірно, то воно не дорівнює математичному очікуванню
-індикатора. Додамо та віднімемо справжнє математичне очікування
-\begin{equation*}
-  \eta
-  = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} + \mean{\xi_1} - \rho_i^k \right)
-  = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
-    + \sum_{j=1}^{m} \left( \mean{\xi_1} - \rho_i^k \right)
-\end{equation*}
-Останній доданок є просто різницею, помноженою на $m$
-\begin{equation*}
-  \eta
-  = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
-    + m \cdot \left( \mean{\xi_1} - \rho_i^k \right)
-\end{equation*}
-Поділимо на $\sqrt{m}$, щоб скористатися центральною граничною теоремою
-\begin{equation*}
-  \frac{\eta}{\sqrt{m}}
-  = \frac{1}{\sqrt{m}} \cdot \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
-    + \frac{1}{\sqrt{m}} \cdot m \cdot \left( \mean{\xi_1} - \rho_i^k \right)
-\end{equation*}
-Перший доданок має розподіл $N\left( 0, \sigma^2 \right)$, де $\sigma^2$ ---
-дисперсія випадкової величини $\xi_1$ для достатньо великих $m$.
-Отже, вся сума зростає пропорційно
-$\sqrt{m}$
-\begin{equation*}
-  \frac{\eta}{\sqrt{m}}
-  = \frac{1}{\sqrt{m}} \cdot \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
-    + \sqrt{m} \cdot \left( \mean{\xi_1} - \rho_i^k \right)
-  \sim \sqrt{m} \cdot \left( \mean{\xi_1} - \rho_i^k \right)
-\end{equation*}
-Тобто, якщо гіпотеза невірна, то $R^k$ буде зростати пропорційно до величини
-$\sqrt{m}$, що є достатньо великою швидкістю.
-
-Чим більше рівень значущості, тим менше значення $r_{\alpha}$, а отже і
-проміжок, в який дозволяється потрапити значенню $R^k$.
-В цьому випадку зростає ймовірність відхилити вірну гіпотезу щодо розподілу,
-але при цьому є більше впевненості в правильності результату.
-Зазвичай $\alpha$ обирають рівним $0.1$, $0.05$, $0.01$.
-\subsection{$\chi^2$}
 Розглянемо вектор
 \begin{equation*}
     \eta^k
     = \left[ \frac{\nu_1^k - m \cdot \rho_1^k}{\sqrt{m \cdot \rho_1^k}}, \dots,
       \frac{\nu_N^k - m \cdot \rho_N^k}{\sqrt{m \cdot \rho_N^k}} \right]
 \end{equation*}
-Та розпишемо його характеристичну функцію
+Знайдемо його характеристичну функцію
 \begin{equation*}
   \varphi_{\eta^k}\left( \lambda\right)
   = \mean{e^{i \cdot \lambda \cdot \eta^k}},\qquad
@@ -526,8 +300,7 @@ $\sqrt{m}$, що є достатньо великою швидкістю.
     = m \cdot \lambda \cdot \zeta^k
     = m \cdot \left( \lambda, \zeta^k \right)
 \end{equation*}
-Отже, тепер характеристичну функцію буде значно легше рахувати: вона згортається
-в добуток більш простих характеристичних функцій
+За рахунок незалежності випадкових величин $\zeta_j^k$ маємо
 \begin{equation}\label{eq:cf:eta}
   \varphi_{\eta^k}\left( \lambda\right)
   = \mean{e^{i \cdot \lambda \cdot \eta^k}}
@@ -556,7 +329,7 @@ $\sqrt{m}$, що є достатньо великою швидкістю.
       \right)
   \end{split}
 \end{equation*}
-Тобто, характеристична функція \eqref{eq:cf:zeta} приймає вигляд
+Тобто характеристична функція \eqref{eq:cf:zeta} приймає вигляд
 \begin{equation*}
   \varphi_{\zeta^k}\left( \lambda \right)
   = \Mean{\sum_{j=1}^{N} \mathfrak{I}_j^k
@@ -583,8 +356,6 @@ $\sqrt{m}$, що є достатньо великою швидкістю.
 \begin{equation*}
   \begin{split}
     \lim_{m \to \infty} \varphi_{\eta^k}\left( \lambda \right)
-    &= \lim_{m \to \infty} \left(
-      1 + \varphi_{\eta^k}\left( \lambda \right) - 1 \right) = \\
     &= \lim_{m \to \infty} \left( 1 + \sum_{k=1}^{N} p_k \cdot \left[
       \exp{\left\{ \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right\}}
       - 1 \right] \cdot \frac{m}{m} \right)^m = \\
@@ -593,11 +364,11 @@ $\sqrt{m}$, що є достатньо великою швидкістю.
       - 1 \right] \right\}}
   \end{split}
 \end{equation*}
-Маємо експоненту з дуже малим показником. Пам’ятаємо, що
+Так як
 \begin{equation*}
   e^{\alpha} - 1 \approx \alpha + \frac{\alpha^2}{2},\qquad \alpha \ll 1
 \end{equation*}
-Перший ступінь приближення зникає
+Перший ступінь наближення зникає
 \begin{equation*}
   \begin{split}
     \sum_{j=1}^{N} \rho_j^k \cdot \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}}
@@ -638,16 +409,154 @@ $\sqrt{m}$, що є достатньо великою швидкістю.
     = e^{-\frac{1}{2} \cdot \left( A^k \lambda, \lambda \right)}
   \end{split}
 \end{equation*}
-Згадуємо символ Кронекера
-\begin{equation*}
-  \delta_{ij} = \begin{cases}
-    1, &i = j \\
-    0, &i \neq j
-    \end{cases}
-\end{equation*}
-Та бачимо, що маємо характеристичну функцію, що відповідає гаусовському вектору
-з нульовим вектором математичного сподівання і коваріаційною матрицею $A^k$
+Матриця $A^k$ побудована наступним чиином
 \begin{equation*}
   A^k
   = \left\| \delta_{ij} - \sqrt{\rho_i^k} \cdot \sqrt{\rho_j^k} \right\|_{i=1}^n
 \end{equation*}
+Симетричність мариці очевидна, тому треба довести її невід’ємну визначеність,
+щоб стверджувати, що вона є коваріаційною.
+Для цього візьмемо вектор
+\begin{equation*}
+  e^k = \left[ \sqrt{\rho_1^k}, \dots, \sqrt{\rho_N^k} \right],\qquad
+  \left\| e^k \right\| = 1
+\end{equation*}
+Тоді бачимо, що
+\begin{equation}\label{eq:chi2:quadraticForm}
+  \left( A^k \lambda, \lambda \right)
+  = \left\| \lambda \right\|^2
+    - \left( \lambda, e^k \right)^2
+\end{equation}
+З нерівності Коші маємо
+\begin{equation*}
+  \left\| \left( \lambda, e^k \right) \right\|
+  \le \left\| \lambda \right\| \cdot \left\| e^k \right\|
+  = \left\| \lambda \right\|
+\end{equation*}
+Тобто матриця є дійсно невід’ємно визначеною і вектор $\eta^k$ розподілений
+за нормальним законом з нульовим середнім і коваріаційною матрицею $A^k$.
+
+Для подальших розрахунків розглянемо стандартний гаусивський вектор
+як суму випадкових нормально розподілених випадкових величин в стандартному
+базисі $\mathbb{R}^N$, який позначимо $\left[ e_1, \dots, e_N \right]$
+\begin{equation*}
+  \xi = \sum_{j=1}^{N}\xi_j \cdot e_j \sim N\left( \vec{0}, I \right)
+\end{equation*}
+Згадуємо, що ортогональні перетворення $U$ зберігають відстані, а також
+справедливо наступне
+\begin{equation*}
+  U\xi \sim N\left( 0, U I U^{-1} \right) \sim N\left( \vec{0}, I \right)
+\end{equation*}
+Також ортонормований базис залишається ортонормованим базисом після
+ортогонального перетворення $U$.
+Оберемо такий оператор $U$, щоб набір $\left[ e_1, \dots, e_N \right]$ під його
+дією перетворився на $\left[ f_1, \dots, f_N \right]$, де
+\begin{equation*}
+  f_1 = e^k = \left[ \sqrt{\rho_1^k}, \dots, \sqrt{\rho_N^k} \right]
+\end{equation*}
+Тоді маємо вектор
+\begin{equation*}
+  U\xi
+  = \hat{\xi}
+  = \sum_{j=1}^{N} \hat{\xi_j} \cdot f_j \sim N\left( \vec{0}, I \right)
+\end{equation*}
+Подивимось, яке розподілення має наступний вектор
+\begin{equation*}
+  \Upsilon
+  = \sum_{j=2}^{N} \hat{\xi_j} \cdot f_j
+  = \hat{\xi} - \xi_1 \cdot e^k
+\end{equation*}
+Для цього розглянемо квадратичну форму
+\begin{equation*}
+  \Mean{\left( \Upsilon, \lambda \right) \cdot \left( \Upsilon, \lambda \right)}
+  = \sum_{j=2}^{N} \left( \lambda, f_j \right)^2
+  = \sum_{j=1}^{N} \left( \lambda, f_j \right)^2 - \left( \lambda, f_1 \right)^2
+  = \left\| \lambda \right\|^2 - \left( \lambda, e^k \right)^2
+  = \left( A^k \lambda, \lambda \right)
+\end{equation*}
+З рівності \eqref{eq:chi2:quadraticForm} бачимо, що випадкові вектори $\eta^k$
+і $\Upsilon$ мають однаковий розподіл.
+Отже, розподіли їх норм теж співпадають.
+Оскільки сума $N-1$ квадратів незалежних стандартних гаусових випадкових
+величин має розподіл Пірсона з $N-1$ ступенями вільності
+\begin{equation*}
+  \left\| \Upsilon \right\|^2 = \sum_{j=2}^{N} \xi_j^2 \sim \chi_{N-1}^2
+\end{equation*}
+Маємо
+\begin{equation}
+  \left\| \eta^k \right\|
+  = \sum_{j=1}^{N}\frac{\left( \nu_j^k - m \cdot \rho_j^k \right)^2}{
+    m \cdot \rho_j^k}
+  = m \cdot \sum_{j=1}^{N}\frac{\left( h_j^k - \rho_j^k \right)^2}{\rho_j^k}
+  \sim \chi_{N-1}^2
+\end{equation}
+
+\subsection{Застосування критерія узгодженості Пірсона $\chi^2$}
+Розглянемо випадкову величину
+\begin{equation}\label{eq:pearson:Rk}
+  R^k
+  = m \cdot \sum_{j=1}^{N}\frac{\left( h_j^k - \rho_j^k \right)^2}{\rho_j^k}
+\end{equation}
+
+З таблиці для функції розподілу $\chi_{N-1}^2$ обираємо рівень значущості
+$\alpha$ і шукаємо відповідне до кількості ступенів вільності $r_{\alpha}$.
+Рівень значущості --- ймовірність помилки першого роду, тобто ймовірність того,
+що буде відкинуто вірну гіпотезу
+\begin{equation*}
+  \probability{\chi_{N-1}^2 \ge r_{\alpha}} = \alpha
+\end{equation*}
+Якщо $R^k \le r_{\alpha}$, то гіпотеза про те, що вибірка $Y^k$ дійсно має
+розподіл $F^k$, не відхиляється.
+
+Розглянемо той випадок, коли ймовірність $\rho_i^k$
+відгадана невірно. Повернемося до формули \eqref{eq:pearson:Rk}
+\begin{equation*}
+  R^k
+  = \sum_{j=1}^{N}\frac{\left( \nu_j^k - m \cdot \rho_j^k \right)^2}{m \cdot \rho_j^k}
+\end{equation*}
+Всі члени суми є невід’ємними. Якщо хоча б один елемент буде завеликим,
+то великою буде вся сума. Маємо випадкову величину $\eta$
+\begin{equation*}
+  \eta
+  = \nu_i^k - m \cdot \rho_i^k
+  = \sum_{j=1}^{m} \left( \xi_j - \rho_i^k \right),
+  \qquad \indicator{y_j^k \in I_i^k} = \xi_j
+\end{equation*}
+Якщо $\rho_i^k$ вгадано невірно, то воно не дорівнює математичному очікуванню
+індикатора. Додамо та віднімемо справжнє математичне очікування
+\begin{equation*}
+  \eta
+  = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} + \mean{\xi_1} - \rho_i^k \right)
+  = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
+    + \sum_{j=1}^{m} \left( \mean{\xi_1} - \rho_i^k \right)
+\end{equation*}
+Останній доданок є просто різницею, помноженою на $m$
+\begin{equation*}
+  \eta
+  = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
+    + m \cdot \left( \mean{\xi_1} - \rho_i^k \right)
+\end{equation*}
+Поділимо на $\sqrt{m}$, щоб скористатися центральною граничною теоремою
+\begin{equation*}
+  \frac{\eta}{\sqrt{m}}
+  = \frac{1}{\sqrt{m}} \cdot \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
+    + \frac{1}{\sqrt{m}} \cdot m \cdot \left( \mean{\xi_1} - \rho_i^k \right)
+\end{equation*}
+Перший доданок має розподіл $N\left( 0, \sigma^2 \right)$, де $\sigma^2$ ---
+дисперсія випадкової величини $\xi_1$ для достатньо великих $m$.
+Отже, вся сума зростає пропорційно
+$\sqrt{m}$
+\begin{equation*}
+  \frac{\eta}{\sqrt{m}}
+  = \frac{1}{\sqrt{m}} \cdot \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
+    + \sqrt{m} \cdot \left( \mean{\xi_1} - \rho_i^k \right)
+  \sim \sqrt{m} \cdot \left( \mean{\xi_1} - \rho_i^k \right)
+\end{equation*}
+Тобто якщо гіпотеза невірна, то $R^k$ буде зростати пропорційно до величини
+$\sqrt{m}$, що є достатньо великою швидкістю.
+
+Чим більше рівень значущості, тим менше значення $r_{\alpha}$, а отже і
+проміжок, в який дозволяється потрапити значенню $R^k$.
+В цьому випадку зростає ймовірність відхилити вірну гіпотезу щодо розподілу,
+але при цьому є більше впевненості в правильності результату.
+Зазвичай $\alpha$ обирають рівним $0.1$, $0.05$, $0.01$.
