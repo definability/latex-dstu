@@ -16,3 +16,14 @@
 \def \mcond {\;\middle|\;}
 \newcommand{\Covergencen}[1]{\xrightarrow[#1\to\infty]{}}
 \newcommand{\cov}[1]{\operatorname{cov}\!\left( #1 \right)}
+
+\newcommand{\drawHist}[1]{\begin{tikzpicture}[scale=1]
+  \begin{axis}[ymin=-5, ymax=5, ytick=\empty,
+    xmajorgrids={true},
+    ylabel={Кількість точок}, ylabel near ticks,
+    xlabel={час, с}]
+
+\draw[dashed,color=gray!50] ({rel axis cs:0,0}|-{axis cs:0,0}) -- ({rel axis cs:1,0}|-{axis cs:0,0});
+\addplot table [x, y, col sep=comma] {data/#1.csv};
+\end{axis}
+\end{tikzpicture}}
