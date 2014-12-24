@@ -615,45 +615,46 @@ $m$, і буде великим у порівнянні з $r_{\alpha}$, що п
     рівня
   \item Проміжна між рівною та опуклою ламана відповідає неврівноваженому типу
     (рис. \ref{fig:tapping:middle}).
-    Така ламана зростає в перші 10-15 секунд, а потім спадає
+    Така ламана зростає в перші 10.3 секунд, а потім спадає
   \item Ввігнута ламана відповідає інертному типу
     (рис. \ref{fig:tapping:concave}).
     Вона спочатку спадає, а на 25-30 секундах може зрости до початкового темпу
   \item Опукла ламана відповідає рухливому типу
     (рис. \ref{fig:tapping:movable}).
-    Це така ламана, що зростає в перші 10-15 секунд тесту, а до 25-30 секунд
+    Це така ламана, що зростає в перші 10.3 секунд тесту, а до 25-30 секунд
     може впасти нижче початкового темпу
 \end{enumerate}
-Також темп може залишатися приблизно на одному рівні протягом усього тесту.
+Також темп може залишатися приблизно на одному рівні протягом усього тесту
+(рис. \ref{fig:tapping:flat}).
 
 \begin{figure}[h]
-  %\center\includestandalone[width=\textwidth]{tikz/empiricalDistributionFunction}
-%  \center\includestandalone[]{tikz/figTappingTestWeak}
   \centering
-  \begin{subfigure}[b]{0.24\textwidth}
-  \resizebox{\textwidth}{!}{\drawHist{chartWeak}}
-                \caption{Спадна}
-                \label{fig:tapping:weak}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.24\textwidth}
-  \resizebox{\textwidth}{!}{\drawHist{chartMiddle}}
-                \caption{Проміжна}
-                \label{fig:tapping:middle}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.24\textwidth}
-  \resizebox{\textwidth}{!}{\drawHist{chartConcave}}
-                \caption{Ввігнута}
-                \label{fig:tapping:concave}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.24\textwidth}
+  \begin{subfigure}[b]{0.3\textwidth}
   \resizebox{\textwidth}{!}{\drawHist{chartMovable}}
                 \caption{Опукла}
                 \label{fig:tapping:movable}
   \end{subfigure}
-
-
-  \caption{Графіки залежностей кількості поставлених точок від часу.
+  \begin{subfigure}[b]{0.3\textwidth}
+  \resizebox{\textwidth}{!}{\drawHist{chartMiddle}}
+                \caption{Проміжна}
+                \label{fig:tapping:middle}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\textwidth}
+  \resizebox{\textwidth}{!}{\drawHist{chartFlat}}
+                \caption{Рівна}
+                \label{fig:tapping:flat}
+  \end{subfigure}\\[2ex]
+  \begin{subfigure}[b]{0.3\textwidth}
+  \resizebox{\textwidth}{!}{\drawHist{chartWeak}}
+                \caption{Спадна}
+                \label{fig:tapping:weak}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.3\textwidth}
+  \resizebox{\textwidth}{!}{\drawHist{chartConcave}}
+                \caption{Ввігнута}
+                \label{fig:tapping:concave}
+  \end{subfigure}
+  \caption{Загальний вигляд залежностей кількості поставлених точок від часу.
   Пунктирна лінія --- початковий темп роботи в перші 5 секунд}
   \label{fig:tikz:studentBehaviorSimple}
 \end{figure}
-
