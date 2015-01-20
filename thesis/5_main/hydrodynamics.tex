@@ -4,13 +4,34 @@
 \begin{equation*}
   A \cdot dh = - \mu \cdot S \cdot \sqrt{h} \cdot dt
 \end{equation*}
+Моментальная скорость изменения объёма жидкости
+\begin{equation}\label{eq:hydrodynamics:volumeChange}
+  \upsilon\left( t \right)
+  = \frac{dV}{dt} = \frac{d\left( h \cdot A \right)}{dt}
+\end{equation}
 
 Постоянная площадь сечения
 \begin{equation*}
+  \dot{h}
+  = - \mu \cdot \frac{S}{A} \cdot \sqrt{h},
+  \qquad  \dot{A} = \dot{S} = 0
+\end{equation*}
+Решение
+\begin{equation*}
   h\left( t \right)
   = \left( \sqrt{h_0}
-    - \frac{\mu}{2} \cdot \frac{S}{A} \cdot t \right)^2,
-  \qquad  \dot{A} = \dot{S} = 0
+    - \frac{\mu}{2} \cdot \frac{S_0}{A_0} \cdot t \right)^2
+\end{equation*}
+Скорость изменения объёма \eqref{eq:hydrodynamics:volumeChange}
+\begin{equation*}
+  \upsilon\left( t \right)
+  = A_0 \cdot \dot{h}
+  = - \mu \cdot S_0 \cdot \sqrt{h_0}
+    \cdot \left( 1 - \frac{\mu \cdot S_0}{2 \cdot \sqrt{h_0}} \cdot t \right)
+\end{equation*}
+\begin{equation*}
+  \dot{\upsilon}
+  = \frac{\left( \mu \cdot S_0 \right)^2}{2}
 \end{equation*}
 
 Переменная площадь сечения отверстия
@@ -21,7 +42,7 @@
   \end{cases},
   \qquad \dot{\mu} = \dot{A} = 0
 \end{equation}
-Объединаем систему в одно уравнение
+Объединяем систему в одно уравнение
 \begin{equation*}
   \frac{d\left( S \cdot \sqrt{h} \right)}{dt}
   = 0
@@ -36,6 +57,18 @@
 \begin{equation}\label{eq:hydrodynamics:varSolutionSh}
   S\left( h \right) = S_0 \cdot \sqrt{\frac{h_0}{h}}
 \end{equation}
+То есть, скорость изменения высоты вычисляется по формуле
+\begin{equation*}
+  \dot{h} = - \mu \cdot \frac{S_0}{A_0} \cdot \sqrt{h_0}
+\end{equation*}
+Скорость изменения объёма жидкости
+\begin{equation*}
+  \upsilon
+  = \frac{dV}{dt} = \frac{d\left( h \cdot A \right)}{dt}
+  = A_0 \cdot \dot{h}
+  = - \mu \cdot S_0 \cdot \sqrt{h_0}
+\end{equation*}
+
 
 Воспользовавшись \eqref{eq:hydrodynamics:valuableResult}, имеем
 \begin{equation*}

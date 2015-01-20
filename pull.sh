@@ -10,6 +10,7 @@ git add practice/*.tex practice/index.pdf practice/*.latexmain practice/images/*
 git add thesis/*.tex thesis/index.pdf thesis/*.latexmain
 git add thesis/*/*.tex
 git add thesis/data/*.csv
+git add thesis/code/*.r
 git add pull.sh
 git commit -m "$1"
 git push https://char-lie@github.com/char-lie/diploma
