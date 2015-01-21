@@ -11,6 +11,7 @@ git add thesis/*.tex thesis/index.pdf thesis/*.latexmain
 git add thesis/*/*.tex
 git add thesis/data/*.csv
 git add thesis/code/*.r
+git add thesis/code/*.png
 git add pull.sh
 git commit -m "$1"
 git push https://char-lie@github.com/char-lie/diploma
