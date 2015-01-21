@@ -1,0 +1,28 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,backgrounds}
+
+\begin{document}
+  \begin{tikzpicture}[scale=1]
+    \begin{axis}[ymin=-4, ymax=1, xmin=1, xmax=5, ytick=\empty, xtick={1,2,3,4},
+      xmajorgrids={true},
+      %xminorgrids={true},
+      ylabel={Кількість точок}, ylabel near ticks,
+      xlabel={час}]
+
+    \draw[dashed,color=gray!50]
+      ({rel axis cs:0,0}|-{axis cs:0,0}) -- ({rel axis cs:1,0}|-{axis cs:0,0});
+    \addplot[smooth, blue] table [x, y, col sep=comma] {data/chartCommon.csv};
+
+    %\draw[dashed,color=red]
+    %  ({axis cs:1,1}) -- ({axis cs:1,-4});
+    %\draw[dashed,color=green]
+    %  ({axis cs:2,1}) -- ({axis cs:2,-4});
+    %\draw[dashed,color=blue]
+    %  ({axis cs:3,1}) -- ({axis cs:3,-4});
+    %\draw[dashed,color=black]
+    %  ({axis cs:4,1}) -- ({axis cs:4,-4});
+  \end{axis}
+  \end{tikzpicture}
+\end{document}

@@ -4,13 +4,13 @@ n <- 2;
 m <- 2;
 png('mygraph.png', width=18, height=18, units="cm", res=100);
 par(mfrow=c(n,m));
-sample.size = 30;
-lambda.weak = 1:30/5;
+sample.size = 6;
+lambda.weak = 1:6;
 lambda.avrg = rep(2,sample.size);
 for (i in 1:(n*m)) {
-    start_rhythm <- sample(7:9, 1)
+    start_rhythm <- sample(35:45, 1)
     aux <- simNHP.fun(lambda=lambda.weak);
-    noise.max = 0;
+    noise.max = 2;
     noise.min = 0;
     noise.mean = (noise.max + noise.min)/2
     noise <- rbinom(sample.size,noise.max,0.5) - noise.mean;
