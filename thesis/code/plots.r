@@ -1,8 +1,9 @@
 library(NHPoisson)
 
-n <- 2;
-m <- 2;
-png('mygraph.png', width=18, height=18, units="cm", res=100);
+n <- 3;
+m <- 3;
+png('mygraph.png', width=18, height=22, units="cm", res=300);
+#png('mygraph.png');
 par(mfrow=c(n,m));
 sample.size = 6;
 lambda.weak = 1:6;
@@ -21,7 +22,7 @@ for (i in 1:(n*m)) {
     #plot(c(cur), xlab="Time", ylab="Taps", ylim=c(start_rhythm-10, start_rhythm+10));
     #cur = cur/cur[1] - 1;
     #plot(c(cur), xlab="Time", ylab="Taps", ylim=c(-.5,.5));
-    plot(c(cur), xlab="Час", ylab="Кількість постукувань", ylim=c(0,50));
+    plot(c(cur), xlab="Час", ylab="Кількість постукувань", ylim=c(20,40));
     #cur = cur/start_rhythm - 1;
     #plot(c(cur), xlab="Time", ylab="Taps", ylim=c(-0.2, 0.2));
     lines(c(cur));
