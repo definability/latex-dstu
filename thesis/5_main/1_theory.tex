@@ -692,6 +692,7 @@ $m$, і буде великим у порівнянні з $r_{\alpha}$, що п
 
 \subsection{Моделювання}
 
+\subsubsection{Процес Пуассона}
 Щоб моделювати темп виконання студентами контрольних задач, скористуємося
 відомими з психології даними щодо ритму виконання теппінг-тесту для людей
 з різними типами вищої нервової діяльності.
@@ -761,7 +762,174 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 \begin{figure}[h]
   \centering
   %\includegraphics[width=0.5\textwidth]{code/example}
-  \includegraphics{code/example_2.png}
+  \includegraphics[width=.95\textwidth]{code/example_2.png}
   \caption{Приклад моделювання}
   \label{fig:tapping:poisson}
 \end{figure}
+
+\subsubsection{Квадратична апроксимація}
+
+Види результуючих ламаних (опукла, ввігнута, рівна, спадна) можна представити
+квадратичними функціями часу вигляду
+\begin{equation*}
+  y\left( t \right) = a \cdot t^2 + b \cdot t + c
+\end{equation*}
+Якщо знати напевно, що всі результати моделювання мають саме такий вигляд,
+їх буде легко аналізувати.
+Тому скористаємось методом найменших квадратів для апроксимації результатів
+моделювання.
+Для того, щоб отримати нелінійну складову, треба лише ввести координатну вісь
+$t^2$.
+
+Проаналізуємо ввігнуту параболу: $a > 0$.
+Значення опуклої ламаної в кінцевій точці не може бути більшим,
+ніж в початковій
+\begin{equation*}
+  a \cdot t_1^2 + b \cdot t_1 + c \ge a \cdot t_6^2 + b \cdot t_6 + c
+\end{equation*}
+Спростимо
+\begin{equation*}
+  a \cdot \left( t_1^2 - t_6^2 \right) + b \cdot \left( t_1 - t_6 \right) \ge 0
+\end{equation*}
+Поділимо обидві частини на $- a \cdot \left( t_1 - t_6 \right)$
+\begin{equation*}
+  \frac{b}{-a} \ge t_1 + t_6
+\end{equation*}
+
+Опукла та проміжна ламані мають більш складні обмеження.
+Перше обмеження: $a < 0$.
+Також відомо, що опукла (проміжна) ламана досягає свого максимального значення не пізніше,
+ніж в час $t_3$ ($t_2$), а під кінець спадає до початкового рівня або нижче.
+Позначимо час, в який графік остаточно повинен почати спадати, через $t_f$.
+Запишемо систему рівнянь
+\begin{equation*}
+  \begin{cases}
+    \left. \frac{d\left( a \cdot t^2 + b \cdot t + c \right)}{dt}
+      \right|_{t=t_{max}} &= 0 \\
+    t_{max} &\le t_f \\
+    a \cdot t_1^2 + b \cdot t_1 + c &\ge a \cdot t_6^2 + b \cdot t_6 + c
+  \end{cases}
+\end{equation*}
+Розв’яжемо перше рівняння відносно $t_{max}$
+\begin{equation*}
+  \begin{cases}
+    t_{max} &= \frac{-b}{2 \cdot a} \\
+    t_{max} &\le t_f \\
+    \frac{b}{-a} &\ge t_1 + t_6
+  \end{cases}
+\end{equation*}
+Об’єднаємо систему в одне рівняння
+\begin{equation*}
+  t_1 + t_6 \le \frac{-b}{a} \le 2 \cdot t_f
+\end{equation*}
+
+Залишилося розглянути випадок прямого графіку.
+Потрібно щоб значення функції змінилося не більше ніж на $\varepsilon = 1$
+\begin{equation*}
+  - \varepsilon
+  \ge a \cdot \left( t_6^2 - t_1^2 \right) + b \cdot \left( t_6 - t_1 \right)
+  \ge \varepsilon
+\end{equation*}
+Знайдемо обмеження для $b$
+\begin{equation*}
+  a \cdot \left( t_6 + t_1 \right) + \frac{\varepsilon}{t_6 - t_1}
+  \le b
+  \le a \cdot \left( t_6 + t_1 \right) - \frac{\varepsilon}{t_6 - t_1}
+\end{equation*}
+Розглянемо той випадок, коли на проміжку $\left[ t_1, t_6 \right]$
+отримана функція не монотонна.
+Це означає, що свого глобального екстремуму (максимуму або мінімуму) вона
+досягає на інтервалі $\left( t_1, t_6 \right)$
+\begin{equation*}
+  0 \le t_1 < t_{g} = \frac{-b}{2 \cdot a} < t_6
+\end{equation*}
+У випадку опуклої (ввігнутої) параболи в точці $t_{g}$ досягається максимум
+(мінімум) функції.
+Візьмемо опуклу параболу ($a < 0$).
+Треба, щоб різниця між значеннями функції у найвищій та найнижчій точці не
+перевищувала $\varepsilon$.
+\begin{equation*}
+  - \varepsilon \le
+  a \cdot \left( t_{max}^2 - t_{min}^2 \right)
+    + b \cdot \left( t_{max} - t_{min} \right)
+  \le \varepsilon
+\end{equation*}
+Знайдемо обмеження для $b$
+\begin{equation*}
+  \left| a \cdot \left( t_{max} + t_{min} \right) + b \right|
+  \le \frac{\varepsilon}{\left| t_{max} - t_{min} \right|}
+\end{equation*}
+Одна з точок $t_{max}$ і $t_{min}$ має значення $t_g$, а інша --- точка
+локального екстремуму на кінці часового проміжку, що розглядається
+($t_1$ або $t_6$), яку позначимо через $t_l$.
+Отримали рівняння
+\begin{equation*}
+  \left| a \cdot \left( t_g + t_l \right) + b \right|
+  \le \frac{\varepsilon}{\left| t_l - t_g \right|}
+\end{equation*}
+Піднесемо обидві частини рівняння до квадрату та перенесемо все вліво
+\begin{equation*}
+  b^2 + b \cdot 2 \cdot a \cdot \left( t_g + t_l \right)
+    + a^2 \cdot \left( t_g + t_l \right)^2
+    - \frac{\varepsilon^2}{\left( t_g - t_l \right)^2}
+  \le 0
+\end{equation*}
+Розв’язок відносно $b$ має вигляд
+\begin{equation*}
+  -a \cdot \left( t_g + t_l \right) - \frac{2 \cdot \varepsilon}{t_g - t_l}
+  \le b
+  \le -a \cdot \left( t_g + t_l \right) + \frac{2 \cdot \varepsilon}{t_g - t_l}
+\end{equation*}
+Відомо, що $t_{g} = \frac{-b}{2 \cdot a}$
+\begin{equation*}
+  \left| a \cdot t_l + \frac{b}{2} \right|
+  \le \frac{\varepsilon}{\left| t_l + \frac{b}{2 \cdot a} \right|}
+\end{equation*}
+Спростимо рівняння
+\begin{equation*}
+  \left( \sqrt{a} \cdot t_l + \frac{b}{2 \cdot \sqrt{a}} \right)^2
+  \le \varepsilon
+\end{equation*}
+Розв’яжемо відносно $b$
+
+Введемо $\tau$
+\begin{equation*}
+  \tau = t_6 - t_1
+\end{equation*}
+
+Почнемо з аналізу лінійної функції ($a=0$).
+ЇЇ графік може бути прямим (відхилення від початкового положення не більше
+$\varepsilon = 1$) або спадним (відхилення будь-яке, але кінець ламаної повинен
+бути нижче її початку).
+Інші ламані нас не цікавлять.
+Отже маємо умови
+\begin{equation*}
+  \begin{split}
+    -\varepsilon
+    \le \left( b \cdot t_1 + c \right) - \left( b \cdot t_6 + c \right)
+    &\le \varepsilon, \\
+    \left( b \cdot t_1 + c \right) - \left( b \cdot t_6 + c \right)
+      &< \varepsilon
+  \end{split}
+\end{equation*}
+Рівняння легко спрощуються
+\begin{equation*}
+  \begin{split}
+    -\varepsilon \le b \cdot \left( t_1 - t_6 \right) &\le \varepsilon, \\
+           b \cdot \left( t_1 - t_6 \right)
+      &< \varepsilon
+  \end{split}
+\end{equation*}
+Умова рівного графіку
+\begin{equation*}
+  \frac{\varepsilon}{-\tau} \le b \le \frac{\varepsilon}{\tau},\qquad a = 0
+\end{equation*}
+Умова спадного графіку
+\begin{equation*}
+  b < \frac{\varepsilon}{-\tau},\qquad a = 0
+\end{equation*}
+Рівняння прямих, що не підходять, задовольняють умові
+\begin{equation*}
+  \frac{\varepsilon}{\tau} < b,\qquad a = 0
+\end{equation*}
+
