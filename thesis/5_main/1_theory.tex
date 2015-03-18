@@ -832,7 +832,7 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 \end{equation*}
 
 Залишилося розглянути випадок прямого графіку.
-Потрібно щоб значення функції змінилося не більше ніж на $\varepsilon = 1$
+Потрібно щоб значення функції змінилося не більше ніж на $\varepsilon = 1$.
 У тому випадку, коли на проміжку $\left[ t_1, t_6 \right]$ отримана функція,
 свого глобального екстремуму (максимуму або мінімуму) вона досягає на інтервалі
 $\left( t_1, t_6 \right)$
@@ -841,8 +841,9 @@ $\left( t_1, t_6 \right)$
 \end{equation*}
 У випадку опуклої (ввігнутої) параболи в точці $t_{g}$ досягається максимум
 (мінімум) функції.
-Узагальнимо нерівність, позначивши локальний максимум як $t_{max}$, а мінімум
-через $t_{min}$
+
+Запишемо нерівність, позначивши точку, де досягається локальний максимум,
+через $t_{max}$, а точку локального мінімуму через $t_{min}$
 \begin{equation*}
   - \varepsilon \le
   a \cdot \left( t_{max}^2 - t_{min}^2 \right)
@@ -851,33 +852,33 @@ $\left( t_1, t_6 \right)$
 \end{equation*}
 Запишемо нерівність через абсолютні значення та поділимо обидві частини на
 $\left| t_{max} - t_{min} \right|$
-\begin{equation*}
+\begin{equation}\label{eq:flat:abs}
   \left| a \cdot \left( t_{max} + t_{min} \right) + b \right|
   \le \frac{\varepsilon}{\left| t_{max} - t_{min} \right|}
-\end{equation*}
-Одна з точок $t_{max}$ і $t_{min}$ має значення $t_g$, а інша --- точка
-локального екстремуму на кінці часового проміжку, що розглядається
-($t_1$ або $t_6$), яку позначимо через $t_l$.
-Отримали рівняння
-\begin{equation}\label{eq:flat:abs}
-  \left| a \cdot \left( t_g + t_l \right) + b \right|
-  \le \frac{\varepsilon}{\left| t_l - t_g \right|}
 \end{equation}
 Піднесемо обидві частини рівняння до квадрату та перенесемо все вліво
 \begin{equation*}
-  b^2 + b \cdot 2 \cdot a \cdot \left( t_g + t_l \right)
-    + a^2 \cdot \left( t_g + t_l \right)^2
-    - \frac{\varepsilon^2}{\left( t_g - t_l \right)^2}
+  b^2 + b \cdot 2 \cdot a \cdot \left( t_{max} + t_{min} \right)
+    + a^2 \cdot \left( t_{max} + t_{min} \right)^2
+    - \frac{\varepsilon^2}{\left( t_{max} - t_{min} \right)^2}
   \le 0
 \end{equation*}
 Розв’язок відносно $b$ має вигляд
 \begin{equation*}
-  -a \cdot \left( t_g + t_l \right) - \frac{\varepsilon}{t_g - t_l}
+  -a \cdot \left( t_{max} + t_{min} \right) - \frac{\varepsilon}{t_{max} - t_{min}}
   \le b
-  \le -a \cdot \left( t_g + t_l \right) + \frac{\varepsilon}{t_g - t_l}
+  \le -a \cdot \left( t_{max} + t_{min} \right) + \frac{\varepsilon}{t_{max} - t_{min}}
 \end{equation*}
+Повернемося до рівняння \eqref{eq:flat:abs}.
+Одна з точок $t_{max}$ і $t_{min}$ має значення $t_g$, а інша --- точка
+локального екстремуму на кінці часового проміжку, що розглядається,
+яку позначимо через $t_l$ ($t_1$ або $t_6$).
 Відомо, що $t_{g} = \frac{-b}{2 \cdot a}$.
-Підставимо це значення в рівняння \eqref{eq:flat:abs}
+Введемо це значення в рівняння \eqref{eq:flat:abs}
+\begin{equation*}
+  \left| a \cdot \left( t_g + t_l \right) + b \right|
+  \le \frac{\varepsilon}{\left| t_l - t_g \right|}
+\end{equation*}
 \begin{equation*}
   \left| a \cdot t_l + \frac{b}{2} \right|
   \le \frac{\varepsilon}{\left| t_l + \frac{b}{2 \cdot a} \right|}
@@ -895,8 +896,8 @@ $\left| t_{max} - t_{min} \right|$
 \end{equation*}
 Після розв’язання нерівності отримаємо обмеження для $b$
 \begin{equation*}
-  -2 \cdot t - 2 \sqrt{\left| a \right| \cdot \varepsilon}
+  -2 \cdot t_l - 2 \sqrt{\left| a \right| \cdot \varepsilon}
   \le b
-  \le -2 \cdot t + 2 \sqrt{\left| a \right| \cdot \varepsilon}
+  \le -2 \cdot t_l + 2 \sqrt{\left| a \right| \cdot \varepsilon}, \qquad
+  t_1 < \frac{-b}{2 \cdot a} < t_6
 \end{equation*}
-
