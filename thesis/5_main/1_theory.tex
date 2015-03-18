@@ -759,7 +759,7 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   %\includegraphics[width=0.5\textwidth]{code/example}
   \includegraphics[width=.95\textwidth]{code/example_2.png}
@@ -776,10 +776,18 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 \end{equation*}
 Якщо знати напевно, що всі результати моделювання мають саме такий вигляд,
 їх буде легко аналізувати.
-Тому скористаємось методом найменших квадратів для апроксимації результатів
+Для цього скористаємось методом найменших квадратів для апроксимації результатів
 моделювання.
-Для того, щоб отримати нелінійну складову, треба лише ввести координатну вісь
-$t^2$.
+На рис. \ref{fig:tapping:poisson:sqr} зображено реалізації послідовність
+випадкових величин, що розподілені за законом Пуассона, та криві, що є
+результатом апроксимації цих реалізацій.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=.95\textwidth]{code/least_squares_approximation}
+  \caption{Приклад моделювання з апроксимацією}
+  \label{fig:tapping:poisson:sqr}
+\end{figure}
 
 Проаналізуємо ввігнуту параболу: $a > 0$.
 Значення опуклої ламаної в кінцевій точці не може бути більшим,
@@ -791,7 +799,7 @@ $t^2$.
 \begin{equation*}
   a \cdot \left( t_1^2 - t_6^2 \right) + b \cdot \left( t_1 - t_6 \right) \ge 0
 \end{equation*}
-Поділимо обидві частини на $- a \cdot \left( t_1 - t_6 \right)$
+Поділимо обидві частини на $- a \cdot \left( t_1 - t_6 \right) > 0$
 \begin{equation*}
   \frac{b}{-a} \ge t_1 + t_6
 \end{equation*}
@@ -825,36 +833,24 @@ $t^2$.
 
 Залишилося розглянути випадок прямого графіку.
 Потрібно щоб значення функції змінилося не більше ніж на $\varepsilon = 1$
-\begin{equation*}
-  - \varepsilon
-  \ge a \cdot \left( t_6^2 - t_1^2 \right) + b \cdot \left( t_6 - t_1 \right)
-  \ge \varepsilon
-\end{equation*}
-Знайдемо обмеження для $b$
-\begin{equation*}
-  a \cdot \left( t_6 + t_1 \right) + \frac{\varepsilon}{t_6 - t_1}
-  \le b
-  \le a \cdot \left( t_6 + t_1 \right) - \frac{\varepsilon}{t_6 - t_1}
-\end{equation*}
-Розглянемо той випадок, коли на проміжку $\left[ t_1, t_6 \right]$
-отримана функція не монотонна.
-Це означає, що свого глобального екстремуму (максимуму або мінімуму) вона
-досягає на інтервалі $\left( t_1, t_6 \right)$
+У тому випадку, коли на проміжку $\left[ t_1, t_6 \right]$ отримана функція,
+свого глобального екстремуму (максимуму або мінімуму) вона досягає на інтервалі
+$\left( t_1, t_6 \right)$
 \begin{equation*}
   0 \le t_1 < t_{g} = \frac{-b}{2 \cdot a} < t_6
 \end{equation*}
 У випадку опуклої (ввігнутої) параболи в точці $t_{g}$ досягається максимум
 (мінімум) функції.
-Візьмемо опуклу параболу ($a < 0$).
-Треба, щоб різниця між значеннями функції у найвищій та найнижчій точці не
-перевищувала $\varepsilon$.
+Узагальнимо нерівність, позначивши локальний максимум як $t_{max}$, а мінімум
+через $t_{min}$
 \begin{equation*}
   - \varepsilon \le
   a \cdot \left( t_{max}^2 - t_{min}^2 \right)
     + b \cdot \left( t_{max} - t_{min} \right)
   \le \varepsilon
 \end{equation*}
-Знайдемо обмеження для $b$
+Запишемо нерівність через абсолютні значення та поділимо обидві частини на
+$\left| t_{max} - t_{min} \right|$
 \begin{equation*}
   \left| a \cdot \left( t_{max} + t_{min} \right) + b \right|
   \le \frac{\varepsilon}{\left| t_{max} - t_{min} \right|}
@@ -863,10 +859,10 @@ $t^2$.
 локального екстремуму на кінці часового проміжку, що розглядається
 ($t_1$ або $t_6$), яку позначимо через $t_l$.
 Отримали рівняння
-\begin{equation*}
+\begin{equation}\label{eq:flat:abs}
   \left| a \cdot \left( t_g + t_l \right) + b \right|
   \le \frac{\varepsilon}{\left| t_l - t_g \right|}
-\end{equation*}
+\end{equation}
 Піднесемо обидві частини рівняння до квадрату та перенесемо все вліво
 \begin{equation*}
   b^2 + b \cdot 2 \cdot a \cdot \left( t_g + t_l \right)
@@ -876,60 +872,31 @@ $t^2$.
 \end{equation*}
 Розв’язок відносно $b$ має вигляд
 \begin{equation*}
-  -a \cdot \left( t_g + t_l \right) - \frac{2 \cdot \varepsilon}{t_g - t_l}
+  -a \cdot \left( t_g + t_l \right) - \frac{\varepsilon}{t_g - t_l}
   \le b
-  \le -a \cdot \left( t_g + t_l \right) + \frac{2 \cdot \varepsilon}{t_g - t_l}
+  \le -a \cdot \left( t_g + t_l \right) + \frac{\varepsilon}{t_g - t_l}
 \end{equation*}
-Відомо, що $t_{g} = \frac{-b}{2 \cdot a}$
+Відомо, що $t_{g} = \frac{-b}{2 \cdot a}$.
+Підставимо це значення в рівняння \eqref{eq:flat:abs}
 \begin{equation*}
   \left| a \cdot t_l + \frac{b}{2} \right|
   \le \frac{\varepsilon}{\left| t_l + \frac{b}{2 \cdot a} \right|}
 \end{equation*}
-Спростимо рівняння
+Помножимо обидві частини на $\left| a \cdot t_l + \frac{b}{2} \right|$
 \begin{equation*}
-  \left( \sqrt{a} \cdot t_l + \frac{b}{2 \cdot \sqrt{a}} \right)^2
-  \le \varepsilon
+  \left( t_l + \frac{b}{2} \right)^2
+  \le \left| a \right| \cdot \varepsilon
 \end{equation*}
-Розв’яжемо відносно $b$
-
-Введемо $\tau$
+Випишемо отримане квадратне рівняння
 \begin{equation*}
-  \tau = t_6 - t_1
+  b^2 + b \cdot 4 \cdot t_l + 4 \cdot t_l^2
+    - 4 \cdot \left| a \right| \cdot \varepsilon
+  \le 0
 \end{equation*}
-
-Почнемо з аналізу лінійної функції ($a=0$).
-ЇЇ графік може бути прямим (відхилення від початкового положення не більше
-$\varepsilon = 1$) або спадним (відхилення будь-яке, але кінець ламаної повинен
-бути нижче її початку).
-Інші ламані нас не цікавлять.
-Отже маємо умови
+Після розв’язання нерівності отримаємо обмеження для $b$
 \begin{equation*}
-  \begin{split}
-    -\varepsilon
-    \le \left( b \cdot t_1 + c \right) - \left( b \cdot t_6 + c \right)
-    &\le \varepsilon, \\
-    \left( b \cdot t_1 + c \right) - \left( b \cdot t_6 + c \right)
-      &< \varepsilon
-  \end{split}
-\end{equation*}
-Рівняння легко спрощуються
-\begin{equation*}
-  \begin{split}
-    -\varepsilon \le b \cdot \left( t_1 - t_6 \right) &\le \varepsilon, \\
-           b \cdot \left( t_1 - t_6 \right)
-      &< \varepsilon
-  \end{split}
-\end{equation*}
-Умова рівного графіку
-\begin{equation*}
-  \frac{\varepsilon}{-\tau} \le b \le \frac{\varepsilon}{\tau},\qquad a = 0
-\end{equation*}
-Умова спадного графіку
-\begin{equation*}
-  b < \frac{\varepsilon}{-\tau},\qquad a = 0
-\end{equation*}
-Рівняння прямих, що не підходять, задовольняють умові
-\begin{equation*}
-  \frac{\varepsilon}{\tau} < b,\qquad a = 0
+  -2 \cdot t - 2 \sqrt{\left| a \right| \cdot \varepsilon}
+  \le b
+  \le -2 \cdot t + 2 \sqrt{\left| a \right| \cdot \varepsilon}
 \end{equation*}
 
