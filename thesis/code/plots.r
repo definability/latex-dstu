@@ -4,7 +4,7 @@ wideScreen();
 
 n <- 3;
 m <- 3;
-png('mygraph.png', width=18, height=22, units="cm", res=80);
+png('mygraph.png', width=18, height=22, units="cm", res=300);
 #png('mygraph.png');
 par(mfrow=c(n,m));
 sample.size = 6;
@@ -35,8 +35,5 @@ for (i in 1:(n*m)) {
     #cur = cur/start_rhythm - 1;
     #plot(c(cur), xlab="Time", ylab="Taps", ylim=c(-0.2, 0.2));
     lines(c(cur));
-    print('----------NEW MODEL----------');
-    print(summary(lm(c(cur) ~ poly(c(1,2,3,4,5,6), 2, raw=TRUE))));
-    print('----------END----------');
 }
 dev.off();
