@@ -12,6 +12,11 @@ git add thesis/*/*.tex
 git add thesis/data/*.csv
 git add thesis/code/*.r
 git add thesis/images/*.png
+git add course/*.tex
+git add course/1_title/*.tex
+git add course/code
+git add course/data
+git add course/images
 git add pull.sh
 git commit -m "$1"
 git push https://char-lie@github.com/char-lie/diploma
