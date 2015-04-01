@@ -12,7 +12,7 @@ git add thesis/*/*.tex
 git add thesis/data/*.csv
 git add thesis/code/*.r
 git add thesis/images/*.png
-git add course/*.tex
+git add course/*.tex course/index.pdf course/*.latexmain
 git add course/1_title/*.tex
 git add course/code
 git add course/data
