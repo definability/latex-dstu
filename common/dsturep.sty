@@ -91,7 +91,7 @@ labelsep=gost}
 \renewcommand{\labelitemi}{-}
 \renewcommand{\labelenumi}{\arabic{enumi})}
 \renewcommand{\labelenumii}{\asbuk{enumii})}
-\setenumerate{topsep=1.5em,leftmargin=\parindent}
+\setenumerate{leftmargin=\parindent}
 
 % Заголовок раздела в содержании
 %\dottedcontents{chapter}[1.6em]{}{1.6em}{1pc}
@@ -107,11 +107,9 @@ labelsep=gost}
     \clearpage
     \stepcounter{chapter}
     \begin{center}
-        \chaptertitlename~\Asbuk{chapter}
+      \textbf{\MakeUppercase{\chaptertitlename~\Asbuk{chapter} #1}}
     \end{center}
-    \begin{center}{#1}\end{center}
-    \empline
-    \addcontentsline{toc}{chapter}{\Asbuk{chapter}\hspace{0.6em}~#1}}
+    \addcontentsline{toc}{chapter}{\Asbuk{chapter} #1}}
 
 % Ненумерованные разделы в содержании
 \newcommand\chap[1]{%
