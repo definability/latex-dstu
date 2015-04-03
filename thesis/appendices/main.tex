@@ -1,17 +1,28 @@
-\renewcommand{\empline}{\mbox{}\newline}
-
-\renewcommand{\append}[1]{
-    \clearpage
-    \stepcounter{chapter}
-    \begin{center}
-      \textbf{\chaptertitlename~\Asbuk{chapter}}
-    \end{center}
-    \begin{center}{#1}\end{center}
-    \empline
-    \addcontentsline{toc}{chapter}{\Asbuk{chapter}\hspace{0.6em}~#1}}
+%\renewcommand{\empline}{\mbox{}\newline}
+%
+%\renewcommand{\append}[1]{
+%    \clearpage
+%    \stepcounter{chapter}
+%    \begin{center}
+%      \textbf{\chaptertitlename~\Asbuk{chapter}}
+%    \end{center}
+%    \begin{center}{#1}\end{center}
+%    \empline
+%    \addcontentsline{toc}{chapter}{\Asbuk{chapter}\hspace{0.6em}~#1}}
+%\newcommand{\append}[1]{
+%  %\stepcounter{chapter}
+%  \chapter*{\chaptertitlename~\Asbuk{chapter} #1}
+%  %\addcontentsline{toc}{chapter}{\Asbuk{chapter}\hspace{0.6em}~#1}
+%}
 
 \begin{appendices}
-
+%\renewcommand{\appendixname}{Appendix}
+%\appendix
+%\renewcommand{\thechapter}{ДОДАТОК \Asbuk{chapter}}
+%\renewcommand{\appendixtocname}{Приложения}
+%\renewcommand{\appendixpagename}{Приложения}
+%\renewcommand{\appendixname}{Приложние}
 \import{}{1_modelling_listing.tex}
+%\addcontentsline{toc}{chapter}{\Asbuk{chapter}\hspace{0.6em}~Hello}
 
 \end{appendices}
