@@ -1,4 +1,4 @@
-\section{Моделювання}
+\section{Моделювання результатів виконання тестових завдань}
 
 \subsection{Процес Пуассона}
 Щоб моделювати темп виконання студентами контрольних задач, використаємо
@@ -69,7 +69,7 @@ $\lambda_i$.
         \addplot table [x, y, col sep=comma] {data/chartIlinExample01.csv};
       \end{axis}
     \end{tikzpicture}
-  \caption{Спадна ламана, побудована на основі даних з книги Ільїна}
+  \caption{Спадна ламана, побудована на основі даних з \cite{Ilin:2001}}
   \label{fig:tapping:Ilin01}
 \end{figure}
 
@@ -242,8 +242,8 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 Пряма ламана весь час тримається приблизно на початковому рівні
 \begin{equation*}
   \begin{cases}
-    y\left( t_{max} \right) - y\left( t_1 \right) &\le \varepsilon \\
-    y\left( t_1 \right) - y\left( t_{min} \right)   &\le \varepsilon
+    y\left( t_{max} \right) - y\left( t_1 \right) \le \varepsilon \\
+    y\left( t_1 \right) - y\left( t_{min} \right) \le \varepsilon
   \end{cases}
 \end{equation*}
 
@@ -251,8 +251,8 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 положення
 \begin{equation*}
   \begin{cases}
-    &t_{max} = t_1 \\
-    &y\left( t_{max} \right) - y\left( t_{min} \right) > \varepsilon
+    t_{max} = t_1 \\
+    y\left( t_{max} \right) - y\left( t_{min} \right) > \varepsilon
   \end{cases}
 \end{equation*}
 
@@ -260,9 +260,9 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 спадати нижче початкового рівня
 \begin{equation*}
   \begin{cases}
-    &t_2 \le t_{max} \le t_3 < t_{min} \\
-    &y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon \\
-    &y\left( t_1 \right) - y\left( t_{min} \right) > \varepsilon
+    t_2 \le t_{max} \le t_3 < t_{min} \\
+    y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon \\
+    y\left( t_1 \right) - y\left( t_{min} \right) > \varepsilon
   \end{cases}
 \end{equation*}
 
@@ -270,8 +270,8 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 а до моменту $t_6$ повертається до початкового рівня або спадає нижче нього.
 \begin{equation*}
   \begin{cases}
-    &t_2 \le t_{max} \le t_3 < t_{min} \\
-    &y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon \\
-    &y\left( t_6 \right) \le y\left( t_1 \right)
+    t_2 \le t_{max} \le t_3 < t_{min} \\
+    y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon \\
+    y\left( t_6 \right) \le y\left( t_1 \right)
   \end{cases}
 \end{equation*}

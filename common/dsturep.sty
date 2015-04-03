@@ -7,6 +7,7 @@
 \usepackage{pscyr}
 \renewcommand{\rmdefault}{ftm}
 %\renewcommand*{\familydefault}{\sfdefault}
+%\renewcommand{\rmdefault}{\ttdefault}
 
 \usepackage[hidelinks]{hyperref}             % гиперссылки в содержании и ссылках
 \usepackage{titlesec}                        % оформление разделов, пунктов и т. п.
@@ -118,3 +119,7 @@ labelsep=gost}
 
 % Номер сноски со скобкой
 \renewcommand*{\thefootnote}{\arabic{footnote})}
+
+\AtBeginDocument{%
+  \setlength\abovedisplayskip{2em}
+  \setlength\belowdisplayskip{2em}}
