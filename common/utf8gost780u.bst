@@ -564,7 +564,7 @@ FUNCTION {format.names.rev}
 FUNCTION {format.authors}
 { author empty$
     { "" }
-    { author format.names emphasize}
+    { author format.names }%emphasize}
   if$
 }
 
@@ -737,8 +737,8 @@ FUNCTION {format.number.series}
             { "there's a number but no series in " cite$ * warning$
               bbl.nnr }
             {
-              %new.dblslash
-              new.sentence
+              new.dblslash
+              %new.sentence
               series
               bbl.nr
               tie.or.space.connect}
@@ -1013,7 +1013,8 @@ FUNCTION {book}
   new.slash
   author.after
   editor.organization.after
-  new.sentence
+  %new.sentence
+  new.dblslash
   format.number.series output
   new.block
   format.edition output
