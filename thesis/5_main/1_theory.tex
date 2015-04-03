@@ -14,7 +14,7 @@
     \vdots \\
     x_k^n
   \end{bmatrix},
-  \qquad k = \overline{1,m}
+  \qquad k = \overline{1,m}.
 \end{equation*}
 Згрупуємо всі вимірювання в одну матрицю $X$
 \begin{equation*}
@@ -23,13 +23,13 @@
     x_1^2  & x_2^2  & \dots  & x_m^2  \\
     \vdots & \vdots & \ddots & \vdots \\
     x_1^n  & x_2^n  & \dots  & x_m^n
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 
 Спочатку нам знадобиться знайти вибіркові середні значення для кожної
 властивості
 \begin{equation*}
-  a_i = \frac{1}{m} \cdot \sum_{k=1}^{m} x_k^i, \qquad i = \overline{1,n}
+  a_i = \frac{1}{m} \cdot \sum_{k=1}^{m} x_k^i, \qquad i = \overline{1,n}.
 \end{equation*}
 Маємо вектор вибіркових середніх значень
 \begin{comment}
@@ -39,7 +39,7 @@
     \frac{1}{m} \sum_{k=1}^{m} x_k^2 \\
     \vdots                           \\
     \frac{1}{m} \sum_{k=1}^{m} x_k^n \\
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 \end{comment}
 \begin{equation*}
@@ -48,14 +48,14 @@
     a_2    \\
     \vdots \\
     a_n
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 
 Центруємо отримані дані, що містяться в матриці $X$, віднявши від кожного
 стовбця вектор вибіркових середніх $\vec{a}$
 \begin{comment}
 \begin{equation*}
-  \tilde{x}_k^i = x_k^i - a_i,\qquad k = \overline{1,m}, i = \overline{1,n}
+  \tilde{x}_k^i = x_k^i - a_i,\qquad k = \overline{1,m}, i = \overline{1,n}.
 \end{equation*}
 Кожен стовбець матриці вимірювань прийме вигляд
 \begin{equation*}
@@ -67,7 +67,7 @@
     \vdots      \\
     x_k^n - a_n
   \end{bmatrix},
-  \qquad k = \overline{1,m}
+  \qquad k = \overline{1,m}.
 \end{equation*}
 Маємо матрицю центрованих вимірювань $\tilde{X}$
 \end{comment}
@@ -84,7 +84,7 @@
     x_1^2 - a_2  & x_2^2 - a_2  & \dots  & x_m^2 - a_2 \\
     \vdots       & \vdots       & \ddots & \vdots      \\
     x_1^n - a_n  & x_2^n - a_n  & \dots  & x_m^n - a_n
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 
 Обчислюємо вибіркову коваріаційну матрицю властивостей.
@@ -94,7 +94,7 @@
   = \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^i \cdot \tilde{x}_k^j
   = \frac{1}{m} \cdot \sum_{k=1}^{m}
     \left[ \left( x_k^i - a_i \right) \cdot \left( x_k^j - a_j \right) \right],
-    \qquad i,j = \overline{1,n}
+    \qquad i,j = \overline{1,n}.
 \end{equation*}
 Маємо вибіркову коваріаційну матрицю
 \begin{equation*}
@@ -103,7 +103,7 @@
     \sigma_1^2 & \sigma_2^2 & \dots  & \sigma_n^2 \\
     \vdots     & \vdots     & \ddots & \vdots     \\
     \sigma_1^n & \sigma_2^n & \dots  & \sigma_n^n \\
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 \begin{comment}
 \begin{equation*}
@@ -133,7 +133,7 @@
     \dots
     &
     \frac{1}{m} \cdot \sum_{k=1}^{m} \tilde{x}_k^n \cdot \tilde{x}_k^n
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 \end{comment}
 
@@ -158,7 +158,7 @@ $Y = L \cdot \tilde{X}$, яка має діагональну вибіркову
     0         & \lambda_2 & \dots  & 0      \\
     \vdots    & \vdots    & \ddots & \vdots \\
     0         & 0         & \dots  & \lambda_n
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 З лінійної алгебри відомо, що матриця $L$ складається з координат власних
 векторів матриці $K$, а елементи $\lambda_k$ --- її власні числа, які
@@ -170,7 +170,7 @@ $Y = L \cdot \tilde{X}$, яка має діагональну вибіркову
 \begin{equation*}
   \vec{l}_k
   = \left[ l_k^1, l_k^2, \dots, l_k^n \right],
-  \qquad k = \overline{1,n}
+  \qquad k = \overline{1,n}.
 \end{equation*}
 Матриця $L$ має вигляд
 \begin{equation*}
@@ -179,7 +179,7 @@ $Y = L \cdot \tilde{X}$, яка має діагональну вибіркову
     l_2^1  & l_2^2  & \dots  & l_2^n  \\
     \vdots & \vdots & \ddots & \vdots \\
     l_n^1  & l_n^2  & \dots  & l_n^n  \\
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 
 Треба зменшити розмірність простору досліджуваних параметрів системи з $n$ до
@@ -188,7 +188,7 @@ $p<n$, але при цьому втратити якомога менше ві�
 Введемо міру інформації, що залишається при зменшенні кількості компонент, що
 розглядаються
 \begin{equation*}
-  I = \frac{\lambda_1 + \dots + \lambda_p}{\lambda_1 + \dots + \lambda_n}
+  I = \frac{\lambda_1 + \dots + \lambda_p}{\lambda_1 + \dots + \lambda_n}.
 \end{equation*}
 Будемо вважати, що діємо продуктивно, тому починаємо обирати з перших
 компонент, адже саме вони є найбільш інформативними.
@@ -202,7 +202,7 @@ $p<n$, але при цьому втратити якомога менше ві�
     y_1^2  & y_2^2  & \dots  & y_m^2  \\
     \vdots & \vdots & \ddots & \vdots \\
     y_1^p  & y_2^p  & \dots  & y_m^p  \\
-    \end{bmatrix}
+    \end{bmatrix}.
 \end{equation*}
 \subsection{Побудова гістограми для критерію Пірсона}
 
@@ -215,7 +215,7 @@ $p<n$, але при цьому втратити якомога менше ві�
 \begin{equation*}
   h_j^k = \frac{1}{m} \cdot \sum_{i=1}^{m} \indicator{y_i^k \in I_j^k},
   \qquad j = \overline{1, N},
-  \qquad k = \overline{1, p}
+  \qquad k = \overline{1, p},
 \end{equation*}
 де $I^k$ --- набір напівінтервалів, що розбиває відрізок
 $\left[ \min\limits_{i=\overline{1,m}}{y_i^k};
@@ -223,7 +223,7 @@ $\left[ \min\limits_{i=\overline{1,m}}{y_i^k};
 Для вибору $N$ можна скористатися досить відомою формулою Стьорджеса
 (Sturges' formula) \cite{Sturges:1926:CCI}
 \begin{equation*}
-  N = \lfloor \log_2 m \rfloor + 1
+  N = \lfloor \log_2 m \rfloor + 1.
 \end{equation*}
 Маємо матрицю гістограм
 \begin{equation*}
@@ -241,7 +241,7 @@ $\left[ \min\limits_{i=\overline{1,m}}{y_i^k};
     I_1^2  & I_2^2  & \dots  & I_N^2  \\
     \vdots & \vdots & \ddots & \vdots \\
     I_1^p  & I_2^p  & \dots  & I_N^p
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 
 \subsection{Критерій узгодженості Пірсона $\chi^2$}
@@ -254,17 +254,17 @@ $F^k$?'' може надати критерій узгодженості Пір�
 \begin{equation*}
     \eta^k
     = \left[ \frac{\nu_1^k - m \cdot \rho_1^k}{\sqrt{m \cdot \rho_1^k}}, \dots,
-      \frac{\nu_N^k - m \cdot \rho_N^k}{\sqrt{m \cdot \rho_N^k}} \right]
+      \frac{\nu_N^k - m \cdot \rho_N^k}{\sqrt{m \cdot \rho_N^k}} \right].
 \end{equation*}
 Знайдемо його характеристичну функцію
 \begin{equation*}
   \varphi_{\eta^k}\left( \lambda\right)
   = \mean{e^{i \cdot \left( \lambda, \eta^k \right)}},\qquad
-  \lambda \in \mathbb{R}^N
+  \lambda \in \mathbb{R}^N.
 \end{equation*}
 Для зручності перепозначимо індикатор
 \begin{equation*}
-  \mathfrak{I}_{i,j}^k = \Indicator{y_i^k \in I_j^k}
+  \mathfrak{I}_{i,j}^k = \Indicator{y_i^k \in I_j^k}.
 \end{equation*}
 Подивимось, чому дорівнює скалярний добуток в експоненті
 \begin{equation*}
@@ -278,40 +278,40 @@ $F^k$?'' може надати критерій узгодженості Пір�
       \frac{\lambda_j}{\sqrt{m \cdot \rho_j^k}}
       \cdot \left( \mathfrak{I}_{i,j}^k - \rho_j^k \right)
     = \sum_{i=1}^{m} \sum_{j=1}^{N} \lambda_j \cdot
-      \frac{\mathfrak{I}_{i,j}^k - \rho_j^k}{\sqrt{m \cdot \rho_j^k}}
+      \frac{\mathfrak{I}_{i,j}^k - \rho_j^k}{\sqrt{m \cdot \rho_j^k}}.
   \end{split}
 \end{equation*}
 Бачимо суму $m$ незалежних однаково розподілених випадкових величин.
 Введемо позначення
 \begin{equation*}
-  \mathfrak{I}_j^k = \Indicator{y_1^k \in I_j^k}
+  \mathfrak{I}_j^k = \Indicator{y_1^k \in I_j^k},
 \end{equation*}
-А також позначимо новий випадковий вектор
+а також позначимо новий випадковий вектор
 \begin{equation*}
   \zeta^k
   = \left[ \frac{\mathfrak{I}_1^k - \rho_1^k}{\sqrt{m \cdot \rho_1^k}},
     \dots
-    \frac{\mathfrak{I}_N^k - \rho_N^k}{\sqrt{m \cdot \rho_N^k}} \right]
+    \frac{\mathfrak{I}_N^k - \rho_N^k}{\sqrt{m \cdot \rho_N^k}} \right].
 \end{equation*}
-Тоді скалярний добуток прийме вигляд
+Скалярний добуток прийняв вигляд
 \begin{equation*}
     \left( \lambda, \eta^k \right)
     = \sum_{i=1}^{m} \sum_{j=1}^{N} \lambda_j \cdot \zeta_j^k
     = \sum_{i=1}^{m} \left( \lambda, \zeta^k \right)
-    = m \cdot \left( \lambda, \zeta^k \right)
+    = m \cdot \left( \lambda, \zeta^k \right).
 \end{equation*}
 За рахунок незалежності випадкових величин $\zeta_j^k$ маємо
 \begin{equation}\label{eq:cf:eta}
   \varphi_{\eta^k}\left( \lambda\right)
   = \mean{e^{i \cdot \left( \lambda, \eta^k \right)}}
   = \mean{e^{m \cdot i \cdot \left( \lambda, \zeta^k \right)}}
-  = \left( \mean{e^{i \cdot \left( \lambda, \zeta^k \right)}} \right)^m
+  = \left( \mean{e^{i \cdot \left( \lambda, \zeta^k \right)}} \right)^m.
 \end{equation}
 Розглянемо характеристичну функцію випадкового вектора $\zeta^k$
 \begin{equation}\label{eq:cf:zeta}
   \varphi_{\zeta^k}\left( \lambda \right)
   = \Mean{\exp{\left\{ i
-    \cdot \sum_{j=1}^{N} \lambda_j \cdot \zeta_j^k \right\}}}
+    \cdot \sum_{j=1}^{N} \lambda_j \cdot \zeta_j^k \right\}}}.
 \end{equation}
 Легко побачити, що
 \begin{equation*}
@@ -326,7 +326,7 @@ $F^k$?'' може надати критерій узгодженості Пір�
     &= \sum_{j=1}^{N} \mathfrak{I}_j^k \cdot \left( 
         \frac{\lambda_j}{\sqrt{m \cdot \rho_j^k}}
         - \sum_{l=1}^{N} \frac{\sqrt{\rho_l^k} \cdot \lambda_l}{\sqrt{m}}
-      \right)
+      \right).
   \end{split}
 \end{equation*}
 Тобто характеристична функція \eqref{eq:cf:zeta} приймає вигляд
@@ -335,20 +335,20 @@ $F^k$?'' може надати критерій узгодженості Пір�
   = \Mean{\sum_{j=1}^{N} \mathfrak{I}_j^k
     \cdot \exp{\left\{ \frac{i}{\sqrt{m}} \left(
       \frac{\lambda_j}{\sqrt{\rho_j^k}}
-      - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right) \right\}}}
+      - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right) \right\}}}.
 \end{equation*}
 Перепозначимо вираз в круглих дужках
 \begin{equation*}
   \mathfrak{z}^k
   = \frac{\lambda_j}{\sqrt{\rho_j^k}}
-    - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l
+    - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l.
 \end{equation*}
 Математичне очікування індикатора --- ймовірність події, яку він перевіряє.
 Отже
 \begin{equation*}
   \varphi_{\zeta^k}\left( \lambda \right)
   = \sum_{j=1}^{N} \rho_j^k
-    \cdot \exp{\left\{ \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right\}}
+    \cdot \exp{\left\{ \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right\}}.
 \end{equation*}
 
 Якщо розмір вибірки $m$ буде зростати, то характеристична функція $\eta^k$
@@ -361,13 +361,13 @@ $F^k$?'' може надати критерій узгодженості Пір�
       - 1 \right] \cdot \frac{m}{m} \right)^m = \\
     &= \lim_{m \to \infty} \exp{ \left\{ m \cdot \sum_{k=1}^{N} p_k \cdot \left[
       \exp{\left\{ \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right\}}
-      - 1 \right] \right\}}
+      - 1 \right] \right\}}.
   \end{split}
 \end{equation*}
 Для $\exp{\left\{ \frac{i \cdot \mathfrak{z}^k}{\sqrt{m}} \right\}}$
 використаємо співвідношення
 \begin{equation*}
-  e^{\alpha} - 1 \approx \alpha + \frac{\alpha^2}{2},\qquad \alpha \ll 1
+  e^{\alpha} - 1 \approx \alpha + \frac{\alpha^2}{2},\qquad \alpha \ll 1.
 \end{equation*}
 Маємо
 \begin{equation*}
@@ -391,10 +391,10 @@ $F^k$?'' може надати критерій узгодженості Пір�
           - \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right)^2 = \\
       = - \frac{1}{m} \cdot \left[ \sum_{j=1}^{N} \lambda_j
         - \left( \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right)^2
-          \right]
+          \right],
   \end{split}
 \end{equation*}
-Тому
+тому
 \begin{equation*}
   \begin{split}
     \lim_{m \to \infty} \varphi_{\eta^k}\left( \lambda \right)
@@ -406,32 +406,32 @@ $F^k$?'' може надати критерій узгодженості Пір�
       \left[ \sum_{j=1}^{N} \lambda_j
         - \left( \sum_{l=1}^{N} \sqrt{\rho_l^k} \cdot \lambda_l \right)^2
         \right] \right\}}
-    = e^{-\frac{1}{2} \cdot \left( A^k \lambda, \lambda \right)}
+    = e^{-\frac{1}{2} \cdot \left( A^k \lambda, \lambda \right)}.
   \end{split}
 \end{equation*}
 Матриця $A^k$ побудована наступним чином
 \begin{equation*}
   A^k
-  = \left\| \delta_{ij} - \sqrt{\rho_i^k} \cdot \sqrt{\rho_j^k} \right\|_{i=1}^n
+  = \left\| \delta_{ij} - \sqrt{\rho_i^k} \cdot \sqrt{\rho_j^k} \right\|_{i=1}^n.
 \end{equation*}
 Симетричність мариці очевидна, тому треба довести її невід’ємну визначеність,
 щоб стверджувати, що вона є коваріаційною.
 Для цього візьмемо вектор
 \begin{equation*}
   e^k = \left[ \sqrt{\rho_1^k}, \dots, \sqrt{\rho_N^k} \right],\qquad
-  \left\| e^k \right\| = 1
+  \left\| e^k \right\| = 1.
 \end{equation*}
 Тоді бачимо, що
 \begin{equation}\label{eq:chi2:quadraticForm}
   \left( A^k \lambda, \lambda \right)
   = \left\| \lambda \right\|^2
-    - \left( \lambda, e^k \right)^2
+    - \left( \lambda, e^k \right)^2.
 \end{equation}
 З нерівності Коші маємо
 \begin{equation*}
   \left\| \left( \lambda, e^k \right) \right\|
   \le \left\| \lambda \right\| \cdot \left\| e^k \right\|
-  = \left\| \lambda \right\|
+  = \left\| \lambda \right\|.
 \end{equation*}
 Тобто матриця є дійсно невід’ємно визначеною і вектор $\eta^k$ розподілений
 за нормальним законом з нульовим середнім і коваріаційною матрицею $A^k$.
@@ -440,31 +440,31 @@ $F^k$?'' може надати критерій узгодженості Пір�
 як суму випадкових нормально розподілених випадкових величин в стандартному
 базисі $\mathbb{R}^N$, який позначимо $\left[ e_1, \dots, e_N \right]$
 \begin{equation*}
-  \xi = \sum_{j=1}^{N}\xi_j \cdot e_j \sim N\left( \vec{0}, I \right)
+  \xi = \sum_{j=1}^{N}\xi_j \cdot e_j \sim N\left( \vec{0}, I \right).
 \end{equation*}
 Згадуємо, що ортогональні перетворення $U$ зберігають відстані, а також
 справедливо наступне
 \begin{equation*}
-  U\xi \sim N\left( 0, U I U^{-1} \right) \sim N\left( \vec{0}, I \right)
+  U\xi \sim N\left( 0, U I U^{-1} \right) \sim N\left( \vec{0}, I \right).
 \end{equation*}
 Також ортонормований базис залишається ортонормованим базисом після
 ортогонального перетворення $U$.
 Оберемо такий оператор $U$, щоб набір $\left[ e_1, \dots, e_N \right]$ під його
 дією перетворився на $\left[ f_1, \dots, f_N \right]$, де
 \begin{equation*}
-  f_1 = e^k = \left[ \sqrt{\rho_1^k}, \dots, \sqrt{\rho_N^k} \right]
+  f_1 = e^k = \left[ \sqrt{\rho_1^k}, \dots, \sqrt{\rho_N^k} \right].
 \end{equation*}
 Тоді маємо вектор
 \begin{equation*}
   U\xi
   = \hat{\xi}
-  = \sum_{j=1}^{N} \hat{\xi_j} \cdot f_j \sim N\left( \vec{0}, I \right)
+  = \sum_{j=1}^{N} \hat{\xi_j} \cdot f_j \sim N\left( \vec{0}, I \right).
 \end{equation*}
 Подивимось, який розподіл має наступний вектор
 \begin{equation*}
   \Upsilon
   = \sum_{j=2}^{N} \hat{\xi_j} \cdot f_j
-  = \hat{\xi} - \hat{\xi_1} \cdot e^k
+  = \hat{\xi} - \hat{\xi_1} \cdot e^k.
 \end{equation*}
 Для цього розглянемо квадратичну форму
 \begin{equation*}
@@ -472,7 +472,7 @@ $F^k$?'' може надати критерій узгодженості Пір�
   = \sum_{j=2}^{N} \left( \lambda, f_j \right)^2
   = \sum_{j=1}^{N} \left( \lambda, f_j \right)^2 - \left( \lambda, f_1 \right)^2
   = \left\| \lambda \right\|^2 - \left( \lambda, e^k \right)^2
-  = \left( A^k \lambda, \lambda \right)
+  = \left( A^k \lambda, \lambda \right).
 \end{equation*}
 З рівності \eqref{eq:chi2:quadraticForm} бачимо, що випадкові вектори $\eta^k$
 та $\Upsilon$ мають однаковий розподіл.
@@ -480,7 +480,7 @@ $F^k$?'' може надати критерій узгодженості Пір�
 Оскільки сума $N-1$ квадратів незалежних стандартних гаусових випадкових
 величин має розподіл Пірсона з $N-1$ ступенями вільності
 \begin{equation*}
-  \left\| \Upsilon \right\|^2 = \sum_{j=2}^{N} \xi_j^2 \sim \chi_{N-1}^2
+  \left\| \Upsilon \right\|^2 = \sum_{j=2}^{N} \xi_j^2 \sim \chi_{N-1}^2.
 \end{equation*}
 Маємо
 \begin{equation*}
@@ -488,7 +488,7 @@ $F^k$?'' може надати критерій узгодженості Пір�
   = \sum_{j=1}^{N}\frac{\left( \nu_j^k - m \cdot \rho_j^k \right)^2}{
     m \cdot \rho_j^k}
   = m \cdot \sum_{j=1}^{N}\frac{\left( h_j^k - \rho_j^k \right)^2}{\rho_j^k}
-  \sim \chi_{N-1}^2
+  \sim \chi_{N-1}^2.
 \end{equation*}
 
 Останнє співвідношення дає змогу перевіряти належність виборки
@@ -498,7 +498,7 @@ $y_1^k$, $\dots$, $y_m^k$ до розподілу $F^k$.
 Розглянемо випадкову величину
 \begin{equation}\label{eq:pearson:Rk}
   R^k
-  = m \cdot \sum_{j=1}^{N}\frac{\left( h_j^k - \rho_j^k \right)^2}{\rho_j^k}
+  = m \cdot \sum_{j=1}^{N}\frac{\left( h_j^k - \rho_j^k \right)^2}{\rho_j^k}.
 \end{equation}
 
 Обираємо рівень значущості $\alpha$ для функції розподілу $\chi_{N-1}^2$ і
@@ -506,7 +506,7 @@ $y_1^k$, $\dots$, $y_m^k$ до розподілу $F^k$.
 Рівень значущості --- ймовірність помилки першого роду, тобто ймовірність того,
 що буде відкинуто вірну гіпотезу
 \begin{equation*}
-  \probability{\chi_{N-1}^2 \ge r_{\alpha}} = \alpha
+  \probability{\chi_{N-1}^2 \ge r_{\alpha}} = \alpha.
 \end{equation*}
 Якщо $R^k \le r_{\alpha}$, то гіпотеза про те, що вибірка $Y^k$ дійсно має
 розподіл $F^k$, приймається.
@@ -515,7 +515,7 @@ $y_1^k$, $\dots$, $y_m^k$ до розподілу $F^k$.
 відгадана невірно. Повернемося до формули \eqref{eq:pearson:Rk}
 \begin{equation*}
   R^k
-  = \sum_{j=1}^{N}\frac{\left( \nu_j^k - m \cdot \rho_j^k \right)^2}{m \cdot \rho_j^k}
+  = \sum_{j=1}^{N}\frac{\left( \nu_j^k - m \cdot \rho_j^k \right)^2}{m \cdot \rho_j^k}.
 \end{equation*}
 Всі члени суми є невід’ємними. Якщо хоча б один елемент буде завеликим,
 то великою буде вся сума. Маємо випадкову величину $\eta$
@@ -523,7 +523,7 @@ $y_1^k$, $\dots$, $y_m^k$ до розподілу $F^k$.
   \eta
   = \nu_i^k - m \cdot \rho_i^k
   = \sum_{j=1}^{m} \left( \xi_j - \rho_i^k \right),
-  \qquad \indicator{y_j^k \in I_i^k} = \xi_j
+  \qquad \indicator{y_j^k \in I_i^k} = \xi_j.
 \end{equation*}
 Якщо $\rho_i^k$ вгадано невірно, то воно не дорівнює математичному очікуванню
 індикатора. Додамо та віднімемо справжнє математичне очікування
@@ -531,28 +531,28 @@ $y_1^k$, $\dots$, $y_m^k$ до розподілу $F^k$.
   \eta
   = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} + \mean{\xi_1} - \rho_i^k \right)
   = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
-    + \sum_{j=1}^{m} \left( \mean{\xi_1} - \rho_i^k \right)
+    + \sum_{j=1}^{m} \left( \mean{\xi_1} - \rho_i^k \right).
 \end{equation*}
-Останній доданок є просто різницею, помноженою на $m$
+Останній доданок є просто різницею, яку помножено на $m$
 \begin{equation*}
   \eta
   = \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
-    + m \cdot \left( \mean{\xi_1} - \rho_i^k \right)
+    + m \cdot \left( \mean{\xi_1} - \rho_i^k \right).
 \end{equation*}
 Поділимо на $\sqrt{m}$, щоб скористатися центральною граничною теоремою
 \begin{equation*}
   \frac{\eta}{\sqrt{m}}
   = \frac{1}{\sqrt{m}} \cdot \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
-    + \frac{1}{\sqrt{m}} \cdot m \cdot \left( \mean{\xi_1} - \rho_i^k \right)
+    + \frac{1}{\sqrt{m}} \cdot m \cdot \left( \mean{\xi_1} - \rho_i^k \right).
 \end{equation*}
 Перший доданок асимптотично має розподіл $N\left( 0, \sigma^2 \right)$, де
 $\sigma^2$ --- дисперсія випадкової величини $\xi_1$ для достатньо великих $m$.
-Отже, вся сума зростає пропорційно до $\sqrt{m}$
+Отже вся сума зростає пропорційно до $\sqrt{m}$
 \begin{equation*}
   \frac{\eta}{\sqrt{m}}
   = \frac{1}{\sqrt{m}} \cdot \sum_{j=1}^{m} \left( \xi_j - \mean{\xi_1} \right)
     + \sqrt{m} \cdot \left( \mean{\xi_1} - \rho_i^k \right)
-  \sim \sqrt{m} \cdot \left( \mean{\xi_1} - \rho_i^k \right)
+  \sim \sqrt{m} \cdot \left( \mean{\xi_1} - \rho_i^k \right).
 \end{equation*}
 Тобто зараз $R^k$ буде зростати пропорційно до величини
 $m$, і буде великим у порівнянні з $r_{\alpha}$, що призведе до відхилення

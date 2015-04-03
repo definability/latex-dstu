@@ -15,20 +15,20 @@
 \begin{equation*}
   T = \left( 0, 30 \right], \qquad
   T_i = \left( t_{i-1}, t_i \right], \qquad
-  i = \overline{1, 6}
+  i = \overline{1, 6}.
 \end{equation*}
 Нехай $\nu_i$ визначається наступним чином
 \begin{equation*}
   \nu_i = N\left( t_i \right) - N\left( t_{i-1} \right),
-  \qquad i = \overline{1,6}
+  \qquad i = \overline{1,6},
 \end{equation*}
-Тоді $\nu_i$ --- випадкова величина, що має розподіл Пуассона з параметром
+тоді $\nu_i$ --- випадкова величина, що має розподіл Пуассона з параметром
 $\lambda_i$, де \cite{Bulinsky:2003}
 \begin{equation*}
   \lambda_i
   = m\left( T_i \right)
   = \int\limits_{t_{i-1}}^{t_i} \lambda\left( \tau \right) \; d\tau, \qquad
-  i = \overline{1, 6}
+  i = \overline{1, 6}.
 \end{equation*}
 Функція $m$ --- міра інтенсивності. \cite{Kingman:1992}
 
@@ -53,7 +53,7 @@ $\lambda_i$.
 \begin{equation*}
   \left[ \lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \lambda_{5},
          \lambda_{6} \right]
-  = \left[ 43, 40, 38, 37, 38, 35 \right]
+  = \left[ 43, 40, 38, 37, 38, 35 \right].
 \end{equation*}
 
 \begin{figure}[h]
@@ -79,7 +79,7 @@ $\lambda_i$.
 Види результуючих ламаних (опукла, ввігнута, рівна, спадна) можна представити
 квадратичними функціями виду
 \begin{equation*}
-  y\left( t \right) = a \cdot t^2 + b \cdot t + c
+  y\left( t \right) = a \cdot t^2 + b \cdot t + c.
 \end{equation*}
 
 На рис. \ref{fig:tapping:poisson:sqr} зображено реалізації послідовності
@@ -111,7 +111,7 @@ $\lambda_i$.
 наступна величина приймає мінімальне значення
 \begin{equation*}
   R^2\left( a, b, c \right)
-  = \sum_{i=1}^{6} \left( a \cdot t_i^2 + b \cdot t_i + c - y_i \right)^2
+  = \sum_{i=1}^{6} \left( a \cdot t_i^2 + b \cdot t_i + c - y_i \right)^2.
 \end{equation*}
 Для цього треба взяти часткові похідні по кожному коефіцієнту, прирівняти ці
 похідні до нуля та розв’язати отриману систему
@@ -124,7 +124,7 @@ $\lambda_i$.
     &= 0 \\
     \sum_{i=1}^{6} 2 \cdot t_i^2
       \cdot \left( a \cdot t_i^2 + b \cdot t_i + c - y_i \right)
-    &= 0 \\
+    &= 0.
   \end{cases}
 \end{equation*}
 Цю систему можна переписати в матричному вигляді наступним чином
@@ -145,14 +145,14 @@ $\lambda_i$.
     \sum_{i=1}^{6} y_i \\
     \sum_{i=1}^{6} y_i \cdot t_i \\
     \sum_{i=1}^{6} y_i \cdot t_i^2
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 Введемо позначення:
 \begin{equation*}
   \begin{split}
     &\sum_{i=1}^{6} 1 = N, \\
-    &\sum_{i=1}^{6} t_i^k = X^k,\qquad k=\overline{1, 4} \\
-    &\sum_{i=1}^{6} y_i \cdot t_i^k = YX^k,\qquad k=\overline{0, 2}
+    &\sum_{i=1}^{6} t_i^k = X^k,\qquad k=\overline{1, 4}, \\
+    &\sum_{i=1}^{6} y_i \cdot t_i^k = YX^k,\qquad k=\overline{0, 2}.
   \end{split}
 \end{equation*}
 Рівняння прийняло наступний вигляд
@@ -173,7 +173,7 @@ $\lambda_i$.
     Y \\
     YX \\
     YX^2
-  \end{bmatrix}
+  \end{bmatrix}.
 \end{equation*}
 Використаємо метод Крамера для розв’язання системи лінійних рівнянь.
 Визначник $\Delta$
@@ -182,7 +182,7 @@ $\lambda_i$.
     \Delta
     = X^2 \cdot \left( X^2 \cdot X^2 - X  \cdot X^3 \right)
        &- X \cdot \left( X^3 \cdot X^2 - X  \cdot X^4 \right) \\
-       &+ N \cdot \left( X^3 \cdot X^3 - X^2 \cdot X^4 \right)
+       &+ N \cdot \left( X^3 \cdot X^3 - X^2 \cdot X^4 \right).
   \end{split}
 \end{equation*}
 Визначник $\Delta_a$
@@ -191,7 +191,7 @@ $\lambda_i$.
     \Delta_a
     =     Y   \cdot \left( X^2 \cdot X^2 - X \cdot X^3 \right)
       &- YX   \cdot \left( X   \cdot X^2 - N \cdot X^3 \right) \\
-      &+ YX^2 \cdot \left( X   \cdot X   - N \cdot X^2 \right)
+      &+ YX^2 \cdot \left( X   \cdot X   - N \cdot X^2 \right).
   \end{split}
 \end{equation*}
 Визначник $\Delta_b$
@@ -200,7 +200,7 @@ $\lambda_i$.
     \Delta_b
     =  -  Y   \cdot \left( X^3 \cdot X^2 - X \cdot X^4 \right)
       &+ YX   \cdot \left( X^2 \cdot X^2 - N \cdot X^4 \right) \\
-      &- YX^2 \cdot \left( X^2 \cdot X   - N \cdot X^3 \right)
+      &- YX^2 \cdot \left( X^2 \cdot X   - N \cdot X^3 \right).
   \end{split}
 \end{equation*}
 Визначник $\Delta_c$
@@ -209,14 +209,14 @@ $\lambda_i$.
     \Delta_c
     =     Y   \cdot \left( X^3 \cdot X^3 - X^2 \cdot X^4 \right)
       &- YX   \cdot \left( X^2 \cdot X^3 - X   \cdot X^4 \right) \\
-      &+ YX^2 \cdot \left( X^2 \cdot X^2 - X   \cdot X^3 \right)
+      &+ YX^2 \cdot \left( X^2 \cdot X^2 - X   \cdot X^3 \right).
   \end{split}
 \end{equation*}
 Відомо, що розв’язками є наступні вирази
 \begin{equation*}
   a = \frac{\Delta_a}{\Delta},\qquad
   b = \frac{\Delta_b}{\Delta},\qquad
-  c = \frac{\Delta_c}{\Delta}
+  c = \frac{\Delta_c}{\Delta}.
 \end{equation*}
 Бачимо, що параметри --- лінійні комбінації $y_i$, а коефіцієнти при $y_i$ ---
 раціональні дроби.
@@ -224,7 +224,7 @@ $\lambda_i$.
 \begin{equation*}
   a = \sum_{i=1}^{6} y_i \cdot \frac{a_i}{\Delta},\qquad
   b = \sum_{i=1}^{6} y_i \cdot \frac{b_i}{\Delta},\qquad
-  c = \sum_{i=1}^{6} y_i \cdot \frac{c_i}{\Delta}
+  c = \sum_{i=1}^{6} y_i \cdot \frac{c_i}{\Delta}.
 \end{equation*}
 
 \subsection{Аналіз квадратичної апроксимації}
@@ -242,8 +242,8 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 Пряма ламана весь час тримається приблизно на початковому рівні
 \begin{equation*}
   \begin{cases}
-    y\left( t_{max} \right) - y\left( t_1 \right) \le \varepsilon \\
-    y\left( t_1 \right) - y\left( t_{min} \right) \le \varepsilon
+    y\left( t_{max} \right) - y\left( t_1 \right) \le \varepsilon, \\
+    y\left( t_1 \right) - y\left( t_{min} \right) \le \varepsilon.
   \end{cases}
 \end{equation*}
 
@@ -251,8 +251,8 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 положення
 \begin{equation*}
   \begin{cases}
-    t_{max} = t_1 \\
-    y\left( t_{max} \right) - y\left( t_{min} \right) > \varepsilon
+    t_{max} = t_1, \\
+    y\left( t_{max} \right) - y\left( t_{min} \right) > \varepsilon.
   \end{cases}
 \end{equation*}
 
@@ -260,9 +260,9 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 спадати нижче початкового рівня
 \begin{equation*}
   \begin{cases}
-    t_2 \le t_{max} \le t_3 < t_{min} \\
-    y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon \\
-    y\left( t_1 \right) - y\left( t_{min} \right) > \varepsilon
+    t_2 \le t_{max} \le t_3 < t_{min}, \\
+    y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon, \\
+    y\left( t_1 \right) - y\left( t_{min} \right) > \varepsilon.
   \end{cases}
 \end{equation*}
 
@@ -270,8 +270,8 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 а до моменту $t_6$ повертається до початкового рівня або спадає нижче нього.
 \begin{equation*}
   \begin{cases}
-    t_2 \le t_{max} \le t_3 < t_{min} \\
-    y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon \\
-    y\left( t_6 \right) \le y\left( t_1 \right)
+    t_2 \le t_{max} \le t_3 < t_{min}, \\
+    y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon, \\
+    y\left( t_6 \right) \le y\left( t_1 \right).
   \end{cases}
 \end{equation*}
