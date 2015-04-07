@@ -50,11 +50,11 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 $\lambda_i$.
 На рис. \ref{fig:tapping:poisson} зображено різні реалізації послідовності
 випадкових величин, що розподілені за законом Пуассона з параметрами
-\begin{equation*}
+\begin{equation}\label{eq:tapping:poisson}
   \left[ \lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \lambda_{5},
          \lambda_{6} \right]
   = \left[ 43, 40, 38, 37, 38, 35 \right].
-\end{equation*}
+\end{equation}
 
 \begin{figure}[h]
   \centering
@@ -270,8 +270,53 @@ $t_1$ і $t_6$, як і раніше, є точками першого та ос
 а до моменту $t_6$ повертається до початкового рівня або спадає нижче нього.
 \begin{equation*}
   \begin{cases}
-    t_2 \le t_{max} \le t_3 < t_{min}, \\
+    t_3 \le t_{max}, \\
     y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon, \\
     y\left( t_6 \right) \le y\left( t_1 \right).
   \end{cases}
 \end{equation*}
+
+Було згенеровано $6$ вибірок по $100$ реалізацій процесу Пуассона з
+інтенсивністю, яку було вказано у формулі \eqref{eq:tapping:poisson} для
+подальшої класифікації та порівняння отриманих даних з відомими.
+Результати класифікації можна побачити на рис. \ref{fig:tapping:poisson:types}.
+На рис. \ref{fig:tapping:poisson:types:log} зображено ті ж самі результати з
+логарифмічною шкалою, але щоб запобігти логарифмування нуля, до всіх значень
+було додано одиницю.
+
+Опис:
+\begin{itemize}
+  \item
+    Не вдалося віднести до тієї чи іншої групи біля $16\%$ траєкторій
+  \item
+    Найбільш розповсюджений вид --- спадна ламана, що зустрілася у $60\%$
+    випадків
+  \item
+    Біля $15\%$ ламаних --- проміжні
+  \item
+    Опуклі ламані виникали у $7\%$
+  \item
+    Прямі з’явилися в $1\%$ випадків
+\end{itemize}
+
+%\begin{figure}[h]
+%  \centering
+%    \includegraphics[width=\textwidth]{images/poisson_types}
+%    \caption{Розбиття траєкторій по вибірках}
+%    \label{fig:tapping:poisson:types}
+%\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/poisson_types}
+    \caption{Звичайна школа}
+    \label{fig:tapping:poisson:types}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/poisson_types_log}
+    \caption{Логарифмічна шкала}
+    \label{fig:tapping:poisson:types:log}
+  \end{subfigure}
+  \caption{Розбиття траєкторій по класах}
+\end{figure}
