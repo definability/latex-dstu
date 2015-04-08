@@ -2,9 +2,9 @@ library(NHPoisson)
 source("generate_sequence.r")
 source("analyze_approximation.r")
 
-n       <- 100
-rows    <- 3
-columns <- 2
+n       <- 600
+rows    <- 1
+columns <- 1
 sample.time <- seq(5, 30, 5)
 sample.size = length(sample.time)
 sample.prediction_degree = 2
@@ -38,6 +38,6 @@ for (j in 2:(rows*columns+1)) {
     #print(paste("Middle",    round(groups[4]/(n - groups[1]), 2)))
     #print(paste("Movable",   round(groups[5]/(n - groups[1]), 2)))
     print(groups)
-    barplot(groups, ylim=c(0, 70),
+    barplot(groups, ylim=c(10, 1000), log='y',
             names.arg=c("Помилки", "Прямі", "Спадні", "Проміжні", "Опуклі"))
 }
