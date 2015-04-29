@@ -31,20 +31,20 @@ get_group <- function(model, time, t_min, t_max) {
     a = model$coefficients[3]
     b = model$coefficients[2]
     c = model$coefficients[1]
-    e = 1
+    EPSILON = 1
     y <- function(t) a*(t^2) + b*t + c
 
-    if (y(t_max) - y(time[1]) <= e && y(time[1]) - y(t_min) <= e) {
+    if (y(t_max) - y(time[1]) <= EPSILON && y(time[1]) - y(t_min) <= EPSILON) {
         return(0)
     }
-    else if(abs(t_max - time[1]) < 1E-5 && y(t_max) - y(t_min) > e) {
+    else if(abs(t_max - time[1]) < 1E-5 && y(t_max) - y(t_min) > EPSILON) {
         return(1)
     }
     else if(time[2] <= t_max && t_max <= time[3] && time[3] < t_min
-            && y(t_max) - y(time[1]) > e && y(time[1]) - y(t_min) > e) {
+            && y(t_max) - y(time[1]) > EPSILON && y(time[1]) - y(t_min) > EPSILON) {
         return(2)
     }
-    else if(time[3] <= t_max && y(t_max) - y(time[1]) > e
+    else if(time[3] <= t_max && y(t_max) - y(time[1]) > EPSILON
             && y(time[6]) <= y(time[1])) {
         return(3)
     }
