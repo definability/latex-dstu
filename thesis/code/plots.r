@@ -25,9 +25,9 @@ sample.poly = poly(sample.time, sample.prediction_degree, raw=TRUE)
 lambda.default = rep(40, sample.size+1)
 # Fill every cell
 for (i in 1:(n*m)) {
-    ## Generate non-homogeneous Poisson process trajectory
+    # Generate non-homogeneous Poisson process trajectory
     sample.current <- generate_trajectory(lambda.default)
-    ## Plot
+    # Plot
     plot(sample.time, sample.current, xlab=chart.xlab, ylab=chart.ylab,
          ylim=chart.ylim)
     lines(sample.time, sample.current)

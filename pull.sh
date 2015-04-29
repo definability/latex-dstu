@@ -17,6 +17,11 @@ git add course/1_title/*.tex
 git add course/code
 git add course/data
 git add course/images
+git add prediploma_practice/*.tex prediploma_practice/index.pdf prediploma_practice/*.latexmain
+git add prediploma_practice/1_title/*.tex
+git add prediploma_practice/code
+git add prediploma_practice/data
+git add prediploma_practice/images
 git add pull.sh
 git commit -m "$1"
 git push https://char-lie@github.com/char-lie/diploma
