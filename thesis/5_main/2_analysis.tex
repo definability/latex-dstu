@@ -257,7 +257,7 @@ $\varepsilon$, яка вважається допустимою.
   \end{cases}
 \end{equation*}
 
-Для первої нерівності можливі три випадки:
+Для першої нерівності можливі три випадки:
 \begin{enumerate}
   \item
     якщо локальний максимум знаходиться в точці $t_1$, нерівність приймає вид
@@ -269,7 +269,7 @@ $\varepsilon$, яка вважається допустимою.
       b \le \frac{\varepsilon}{t_6 - t_1} - a \cdot \left( t_6 + t_1 \right);
     \end{equation*}
   \item
-    коли максимум досягається у проміжку $\left( t_1; t_6 \right)$
+    коли глобальний максимум досягається на проміжку $\left( t_1; t_6 \right)$
     \begin{equation*}
       \begin{cases}
         t_1 < - \frac{b}{2 \cdot a} < t_6 \\
@@ -279,15 +279,56 @@ $\varepsilon$, яка вважається допустимою.
     \end{equation*}
     обмеження приймає більш складний вид
     \begin{equation*}
-      b \notin
-      \left[4 \cdot \sqrt{- a \cdot \varepsilon} + 2 \cdot a \cdot t_1;\:
-      4 \cdot \sqrt{- a \cdot \varepsilon} - 2 \cdot a \cdot t_1 \right]
-    \end{equation*}
-    або
-    \begin{equation*}
-      \left( b + 2 \cdot a \cdot t_1 \right)^2 \ge - 4 \cdot a \cdot \varepsilon.
+      - \frac{3 \cdot b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2
+      \le \varepsilon
     \end{equation*}
 \end{enumerate}
+
+Для другої нерівності можливі ті ж самі випадки, але обмеження дещо інші
+\begin{enumerate}
+  \item
+    якщо локальний мінімум знаходиться в точці $t_1$, нерівність приймає вид
+    $0 \le \varepsilon$, що виконується завжди;
+  \item
+    якщо локальний мінімум знаходиться в точці $t_6$, на $b$ накладається
+    обмеження
+    \begin{equation*}
+      b \ge \frac{\varepsilon}{t_1 - t_6} - a \cdot \left( t_1 + t_6 \right);
+    \end{equation*}
+  \item
+    коли глобальний мінімум досягається на проміжку $\left( t_1; t_6 \right)$
+    \begin{equation*}
+      \begin{cases}
+        t_1 < - \frac{b}{2 \cdot a} < t_6 \\
+        a < 0
+      \end{cases} \Rightarrow
+      t_{max} = - \frac{b}{2 \cdot a},
+    \end{equation*}
+    обмеження приймає вид
+    \begin{equation*}
+      \frac{3 \cdot b^2}{4 \cdot a} + b \cdot t_1 + a \cdot t_1^2
+      \le \varepsilon
+    \end{equation*}
+\end{enumerate}
+
+Запишемо обмеження, що накладаються на $a$ і $b$, у вигляді таблиці
+\begin{table}[h]
+  \caption{Обмеження для змішаного типу}
+  \centering
+  \begin{tabular}{|*{4}{c|}}
+    \hline
+    \backslashbox{$t_{min}$}{$t_{max}$} & $t_1$ & $t_6$ & $-\frac{b}{2 \cdot a}$\\
+    \hline
+    $t_1$ & $\left( a, b \right) \in \mathbb{R}^2$ & & $ - \frac{3 \cdot b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 \le \varepsilon $\\
+    \hline
+    $t_6$ & & $\left( a, b \right) \in \mathbb{R}^2$ & \\
+    \hline
+    $-\frac{b}{2 \cdot a}$ & $\frac{3 \cdot b^2}{4 \cdot a} + b \cdot t_1 + a \cdot t_1^2
+      \le \varepsilon$ & & $\left( a, b \right) \in \emptyset$ \\
+    \hline
+  \end{tabular}
+  \label{tab:tab}
+\end{table}
 
 %\begin{longtable}{|r|l|}
 %\caption{A long table\label{long}}\\
