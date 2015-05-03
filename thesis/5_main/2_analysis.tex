@@ -232,7 +232,7 @@ $\lambda_i$.
 \subsubsection{Задача}
 Запишемо умови, що накладаються на $a$, $b$ і $c$, за яких парабола
 \begin{equation*}
-  y = a \cdot x^2 + b \cdot x + c
+  y\left( t \right) = a \cdot t^2 + b \cdot t + c
 \end{equation*}
 відповідає раніше визначеним типам вищої нервової діяльності.
 Введемо такі позначення: $t_{max}$ і $t_{min}$ --- точки, в яких парабола
@@ -241,6 +241,11 @@ $\lambda_i$.
 Оскільки маємо справу з випадковими величинами, потрібно ввести похибку
 $\varepsilon$, яка вважається допустимою.
 Для теппінг-тесту зазвичай беруть $\varepsilon = 2$. \cite{Ilin:2001}
+
+Глобального екстремуму функція $y$ досягає в точці
+\begin{equation*}
+  t_g = - \frac{b}{2 \cdot a}.
+\end{equation*}
 
 \subsubsection{Змішаний тип}
 Крива, що відповідає змішаному типу, весь час тримається приблизно на
@@ -251,6 +256,93 @@ $\varepsilon$, яка вважається допустимою.
     y\left( t_1 \right) - y\left( t_{min} \right) \le \varepsilon.
   \end{cases}
 \end{equation*}
+
+Для первої нерівності можливі три випадки:
+\begin{enumerate}
+  \item
+    якщо локальний максимум знаходиться в точці $t_1$, нерівність приймає вид
+    $0 \le \varepsilon$, що виконується завжди;
+  \item
+    якщо локальний максимум знаходиться в точці $t_6$, на $b$ накладається
+    обмеження
+    \begin{equation*}
+      b \le \frac{\varepsilon}{t_6 - t_1} - a \cdot \left( t_6 + t_1 \right);
+    \end{equation*}
+  \item
+    коли максимум досягається у проміжку $\left( t_1; t_6 \right)$
+    \begin{equation*}
+      \begin{cases}
+        t_1 < - \frac{b}{2 \cdot a} < t_6 \\
+        a < 0
+      \end{cases} \Rightarrow
+      t_{max} = - \frac{b}{2 \cdot a},
+    \end{equation*}
+    обмеження приймає більш складний вид
+    \begin{equation*}
+      b \notin
+      \left[4 \cdot \sqrt{- a \cdot \varepsilon} + 2 \cdot a \cdot t_1;\:
+      4 \cdot \sqrt{- a \cdot \varepsilon} - 2 \cdot a \cdot t_1 \right]
+    \end{equation*}
+    або
+    \begin{equation*}
+      \left( b + 2 \cdot a \cdot t_1 \right)^2 \ge - 4 \cdot a \cdot \varepsilon.
+    \end{equation*}
+\end{enumerate}
+
+%\begin{longtable}{|r|l|}
+%\caption{A long table\label{long}}\\
+%\hline
+%\multicolumn{2}{|c|}%
+%{This part appears at the top of the table}\\
+%\hline
+%\textsc{First}&\textsc{Second}\\
+%\endfirsthead
+%\caption[lol]{(продовження)}\\
+%\hline
+%\multicolumn{2}{|c|}%
+%{This part appears at the top of every other page}\\
+%\textbf{First}&\textbf{Second}\\
+%%\hline
+%\endhead
+%%\hline
+%%This goes at the&bottom.\\
+%%\hline
+%\endfoot
+%%\hline
+%%These lines will&appear\\
+%%in place of the & usual foot\\
+%%at the end& of the table\\
+%%\hline
+%\endlastfoot
+%\hline
+%Hey & Yo \\
+%\hline
+%My & name \\
+%\hline
+%is & a \\
+%\hline
+%regular & long \\
+%\hline
+%table& ! \\
+%\hline
+%%\env{longtable} columns are specified& in the \\
+%%same way as in the \env{tabular}& environment.\\
+%%...
+%%\multicolumn{2}{||c||}{This is a ...}\\
+%%...
+%%Some lines may take...&
+%%\raggedleft This last column is a ‘‘p’’ column...
+%%\tabularnewline
+%%...
+%%Lots of lines& like this.\\
+%%...
+%%\hline
+%%Lots\footnote{...} of lines& like this.\\
+%%Lots of lines& like this\footnote{...}\\
+%%\hline
+%%Lots of lines& like this.\\
+%%...
+%\end{longtable}
 
 \subsubsection{Слабкий тип}
 Крива, що відповідає слабкому типу, спадає після моменту $t_1$
