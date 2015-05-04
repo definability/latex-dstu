@@ -279,12 +279,11 @@ $\varepsilon$, яка вважається допустимою.
     \end{equation*}
     обмеження приймає більш складний вид
     \begin{equation*}
-      - \frac{3 \cdot b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2
-      \le \varepsilon
+      - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 \le \varepsilon.
     \end{equation*}
 \end{enumerate}
 
-Для другої нерівності можливі ті ж самі випадки, але обмеження дещо інші
+Для другої нерівності можливі ті ж самі випадки, але з іншими обмеженнями
 \begin{enumerate}
   \item
     якщо локальний мінімум знаходиться в точці $t_1$, нерівність приймає вид
@@ -307,83 +306,9 @@ $\varepsilon$, яка вважається допустимою.
     обмеження приймає вид
     \begin{equation*}
       \frac{3 \cdot b^2}{4 \cdot a} + b \cdot t_1 + a \cdot t_1^2
-      \le \varepsilon
+      \le \varepsilon.
     \end{equation*}
 \end{enumerate}
-
-Запишемо обмеження, що накладаються на $a$ і $b$, у вигляді таблиці
-\begin{table}[h]
-  \caption{Обмеження для змішаного типу}
-  \centering
-  \begin{tabular}{|*{4}{c|}}
-    \hline
-    \backslashbox{$t_{min}$}{$t_{max}$} & $t_1$ & $t_6$ & $-\frac{b}{2 \cdot a}$\\
-    \hline
-    $t_1$ & $\left( a, b \right) \in \mathbb{R}^2$ & & $ - \frac{3 \cdot b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 \le \varepsilon $\\
-    \hline
-    $t_6$ & & $\left( a, b \right) \in \mathbb{R}^2$ & \\
-    \hline
-    $-\frac{b}{2 \cdot a}$ & $\frac{3 \cdot b^2}{4 \cdot a} + b \cdot t_1 + a \cdot t_1^2
-      \le \varepsilon$ & & $\left( a, b \right) \in \emptyset$ \\
-    \hline
-  \end{tabular}
-  \label{tab:tab}
-\end{table}
-
-%\begin{longtable}{|r|l|}
-%\caption{A long table\label{long}}\\
-%\hline
-%\multicolumn{2}{|c|}%
-%{This part appears at the top of the table}\\
-%\hline
-%\textsc{First}&\textsc{Second}\\
-%\endfirsthead
-%\caption[lol]{(продовження)}\\
-%\hline
-%\multicolumn{2}{|c|}%
-%{This part appears at the top of every other page}\\
-%\textbf{First}&\textbf{Second}\\
-%%\hline
-%\endhead
-%%\hline
-%%This goes at the&bottom.\\
-%%\hline
-%\endfoot
-%%\hline
-%%These lines will&appear\\
-%%in place of the & usual foot\\
-%%at the end& of the table\\
-%%\hline
-%\endlastfoot
-%\hline
-%Hey & Yo \\
-%\hline
-%My & name \\
-%\hline
-%is & a \\
-%\hline
-%regular & long \\
-%\hline
-%table& ! \\
-%\hline
-%%\env{longtable} columns are specified& in the \\
-%%same way as in the \env{tabular}& environment.\\
-%%...
-%%\multicolumn{2}{||c||}{This is a ...}\\
-%%...
-%%Some lines may take...&
-%%\raggedleft This last column is a ‘‘p’’ column...
-%%\tabularnewline
-%%...
-%%Lots of lines& like this.\\
-%%...
-%%\hline
-%%Lots\footnote{...} of lines& like this.\\
-%%Lots of lines& like this\footnote{...}\\
-%%\hline
-%%Lots of lines& like this.\\
-%%...
-%\end{longtable}
 
 \subsubsection{Слабкий тип}
 Крива, що відповідає слабкому типу, спадає після моменту $t_1$
@@ -395,6 +320,37 @@ $\varepsilon$, яка вважається допустимою.
   \end{cases}
 \end{equation*}
 
+Якщо розглянути другу нерівність з урахуванням першої
+\begin{equation*}
+  y\left( t_1 \right) - y\left( t_{min} \right) > \varepsilon,
+\end{equation*}
+в термінах $a$ і $b$ маємо схожі до обмежень для змішаного типу умови
+\begin{enumerate}
+  \item
+    якщо локальний максимум знаходиться в точці $t_1$, нерівність приймає вид
+    $0 > \varepsilon$, що ніколи не виконується;
+  \item
+    якщо локальний мінімум знаходиться в точці $t_6$, на $b$ накладається
+    обмеження
+    \begin{equation*}
+      b < \frac{\varepsilon}{t_1 - t_6} - a \cdot \left( t_1 + t_6 \right);
+    \end{equation*}
+  \item
+    коли глобальний мінімум досягається на проміжку $\left( t_1; t_6 \right)$
+    \begin{equation*}
+      \begin{cases}
+        t_1 < - \frac{b}{2 \cdot a} < t_6 \\
+        a < 0
+      \end{cases} \Rightarrow
+      t_{max} = - \frac{b}{2 \cdot a},
+    \end{equation*}
+    маємо обмеження
+    \begin{equation*}
+      - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2
+      > \varepsilon
+    \end{equation*}
+\end{enumerate}
+
 \subsubsection{Неврівноважений тип}
 Крива, що відповідає неврівноваженому типу, спочатку зростає,
 потім не пізніше моменту часу $t_3$ починає спадати нижче початкового рівня
@@ -403,6 +359,28 @@ $\varepsilon$, яка вважається допустимою.
     t_2 \le t_{max} \le t_3 < t_{min}, \\
     y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon, \\
     y\left( t_1 \right) - y\left( t_{min} \right) > \varepsilon.
+  \end{cases}
+\end{equation*}
+
+Оскільки такі умови можливі лише у випадку коли $t_{max}$ є точкою глобального
+максимуму, а екстремум може бути лише один $t_{max} = - \frac{b}{2 \cdot a}$,
+система приймає вид
+\begin{equation*}
+  \begin{cases}
+    t_2 \le - \frac{b}{2 \cdot a} \le t_3, \\
+    a < 0, \\
+    t_{min} = t_6, \\
+    y\left( - \frac{b}{2 \cdot a} \right) - y\left( t_1\right) > \varepsilon, \\
+    y\left( t_1 \right) - y\left( t_6 \right) > \varepsilon.
+  \end{cases}
+\end{equation*}
+Обмеження
+\begin{equation*}
+  \begin{cases}
+    a < 0, \\
+    - 2 \cdot a \cdot t_2 \le b \le - 2 \cdot a \cdot t_3, \\
+    b > \frac{\varepsilon}{t_6 - t_1} + a \cdot \left( t_6 + t_1 \right), \\
+    - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 > \varepsilon.
   \end{cases}
 \end{equation*}
 
@@ -418,15 +396,58 @@ $\varepsilon$, яка вважається допустимою.
   \end{cases}
 \end{equation*}
 
+Можливий лише той випадок, коли максимум є водночас локальним і глобальним
+\begin{equation*}
+  \begin{cases}
+    a < 0, \\
+    b \le - 2 \cdot a \cdot t_3, \\
+    b
+    \le \frac{\varepsilon}{t_6 - t_1} - a \cdot \left( t_6 + t_1 \right), \\
+    - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 \le \varepsilon,
+  \end{cases}
+\end{equation*}
+адже коли $t_{max} = t_6$, маємо суперечність
+\begin{equation*}
+  \varepsilon < y\left( t_6 \right) - y\left( t_1\right) \le 0.
+\end{equation*}
+
 \subsubsection{Інертний тип}
 Крива, що відповідає інертному типу, спочатку спадає,
 а під кінець тесту може зрости до початкового рівня
 \begin{equation*}
   \begin{cases}
-    t_{min} > t_1 \\
+    t_{min} > t_1, \\
     y\left( t_{max} \right) - y\left( t_1 \right) > \varepsilon.
   \end{cases}
 \end{equation*}
+
+Можливі два випадки
+\begin{enumerate}
+  \item
+    мінімум є водночас локальним і глобальним, тоді максимум знаходиться в кінці
+    відрізку
+    \begin{equation*}
+      \begin{cases}
+        a > 0, \\
+        b \ge - 2 \cdot a \cdot t_6, \\
+        - 2 \cdot a \cdot t_1
+        > b > \frac{\varepsilon}{t_6 - t_1} - a \cdot \left( t_6 + t_1 \right),
+      \end{cases}
+    \end{equation*}
+    бо інакше (якщо $t_{max} = t_1$) нерівність стає суперечливою
+    \begin{equation*}
+      \varepsilon < 0;
+    \end{equation*}
+  \item
+    мінімум знаходиться в кінці відрізку, тоді локальним максимум може
+    дорівнювати лише екстремуму
+    \begin{equation*}
+      \begin{cases}
+        t_{min} = t_6, \\
+        - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 > \varepsilon.
+      \end{cases}
+    \end{equation*}
+\end{enumerate}
 
 \subsubsection{Результати класифікації}
 Було згенеровано $6$ вибірок по $100$ реалізацій процесу Пуассона з
