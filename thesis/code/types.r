@@ -11,8 +11,7 @@ sample.prediction_degree = 2
 sample.poly = poly(sample.time, sample.prediction_degree, raw=TRUE)
 lambda.default = c(40, 38, 36, 34, 32, 30, 0)
 groups.number = 4
-groups.names = c("Помилки", "Прямі", "Спадні", "Проміжні", "Опуклі", "Ввігнуті")
-#lambda.default = rep(40, sample.size+1)
+groups.names = c("Невідомо", "Зміш.", "Слабкий", "Неврів.", "Рухливий", "Інерт.")
 
 png('output.png', width=22, height=22, units="cm", res=300)
 par(mfrow=c(rows,columns))
@@ -34,14 +33,6 @@ for (j in 2:(rows*columns+1)) {
     }
     elements_in_group <- function(x) length(result[result==x])
     groups <- unlist(Map(elements_in_group, -1:groups.number))
-
     print(groups)
-    res[[1]] = res[[1]] + groups[[1]]
-    res[[2]] = res[[2]] + groups[[2]]
-    res[[3]] = res[[3]] + groups[[3]]
-    res[[4]] = res[[4]] + groups[[4]]
-    res[[5]] = res[[5]] + groups[[5]]
-    res[[6]] = res[[6]] + groups[[6]]
     barplot(groups, ylim=c(0, 70), names.arg=groups.names)
 }
-print(res/600)
