@@ -238,116 +238,117 @@ $\lambda_i$.
 Введемо такі позначення: $t_{max}$ і $t_{min}$ --- точки, в яких парабола
 досягає локального максимуму та мінімуму на відрізку $\left[ t_1, t_6 \right]$
 відповідно ($t_1$ і $t_6$ є точками першого та останнього спостереження).
-Оскільки маємо справу з випадковими величинами, потрібно ввести похибку
-$\varepsilon$, яка вважається допустимою.
-Для теппінг-тесту зазвичай беруть $\varepsilon = 2$. \cite{Ilin:2001}
 
-Глобального екстремуму функція $y$ досягає в точці
-\begin{equation*}
-  t_g = - \frac{b}{2 \cdot a}.
-\end{equation*}
+Позначимо характеристики параболи, на основі яких буде відбуватися класифікація:
+
+\begin{enumerate}
+  \item
+    сумарне відхилення кривої на проміжку $\tau = \left[ t^1; t^2 \right]$ від
+    положення $y\left( t^1 \right)$ рахуємо за формулою
+    \begin{equation*}
+      \sigma\left( \tau \right)
+      = \int\limits_{t^1}^{t^2} \left| \dot{y}\left( t \right) \right| \, dt;
+    \end{equation*}
+  \item
+    від знаку $a$ залежить те, чи $t_g$ максимум або мінімум
+    \begin{equation*}
+      M = sign\left( a \right); % Maxima or Minima
+    \end{equation*}
+  \item
+    якщо знаки похідних на кінцях відрізку $\left[ t_1; t_6 \right]$ різні,
+    то функція досягає екстремуму саме на цьому відрізку
+    \begin{equation*}
+      V % Varies
+      = sign\left( \dot{y}\left( t_1 \right) \cdot \dot{y}\left( t_6 \right) \right);
+    \end{equation*}
+  \item 
+    глобального екстремуму функція $y$ досягає в точці
+    \begin{equation*}
+      t_g = - \frac{b}{2 \cdot a}; % Global
+    \end{equation*}
+  \item
+    позначимо площу трикутника, що обмежується прямими
+    $t=t_1$, $t=t_g$, $y=\dot{y}\left( t \right)$ та $y=0$
+    \begin{equation*}
+      \sigma_S % from Start
+      = \sigma\left( \left[ t_1; t_g \right] \right)
+      = \frac{\left| \left( t_g - t_1 \right) \cdot \dot{y}\left( t_1 \right) \right|}{2},
+    \end{equation*}
+    а також площу трикутника, що обмежується прямими
+    $t=t_6$, $t=t_g$, $y=\dot{y}\left( t \right)$ та $y=0$
+    \begin{equation*}
+      \sigma_F % to Finish
+      = \sigma\left( \left[ t_6; t_g \right] \right)
+      = \frac{\left| \left( t_g - t_6 \right) \cdot \dot{y}\left( t_6 \right) \right|}{2};
+    \end{equation*}
+  \item
+    найбільше відхилення від початкового положення за тієї умови,
+    що глобальний екстремум знаходиться на відрізку
+    $\left[ t_1; t_6 \right]$ ($V=-1$), рахується за формулою
+    \begin{equation*}
+      \sigma_M = \max{\left\{ \sigma_S, \sigma_F \right\}}; % Maximal
+    \end{equation*}
+  \item
+    якщо глобальний екстремум досягається за межами відрізку
+    $\left[ t_1; t_6 \right]$ ($V=1$), відхилення буде наступним
+    \begin{equation*}
+      \sigma_P % Permanent
+      = \max{\left\{ \sigma_S, \sigma_F \right\}}
+        - \min{\left\{ \sigma_S, \sigma_F \right\}},
+    \end{equation*}
+    адже геометрично це буде різниця площ більшого і меншого трикутників,
+    що були утворені прямими
+    $t=t_1$, $t=t_6$, $t=t_g$, $y=\dot{y}\left( t \right)$ та $y=0$;
+\end{enumerate}
+
 
 \subsubsection{Змішаний тип}
 Крива, що відповідає змішаному типу, весь час тримається приблизно на
-початковому рівні
-\begin{equation*}
-  \begin{cases}
-    y\left( t_{max} \right) - y\left( t_1 \right) \le \varepsilon, \\
-    y\left( t_1 \right) - y\left( t_{min} \right) \le \varepsilon.
-  \end{cases}
-\end{equation*}
+початковому рівні.
 
-Для першої нерівності можливі три випадки:
+Маємо такі випадки:
 \begin{enumerate}
   \item
-    якщо локальний максимум знаходиться в точці $t_1$, нерівність приймає вид
-    $0 \le \varepsilon$, що виконується завжди;
-  \item
-    якщо локальний максимум знаходиться в точці $t_6$, на $b$ накладається
-    обмеження
-    \begin{equation*}
-      b \le \frac{\varepsilon}{t_6 - t_1} - a \cdot \left( t_6 + t_1 \right);
-    \end{equation*}
-  \item
-    коли глобальний максимум досягається на проміжку $\left( t_1; t_6 \right)$
+    Функція $y$ не монотонна на відрізку $T$
     \begin{equation*}
       \begin{cases}
-        t_1 < - \frac{b}{2 \cdot a} < t_6 \\
-        a < 0
-      \end{cases} \Rightarrow
-      t_{max} = - \frac{b}{2 \cdot a},
-    \end{equation*}
-    обмеження приймає більш складний вид
-    \begin{equation*}
-      - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 \le \varepsilon.
-    \end{equation*}
-\end{enumerate}
-
-Для другої нерівності можливі ті ж самі випадки, але з іншими обмеженнями
-\begin{enumerate}
-  \item
-    якщо локальний мінімум знаходиться в точці $t_1$, нерівність приймає вид
-    $0 \le \varepsilon$, що виконується завжди;
-  \item
-    якщо локальний мінімум знаходиться в точці $t_6$, на $b$ накладається
-    обмеження
-    \begin{equation*}
-      b \ge \frac{\varepsilon}{t_1 - t_6} - a \cdot \left( t_1 + t_6 \right);
+        V = -1, \\
+        \sigma_M < \varepsilon;
+      \end{cases}
     \end{equation*}
   \item
-    коли глобальний мінімум досягається на проміжку $\left( t_1; t_6 \right)$
+    Функція $y$ монотонна на відрізку $T$
     \begin{equation*}
       \begin{cases}
-        t_1 < - \frac{b}{2 \cdot a} < t_6 \\
-        a < 0
-      \end{cases} \Rightarrow
-      t_{max} = - \frac{b}{2 \cdot a},
-    \end{equation*}
-    обмеження приймає вид
-    \begin{equation*}
-      \frac{3 \cdot b^2}{4 \cdot a} + b \cdot t_1 + a \cdot t_1^2
-      \le \varepsilon.
+        V = 1, \\
+        \sigma_P < \varepsilon.
+      \end{cases}
     \end{equation*}
 \end{enumerate}
 
 \subsubsection{Слабкий тип}
 Крива, що відповідає слабкому типу, спадає після моменту $t_1$
-і не повертається до початкового положення
-\begin{equation*}
-  \begin{cases}
-    t_{max} = t_1, \\
-    y\left( t_{max} \right) - y\left( t_{min} \right) > \varepsilon.
-  \end{cases}
-\end{equation*}
+і не повертається до початкового положення.
 
-Якщо розглянути другу нерівність з урахуванням першої
-\begin{equation*}
-  y\left( t_1 \right) - y\left( t_{min} \right) > \varepsilon,
-\end{equation*}
-в термінах $a$ і $b$ маємо схожі до обмежень для змішаного типу умови
+Можливі наступні випадки:
 \begin{enumerate}
   \item
-    якщо локальний максимум знаходиться в точці $t_1$, нерівність приймає вид
-    $0 > \varepsilon$, що ніколи не виконується;
-  \item
-    якщо локальний мінімум знаходиться в точці $t_6$, на $b$ накладається
-    обмеження
-    \begin{equation*}
-      b < \frac{\varepsilon}{t_1 - t_6} - a \cdot \left( t_1 + t_6 \right);
-    \end{equation*}
-  \item
-    коли глобальний мінімум досягається на проміжку $\left( t_1; t_6 \right)$
+    $t_g$ --- точка глобального мінімуму
     \begin{equation*}
       \begin{cases}
-        t_1 < - \frac{b}{2 \cdot a} < t_6 \\
-        a < 0
-      \end{cases} \Rightarrow
-      t_{max} = - \frac{b}{2 \cdot a},
+        M = 1, \\
+        L = 1, \\
+        \sigma_P > \varepsilon;
+      \end{cases}
     \end{equation*}
-    маємо обмеження
+  \item
+    $t_g$ --- точка глобального максимуму
     \begin{equation*}
-      - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2
-      > \varepsilon
+      \begin{cases}
+        M = -1, \\
+        L = 1, \\
+        \sigma_P > \varepsilon.
+      \end{cases}
     \end{equation*}
 \end{enumerate}
 
@@ -356,31 +357,10 @@ $\varepsilon$, яка вважається допустимою.
 потім не пізніше моменту часу $t_3$ починає спадати нижче початкового рівня
 \begin{equation*}
   \begin{cases}
-    t_2 \le t_{max} \le t_3 < t_{min}, \\
-    y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon, \\
-    y\left( t_1 \right) - y\left( t_{min} \right) > \varepsilon.
-  \end{cases}
-\end{equation*}
-
-Оскільки такі умови можливі лише у випадку коли $t_{max}$ є точкою глобального
-максимуму, а екстремум може бути лише один $t_{max} = - \frac{b}{2 \cdot a}$,
-система приймає вид
-\begin{equation*}
-  \begin{cases}
-    t_2 \le - \frac{b}{2 \cdot a} \le t_3, \\
-    a < 0, \\
-    t_{min} = t_6, \\
-    y\left( - \frac{b}{2 \cdot a} \right) - y\left( t_1\right) > \varepsilon, \\
-    y\left( t_1 \right) - y\left( t_6 \right) > \varepsilon.
-  \end{cases}
-\end{equation*}
-Обмеження
-\begin{equation*}
-  \begin{cases}
-    a < 0, \\
-    - 2 \cdot a \cdot t_2 \le b \le - 2 \cdot a \cdot t_3, \\
-    b > \frac{\varepsilon}{t_6 - t_1} + a \cdot \left( t_6 + t_1 \right), \\
-    - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 > \varepsilon.
+    M = -1, \\
+    L = -1, \\
+    t_2 \le t_g \le t_3, \\
+    \sigma_F > \varepsilon.
   \end{cases}
 \end{equation*}
 
@@ -390,64 +370,24 @@ $\varepsilon$, яка вважається допустимою.
 а до моменту $t_6$ повертається до початкового рівня або спадає нижче нього
 \begin{equation*}
   \begin{cases}
-    t_3 \le t_{max}, \\
-    y\left( t_{max} \right) - y\left( t_1\right) > \varepsilon, \\
-    y\left( t_6 \right) \le y\left( t_1 \right).
+    M = -1, \\
+    L = -1, \\
+    t_2 \le t_g \le t_3, \\
+    \sigma_S > \varepsilon, \\
+    \sigma_F \le \varepsilon.
   \end{cases}
-\end{equation*}
-
-Можливий лише той випадок, коли максимум є водночас локальним і глобальним
-\begin{equation*}
-  \begin{cases}
-    a < 0, \\
-    b \le - 2 \cdot a \cdot t_3, \\
-    b
-    \le \frac{\varepsilon}{t_6 - t_1} - a \cdot \left( t_6 + t_1 \right), \\
-    - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 \le \varepsilon,
-  \end{cases}
-\end{equation*}
-адже коли $t_{max} = t_6$, маємо суперечність
-\begin{equation*}
-  \varepsilon < y\left( t_6 \right) - y\left( t_1\right) \le 0.
 \end{equation*}
 
 \subsubsection{Інертний тип}
 Крива, що відповідає інертному типу, спочатку спадає,
-а під кінець тесту може зрости до початкового рівня
+а під кінець тесту зростає до початкового рівня
 \begin{equation*}
   \begin{cases}
-    t_{min} > t_1, \\
-    y\left( t_{max} \right) - y\left( t_1 \right) > \varepsilon.
+    M = 1, \\
+    L = -1, \\
+    0 \le \sigma_S - \sigma_F \le \varepsilon
   \end{cases}
 \end{equation*}
-
-Можливі два випадки
-\begin{enumerate}
-  \item
-    мінімум є водночас локальним і глобальним, тоді максимум знаходиться в кінці
-    відрізку
-    \begin{equation*}
-      \begin{cases}
-        a > 0, \\
-        b \ge - 2 \cdot a \cdot t_6, \\
-        - 2 \cdot a \cdot t_1
-        > b > \frac{\varepsilon}{t_6 - t_1} - a \cdot \left( t_6 + t_1 \right),
-      \end{cases}
-    \end{equation*}
-    бо інакше (якщо $t_{max} = t_1$) нерівність стає суперечливою
-    \begin{equation*}
-      \varepsilon < 0;
-    \end{equation*}
-  \item
-    мінімум знаходиться в кінці відрізку, тоді локальним максимум може
-    дорівнювати лише екстремуму
-    \begin{equation*}
-      \begin{cases}
-        t_{min} = t_6, \\
-        - \frac{b^2}{4 \cdot a} - b \cdot t_1 - a \cdot t_1^2 > \varepsilon.
-      \end{cases}
-    \end{equation*}
-\end{enumerate}
 
 \subsubsection{Результати класифікації}
 Було згенеровано $6$ вибірок по $100$ реалізацій процесу Пуассона з
