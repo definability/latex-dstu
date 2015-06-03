@@ -4,7 +4,7 @@ source("analyze_approximation.r")
 wideScreen()
 # Read command line arguments
 args <- commandArgs(TRUE)
-display_approximation <- FALSE
+display_approximation <- TRUE
 if (length(args) > 0 && args[1] == "approximation") {
     display_approximation <- TRUE
 }
@@ -21,8 +21,7 @@ sample.time <- seq(5, 30, 5)
 sample.size = length(sample.time)
 sample.prediction_degree = 2
 sample.poly = poly(sample.time, sample.prediction_degree, raw=TRUE)
-#lambda.default = c(40, 38, 36, 34, 32, 30, 0)
-lambda.default = rep(40, sample.size+1)
+lambda.default = c(40, 44, 48, 40, 36, 34, 0)
 # Fill every cell
 for (i in 1:(n*m)) {
     # Generate non-homogeneous Poisson process trajectory
@@ -39,12 +38,12 @@ for (i in 1:(n*m)) {
         # Draw approximation
         lines(sample.time, sample.prediction, col='red')
         # Draw start rhythm
-        abline(h=sample.model$coefficients[3]*sample.time[1]^2 +
-                 sample.model$coefficients[2]*sample.time[1] +
-                 sample.model$coefficients[1], col='green', lty=2, lwd=1)
+        #abline(h=sample.model$coefficients[3]*sample.time[1]^2 +
+        #         sample.model$coefficients[2]*sample.time[1] +
+        #         sample.model$coefficients[1], col='green', lty=2, lwd=1)
         # Draw minumum and maximum
-        abline(v=extrema[['min']], col='gray', lty=3, lwd=1)
-        abline(v=extrema[['max']], col='blue', lty=3, lwd=1)
+        #abline(v=extrema[['min']], col='gray', lty=3, lwd=1)
+        #abline(v=extrema[['max']], col='blue', lty=3, lwd=1)
         # Display group
         print(get_group(sample.model, sample.time,
                         extrema[['min']], extrema[['max']]))

@@ -9,9 +9,10 @@ sample.time <- seq(5, 30, 5)
 sample.size = length(sample.time)
 sample.prediction_degree = 2
 sample.poly = poly(sample.time, sample.prediction_degree, raw=TRUE)
-lambda.default = c(40, 38, 36, 34, 32, 30, 0)
+lambda.default = c(40, 44, 48, 40, 36, 34, 0)
+
 groups.number = 4
-groups.names = c("Невідомо", "Зміш.", "Слабкий", "Неврів.", "Рухливий", "Інерт.")
+groups.names = c("Не класиф.", "Зміш.", "Слабкий", "Неврів.", "Рухливий", "Інерт.")
 
 png('output.png', width=22, height=22, units="cm", res=300)
 par(mfrow=c(rows,columns))
