@@ -32,11 +32,13 @@ for (i in 1:(n*m)) {
     lines(sample.time, sample.current)
     if (display_approximation) {
         # Calculate approximation
-        sample.model <- lm(sample.current ~ sample.poly)
-        sample.prediction <- predict(sample.model)
-        extrema <- find_extrema(sample.model, sample.time)
+        abc <- find_abc(sample.current)
+        f <- function(t) {
+            return(abc[1]*t^2+abc[2]*t+abc[3])
+        }
         # Draw approximation
-        lines(sample.time, sample.prediction, col='red')
+        lines(sample.time, Map(f, sample.time), xlab=chart.xlab, ylab=chart.ylab,
+         ylim=chart.ylim, col='red')
         # Draw start rhythm
         #abline(h=sample.model$coefficients[3]*sample.time[1]^2 +
         #         sample.model$coefficients[2]*sample.time[1] +
@@ -45,8 +47,8 @@ for (i in 1:(n*m)) {
         #abline(v=extrema[['min']], col='gray', lty=3, lwd=1)
         #abline(v=extrema[['max']], col='blue', lty=3, lwd=1)
         # Display group
-        print(get_group(sample.model, sample.time,
-                        extrema[['min']], extrema[['max']]))
+        #print(get_group(sample.model, sample.time,
+        #                extrema[['min']], extrema[['max']]))
     }
 }
 dev.off()
