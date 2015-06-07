@@ -1,6 +1,7 @@
 t.start <- 5
 t.middle <- 15
 t.finish <- 30
+t.diff <- t.finish - t.start
 
 X    <- seq(5, 30, 5)
 X2   <- X^2
@@ -23,7 +24,7 @@ delta.b.k <- c(-(SX3 * SX2 -SX * SX4), SX2^2 - SN * SX4, -(SX2 * SX - SN * SX3))
 
 delta.c.k <- c(SX3^2 - SX2 * SX4, -(SX2 * SX3 - SX * SX4), SX2 * SX2 - SX * SX3)/delta
 
-MX <- matrix(c(SX2, SX3, SX4, SX, SX2, SX3, SN, SX, SX2), nrow=3, ncol=3)
+#MX <- matrix(c(SX2, SX3, SX4, SX, SX2, SX3, SN, SX, SX2), nrow=3, ncol=3)
 
 find_abc <- function(sample) {
     SY.k <- c(sum(sample), sample %*% X, sample %*% X2)
@@ -31,23 +32,27 @@ find_abc <- function(sample) {
 }
 
 get_group <- function(a, b, c) {
+    EPSILON <- 2
+    if (a == 0) {
+        diff <- - b * t.diff
+        if (diff < -EPSILON) {
+            return(1)
+        } else if (diff < EPSILON) {
+            return(0)
+        }
+        return(-1)
+    }
+
     d1 <- (2*a*t.start + b)
     d6 <- (2*a*t.finish + b)
     M <- sign(a)
     V <- sign(d1*d6)
-    t.g <- 0
-    sigma.s <- 0
-    sigma.f <- 0
-    sigma.m <- 0
-    sigma.p <- 0
-    if (a != 0) {
-        t.g <- - b / (2*a)
-        sigma.s <- abs((t.g-t.start) * d1)/2
-        sigma.f <- abs((t.g-t.finish) * d6)/2
-        sigma.m <- max(sigma.s, sigma.f)
-        sigma.p <- sigma.m - min(sigma.s, sigma.f)
-    }
-    EPSILON <- 2
+    t.g <- - b / (2*a)
+    sigma.s <- abs((t.g-t.start) * d1)/2
+    sigma.f <- abs((t.g-t.finish) * d6)/2
+    sigma.m <- max(sigma.s, sigma.f)
+    sigma.p <- sigma.m - min(sigma.s, sigma.f)
+
     if ((V == -1 && sigma.m < EPSILON) ||
         (V == 1 && sigma.p < EPSILON)) {
         return(0)

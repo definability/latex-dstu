@@ -1,4 +1,3 @@
-library(NHPoisson)
 source("generate_sequence.r")
 source("analyze_approximation.r")
 source("chi_squared.r")
@@ -11,7 +10,9 @@ sample.size = length(sample.time)
 sample.prediction_degree = 2
 sample.poly = poly(sample.time, sample.prediction_degree, raw=TRUE)
 #lambda.default = c(40, 40, 42, 35, 36, 35)
-lambda.default = c(40, 38, 41, 40, 35, 30)
+#lambda.default = c(40, 39, 43, 38, 34, 31)
+#lambda.default = c(40, 38, 42, 39, 34, 31)
+lambda.default = c(40, 33, 39, 38, 36, 27)
 needed.percentage = c(.01, .05, .20, .35, .25, .15)
 
 groups.number = 4
@@ -26,6 +27,7 @@ par(mfrow=c(rows,columns))
 
 result = rep(-1, n)
 res <- rep(0, groups.number+2)
+#Rprof("profile.out")
 for (j in 2:(rows*columns+1)) {
     for (i in 1:n) {
         ## Generate non-homogeneous Poisson process trajectory
@@ -42,6 +44,8 @@ for (j in 2:(rows*columns+1)) {
     barplot(groups, ylim=c(0, 70), names.arg=groups.names)
     global.groups <- global.groups + groups
 }
+#Rprof(NULL)
+#summaryRprof("profile.out")
 print('Result:')
 global.percentage = global.groups / (n*rows*columns)
 print(sprintf("%.2f", global.percentage))
