@@ -10,9 +10,9 @@ sample.time <- seq(5, 30, 5)
 sample.size = length(sample.time)
 sample.prediction_degree = 2
 sample.poly = poly(sample.time, sample.prediction_degree, raw=TRUE)
-lambda.default = c(40, 40, 40, 40, 40, 40, 0)
+lambda.default = c(40, 40, 40, 40, 40, 40)
 
-needed.percentage = c(.01, .04, .25, .35, .25, .10)
+needed.percentage = c(.05, .25, .35, .25, .10)
 
 groups.number = 4
 groups.names = c("Не класиф.", "Зміш.", "Слабкий", "Неврів.", "Рухливий", "Інерт.")
@@ -39,7 +39,7 @@ iterate.lambdas <- function(lambda.current, lambda.pos=2) {
             result[i] = get_group(abc[1], abc[2], abc[3], sample.time)
         }
         elements_in_group <- function(x) length(result[result==x])
-        groups <- unlist(Map(elements_in_group, -1:groups.number))
+        groups <- unlist(Map(elements_in_group, 0:groups.number))
         distance <- chi_squared.distance(n, groups/n, needed.percentage)
         if (distance < dist.min) {
             print(distance)
@@ -50,10 +50,15 @@ iterate.lambdas <- function(lambda.current, lambda.pos=2) {
     }
     min <- -5
     max <- 5
+    if (lambda.pos == 3) {
+        min <- 0
+    } else if (lambda.pos > 3) {
+        max <- 0
+    }
     for (i in min:max) {
         lambda.i <- lambda.current
-        lambda.i[lambda.pos] <- lambda.current[lambda.pos] + i
+        lambda.i[lambda.pos] <- lambda.current[lambda.pos-1] + i
         iterate.lambdas(lambda.i, lambda.pos+1)
     }
 }
-iterate.lambdas(lambda.default, 3)
+iterate.lambdas(lambda.default)
