@@ -2,18 +2,16 @@ source("generate_sequence.r")
 source("analyze_approximation.r")
 source("chi_squared.r")
 
-n       <- 10000
+n       <- 1000
 rows    <- 3
 columns <- 2
 sample.time <- seq(5, 30, 5)
 sample.size = length(sample.time)
 sample.prediction_degree = 2
 sample.poly = poly(sample.time, sample.prediction_degree, raw=TRUE)
-#lambda.default = c(40, 40, 42, 35, 36, 35)
-#lambda.default = c(40, 39, 43, 38, 34, 31)
-#lambda.default = c(40, 38, 42, 39, 34, 31)
-lambda.default = c(40, 33, 39, 38, 36, 27)
-needed.percentage = c(.01, .05, .20, .35, .25, .15)
+#lambda.default = c(40, 46, 43, 41, 35, 35)
+lambda.default = c(40, 41, 46, 38, 35, 34)
+needed.percentage = c(.1, .03, .25, .35, .25, .12)
 
 groups.number = 4
 groups.names = c("Не класиф.", "Зміш.", "Слабкий", "Неврів.", "Рухливий", "Інерт.")
