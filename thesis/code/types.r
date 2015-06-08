@@ -2,7 +2,7 @@ source("generate_sequence.r")
 source("analyze_approximation.r")
 source("chi_squared.r")
 
-n       <- 1000
+n       <- 100
 rows    <- 3
 columns <- 2
 sample.time <- seq(5, 30, 5)
@@ -34,6 +34,7 @@ for (j in 2:(rows*columns+1)) {
         abc <- find_abc(sample.current)
         # Get group
         result[i] <- get_group(abc[1], abc[2], abc[3])
+        if (result[i] == 3) print('3')
     }
     elements_in_group <- function(x) length(result[result==x])
     groups <- unlist(Map(elements_in_group, -1:groups.number))
