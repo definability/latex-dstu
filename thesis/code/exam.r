@@ -9,19 +9,19 @@ exam.cpm     <- 6
 exam.minutes <- 90
 exam.length  <- exam.cpm * exam.minutes
 
-task.Hm <- 500
-task.H <- task.Hm/exam.cpm
 task.N <- 10
+task.H <- 15 * exam.length / task.N
 tasks  <- rep(task.H, task.N)
 
 exam.pass <- function (intensity) {
 
     get.tau <- function (t) {
-        return(rexp(1, intensity(t)))
+        #return(rexp(1, intensity(t)))
+        intensity(t)
     }
 
     exam.H.passed <- Reduce(function (intensity.accumulated, intensity.current) {
-        c(intensity.accumulated, tail(intensity.accumulated, 1) + intensity.current)
+        c(intensity.accumulated, intensity.accumulated[length(intensity.accumulated)] + intensity.current)
     }, Map(intensity, 1:exam.length))
 
     exam.row <- function () {
@@ -60,37 +60,23 @@ get.some <- function (n) {
     list(values=result, groups=groups)
 }
 
-get.classified <- function (n, group) {
-    result <- c()
-    for (i in 1:n) {
-        sample.current <- generate_trajectory(lambda.default)
-        abc <- find_abc(sample.current)
-        if (get_group(abc[1], abc[2], abc[3]) != group) next
-        intensity <- parabola.stretch(abc[1], abc[2], abc[3], exam.length)
-        result <- rbind(result, exam.pass(intensity))
-    }
-    return(result)
-}
-
 draw.some <- function(i) {
-    plot(density(result %*% ir.pca$rotation[,i]), col='red')
-    polygon(density(result %*% ir.pca$rotation[,i]), col='red', border='blue')
+    plot(density(result$values %*% ir.pca$rotation[,i]), col='red')
+    polygon(density(result$values %*% ir.pca$rotation[,i]), col='red', border='blue')
 }
 
-get.chart <- function(i, n) {
-    Gbad <- data.frame(length=c(get.classified(n, -1) %*% ir.pca$rotation[,i]))
-    Gbad$veg <- 'Gbad'
-    G0 <- data.frame(length=c(get.classified(n, 0) %*% ir.pca$rotation[,i]))
-    G0$veg <- 'G0'
-    G1 <- data.frame(length=c(get.classified(n, 1) %*% ir.pca$rotation[,i]))
-    G1$veg <- 'G1'
-    G2 <- data.frame(length=c(get.classified(n, 2) %*% ir.pca$rotation[,i]))
-    G2$veg <- 'G2'
-    G3 <- data.frame(length=c(get.classified(n, 3) %*% ir.pca$rotation[,i]))
-    G3$veg <- 'G3'
-    G4 <- data.frame(length=c(get.classified(n, 4) %*% ir.pca$rotation[,i]))
-    G4$veg <- 'G4'
-    vegLengths <- rbind(Gbad, G0, G1, G2, G3, G4)
+get.group <- function (sample, group.number) {
+    sample$values[sample$groups == group.number,]
+}
+
+get.chart <- function(sample, i) {
+    groups.names <- c("Не класиф.", "Зміш.", "Слабкий",
+                      "Неврів.", "Рухливий", "Інерт.")
+    vegLengths <- Reduce(function (result, g) {
+        rbind(result, data.frame(
+              length=c(get.group(sample, g) %*% ir.pca$rotation[,i]),
+              veg=groups.names[g+2], stringsAsFactors=FALSE))
+    }, (seq(length(groups.names))-2))
     ggplot(vegLengths, aes(length, fill=veg)) + geom_density(alpha = 0.2)
 }
 
@@ -110,7 +96,10 @@ get.chart <- function(i, n) {
 #vegLengths <- rbind(PC1, PC2, PC3, PC4, PC5, PC6)
 #ggplot(vegLengths, aes(length, fill=veg)) + geom_density(alpha = 0.2)
 
+Rprof('profile.out')
 result <- get.some(1000)
+Rprof(NULL)
+summaryRprof("profile.out")
 
 #print(cov(result))
 #fit <- princomp(result)
