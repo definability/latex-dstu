@@ -3,26 +3,31 @@ library('ggplot2')
 source("generate_sequence.r")
 source("analyze_approximation.r")
 source("modify_parabola.r")
+options(warn=1)
+
+lambda.default = c(40, 41, 46, 38, 35, 34)
 
 exam.cpm     <- 6
 exam.minutes <- 90
 exam.length  <- exam.cpm * exam.minutes
 
-task.N <- 3
-task.H <- 10 * exam.length / task.N
+task.N <- 10
+#task.H <- exam.length / (task.N*mean(lambda.default))
+task.H <- exam.length / (task.N*mean(lambda.default)*3)
 tasks  <- rep(task.H, task.N)
 
 exam.pass <- function (intensity) {
-
     get.tau <- function (t) {
-        return(rexp(1, intensity(t)))
+        result <- rexp(1, intensity(t))
+        if (is.nan(result)) print(t)
+        result
     }
-
-    exam.H.passed <- Reduce(function (intensity.accumulated, intensity.current) {
-        c(intensity.accumulated, intensity.accumulated[length(intensity.accumulated)] + intensity.current)
-    }, Map(intensity, 1:exam.length))
-
-    exam.row <- function () {
+    exam.H.passed <- rep(NA, exam.length)
+    exam.H.passed[1] <- get.tau(1)
+    for (i in 2:exam.length) {
+        exam.H.passed[i] <- get.tau(i) + exam.H.passed[i-1]
+    }
+    (function () {
         is.positive <- function (x) {
             x > 0
         }
@@ -37,25 +42,25 @@ exam.pass <- function (intensity) {
             }
         }
         .exam.row(c(), 1, exam.H.passed)
-    }
-
-    exam.row()
+    })()
 }
 
-options(warn=1)
-lambda.default = c(40, 41, 46, 38, 35, 34)
 
 get.some <- function (n) {
     result <- c()
     groups <- rep(-1, n)
+    values <- matrix(nrow=n, ncol=exam.length)
+    abc <- NA
     for (i in 1:n) {
-        sample.current <- generate_trajectory(lambda.default)
-        abc <- find_abc(sample.current)
+        repeat {
+            abc <- find_abc(generate_trajectory(lambda.default))
+            if (abc[3] > 0) break
+        }
+        new.parabola <- parabola.stretch(abc[1], abc[2], abc[3], exam.length)
         groups[i] <- get_group(abc[1], abc[2], abc[3])
-        intensity <- parabola.stretch(abc[1], abc[2], abc[3], exam.length)
-        result <- c(result, exam.pass(intensity))
+        values[i,] <- exam.pass(new.parabola)
     }
-    list(values=matrix(result, ncol=exam.length, byrow = T), groups=groups)
+    list(values=values, groups=groups)
 }
 
 draw.some <- function(i) {
@@ -91,3 +96,73 @@ result <- get.some(1000)
 
 ir.pca <- prcomp(result$values, center = TRUE)
 plot(ir.pca, type = "l")
+
+get.strict.pc <- function (sample, pc) {
+    sample$values[is.element(sample$groups, c(-1, 1, 3, 4)),]%*%ir.pca$rotation[,1]
+    #result$values%*%ir.pca$rotation[,1]
+}
+
+get.students <- function (sample) {
+    data.frame(group=unlist(Map(
+    function(x) {
+        if (x == -1 || x == 3) {
+            'Think more'
+        } else if (x == 1 || x == 4) {
+            'Learn more'
+        } else {
+            NA
+        }
+    },
+    sample$groups[is.element(sample$groups, c(-1, 1, 3, 4))])),
+    pc1=get.strict.pc(sample, 1))
+}
+
+students <- data.frame(
+    group=unlist(Map(function(x) {
+        if (x == -1 || x == 3) {
+            'Think more'
+        } else if (x == 1 || x == 4) {
+            'Learn more'
+        } else {
+            NA
+        }
+    },
+    result$groups[is.element(result$groups, c(-1, 1, 3, 4))])),
+    #result$groups)),
+    pc1=get.strict.pc(result, 1))
+
+students.all <- data.frame(
+    group=unlist(Map(function(x) {
+        if (x == -1 || x == 3) {
+            'Think more'
+        } else if (x == 1 || x == 4) {
+            'Learn more'
+        } else {
+            'Who`re you?'
+        }
+    },
+    result$groups)),
+    pc1=result$values%*%ir.pca$rotation[,1],
+    pc2=result$values%*%ir.pca$rotation[,2],
+    pc3=result$values%*%ir.pca$rotation[,3],
+    pc4=result$values%*%ir.pca$rotation[,4],
+    pc5=result$values%*%ir.pca$rotation[,5]
+    )
+
+#students <- data.frame(group=result$groups,
+#pc1=result$values%*%ir.pca$rotation[,1], pc2=result$values%*%ir.pca$rotation[,2],
+#pc3=result$values%*%ir.pca$rotation[,3], pc4=result$values%*%ir.pca$rotation[,4])
+fit <- rpart(group ~ pc1, method="class", data=students)
+
+plot(fit, uniform=TRUE, main="Classification Tree for students")
+text(fit, use.n=TRUE, all=TRUE, cex=.8)
+
+printcp(fit) # display the results 
+plotcp(fit) # visualize cross-validation results 
+summary(fit) # detailed summary of splits
+
+package(party)
+fit.visual <- ctree(group ~ pc1, data=students, controls=ctree_control(maxdepth=1))
+fit.good <- ctree(group ~ pc1, data=students)
+plot(fit.visual, main="Conditional Inference Tree for students")
+treeresponse(fit.good, newdata=students[1:10,])
