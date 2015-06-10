@@ -4,20 +4,18 @@ source("generate_sequence.r")
 source("analyze_approximation.r")
 source("modify_parabola.r")
 
-#exam.cpm     <- 1
 exam.cpm     <- 6
 exam.minutes <- 90
 exam.length  <- exam.cpm * exam.minutes
 
-task.N <- 10
-task.H <- 15 * exam.length / task.N
+task.N <- 3
+task.H <- 10 * exam.length / task.N
 tasks  <- rep(task.H, task.N)
 
 exam.pass <- function (intensity) {
 
     get.tau <- function (t) {
-        #return(rexp(1, intensity(t)))
-        intensity(t)
+        return(rexp(1, intensity(t)))
     }
 
     exam.H.passed <- Reduce(function (intensity.accumulated, intensity.current) {
@@ -55,9 +53,9 @@ get.some <- function (n) {
         abc <- find_abc(sample.current)
         groups[i] <- get_group(abc[1], abc[2], abc[3])
         intensity <- parabola.stretch(abc[1], abc[2], abc[3], exam.length)
-        result <- rbind(result, exam.pass(intensity))
+        result <- c(result, exam.pass(intensity))
     }
-    list(values=result, groups=groups)
+    list(values=matrix(result, ncol=exam.length, byrow = T), groups=groups)
 }
 
 draw.some <- function(i) {
@@ -69,46 +67,27 @@ get.group <- function (sample, group.number) {
     sample$values[sample$groups == group.number,]
 }
 
-get.chart <- function(sample, i) {
-    groups.names <- c("Не класиф.", "Зміш.", "Слабкий",
-                      "Неврів.", "Рухливий", "Інерт.")
+groups.names <- c("Не класиф.", "Зміш.", "Слабкий",
+                  "Неврів.", "Рухливий", "Інерт.")
+get.chart.g <- function(sample, i, groups) {
     vegLengths <- Reduce(function (result, g) {
         rbind(result, data.frame(
               length=c(get.group(sample, g) %*% ir.pca$rotation[,i]),
               veg=groups.names[g+2], stringsAsFactors=FALSE))
-    }, (seq(length(groups.names))-2))
+    }, groups, c())
     ggplot(vegLengths, aes(length, fill=veg)) + geom_density(alpha = 0.2)
 }
 
+get.chart <- function(sample, i) {
+    get.chart.g(sample, i, (seq(length(groups.names))-2))
+}
 
-#PC1 <- data.frame(length=c(result %*% ir.pca$rotation[,1]))
-#PC1$veg <- 'PC1'
-#PC2 <- data.frame(length=c(result %*% ir.pca$rotation[,2]))
-#PC2$veg <- 'PC2'
-#PC3 <- data.frame(length=c(result %*% ir.pca$rotation[,3]))
-#PC3$veg <- 'PC3'
-#PC4 <- data.frame(length=c(result %*% ir.pca$rotation[,4]))
-#PC4$veg <- 'PC4'
-#PC5 <- data.frame(length=c(result %*% ir.pca$rotation[,5]))
-#PC5$veg <- 'PC5'
-#PC6 <- data.frame(length=c(result %*% ir.pca$rotation[,6]))
-#PC6$veg <- 'PC6'
-#vegLengths <- rbind(PC1, PC2, PC3, PC4, PC5, PC6)
-#ggplot(vegLengths, aes(length, fill=veg)) + geom_density(alpha = 0.2)
+get.amount <- function(sample, pc, group.number, f) {
+    fpc <- get.group(sample, group.number) %*% ir.pca$rotation[,pc]
+    fpc[f(fpc)]
+}
 
-Rprof('profile.out')
 result <- get.some(1000)
-Rprof(NULL)
-summaryRprof("profile.out")
 
-#print(cov(result))
-#fit <- princomp(result)
-#print(summary(fit)) # print variance accounted for 
-#loadings(fit) # pc loadings 
 ir.pca <- prcomp(result$values, center = TRUE)
-#print(ir.pca)
-#png('output.png', width=22, height=22, units="cm", res=100)
 plot(ir.pca, type = "l")
-#plot(fit,type="lines") # scree plot 
-#fit$scores # the principal components
-#biplot(fit)
