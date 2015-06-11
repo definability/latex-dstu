@@ -1,4 +1,5 @@
 library('ggplot2')
+library('party')
 
 source("generate_sequence.r")
 source("analyze_approximation.r")
@@ -45,7 +46,6 @@ exam.pass <- function (intensity) {
     })()
 }
 
-
 get.some <- function (n) {
     result <- c()
     groups <- rep(-1, n)
@@ -64,8 +64,8 @@ get.some <- function (n) {
 }
 
 draw.some <- function(i) {
-    plot(density(result$values %*% ir.pca$rotation[,i]), col='red')
-    polygon(density(result$values %*% ir.pca$rotation[,i]), col='red', border='blue')
+    plot(density(result$values %*% students.pca$rotation[,i]), col='red', main=paste(i, "головна компонента"))
+    polygon(density(result$values %*% students.pca$rotation[,i]), col='red', border='blue')
 }
 
 get.group <- function (sample, group.number) {
@@ -74,13 +74,16 @@ get.group <- function (sample, group.number) {
 
 groups.names <- c("Не класиф.", "Зміш.", "Слабкий",
                   "Неврів.", "Рухливий", "Інерт.")
+
 get.chart.g <- function(sample, i, groups) {
-    vegLengths <- Reduce(function (result, g) {
+     pca.distribution <- Reduce(function (result, g) {
         rbind(result, data.frame(
-              length=c(get.group(sample, g) %*% ir.pca$rotation[,i]),
-              veg=groups.names[g+2], stringsAsFactors=FALSE))
+              Значення=c(get.group(sample, g) %*% students.pca$rotation[,i]),
+              Тип=groups.names[g+2], stringsAsFactors=FALSE))
     }, groups, c())
-    ggplot(vegLengths, aes(length, fill=veg)) + geom_density(alpha = 0.2)
+    ggplot(pca.distribution, aes(Значення, fill=Тип)) +
+           ylab("Щільність") +
+           geom_density(alpha = 0.2)
 }
 
 get.chart <- function(sample, i) {
@@ -88,81 +91,52 @@ get.chart <- function(sample, i) {
 }
 
 get.amount <- function(sample, pc, group.number, f) {
-    fpc <- get.group(sample, group.number) %*% ir.pca$rotation[,pc]
+    fpc <- get.group(sample, group.number) %*% students.pca$rotation[,pc]
     fpc[f(fpc)]
 }
 
-result <- get.some(1000)
+result <- get.some(600)
 
-ir.pca <- prcomp(result$values, center = TRUE)
-plot(ir.pca, type = "l")
+students.pca <- prcomp(result$values, center = TRUE)
+plot(students.pca, type = "l", title="Головні компоненти")
+print(summary(students.pca))
 
 get.strict.pc <- function (sample, pc) {
-    sample$values[is.element(sample$groups, c(-1, 1, 3, 4)),]%*%ir.pca$rotation[,1]
-    #result$values%*%ir.pca$rotation[,1]
+    sample$values[is.element(sample$groups, c(-1, 1, 3, 4)),]%*%students.pca$rotation[,1]
 }
 
 get.students <- function (sample) {
     data.frame(group=unlist(Map(
     function(x) {
         if (x == -1 || x == 3) {
-            'Think more'
+            'Більше думати'
         } else if (x == 1 || x == 4) {
-            'Learn more'
+            'Більше тренуватися'
         } else {
             NA
         }
     },
     sample$groups[is.element(sample$groups, c(-1, 1, 3, 4))])),
-    pc1=get.strict.pc(sample, 1))
+    ГК1=get.strict.pc(sample, 1))
 }
 
 students <- data.frame(
     group=unlist(Map(function(x) {
         if (x == -1 || x == 3) {
-            'Think more'
+            'Більше думати'
         } else if (x == 1 || x == 4) {
-            'Learn more'
+            'Більше тренуватися'
         } else {
             NA
         }
     },
     result$groups[is.element(result$groups, c(-1, 1, 3, 4))])),
-    #result$groups)),
-    pc1=get.strict.pc(result, 1))
+    ГК1=get.strict.pc(result, 1))
 
-students.all <- data.frame(
-    group=unlist(Map(function(x) {
-        if (x == -1 || x == 3) {
-            'Think more'
-        } else if (x == 1 || x == 4) {
-            'Learn more'
-        } else {
-            'Who`re you?'
-        }
-    },
-    result$groups)),
-    pc1=result$values%*%ir.pca$rotation[,1],
-    pc2=result$values%*%ir.pca$rotation[,2],
-    pc3=result$values%*%ir.pca$rotation[,3],
-    pc4=result$values%*%ir.pca$rotation[,4],
-    pc5=result$values%*%ir.pca$rotation[,5]
-    )
 
-#students <- data.frame(group=result$groups,
-#pc1=result$values%*%ir.pca$rotation[,1], pc2=result$values%*%ir.pca$rotation[,2],
-#pc3=result$values%*%ir.pca$rotation[,3], pc4=result$values%*%ir.pca$rotation[,4])
-fit <- rpart(group ~ pc1, method="class", data=students)
+fit.visual <- ctree(group ~ ГК1, data=students, controls=ctree_control(maxdepth=1))
+fit.good <- ctree(group ~ ГК1, data=students)
 
-plot(fit, uniform=TRUE, main="Classification Tree for students")
-text(fit, use.n=TRUE, all=TRUE, cex=.8)
+plot(fit.visual, main="Дерево класифікації студентів")
 
-printcp(fit) # display the results 
-plotcp(fit) # visualize cross-validation results 
-summary(fit) # detailed summary of splits
-
-package(party)
-fit.visual <- ctree(group ~ pc1, data=students, controls=ctree_control(maxdepth=1))
-fit.good <- ctree(group ~ pc1, data=students)
-plot(fit.visual, main="Conditional Inference Tree for students")
-treeresponse(fit.good, newdata=students[1:10,])
+#treeresponse(fit.good, newdata=students[1:10,])
