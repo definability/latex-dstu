@@ -31,3 +31,31 @@
 \end{tikzpicture}}
 
 \captionsetup[subfigure]{skip=0ex} % global setting for subfigure
+
+\usepackage{stringenc}
+\usepackage{pdfescape}
+
+\makeatletter
+\renewcommand*{\UTFviii@defined}[1]{%
+  \ifx#1\relax
+    \begingroup
+      % Remove prefix "\u8:"
+      \def\x##1:{}%
+      % Extract Unicode char from command name
+      % (utf8.def does not support surrogates)
+      \edef\x{\expandafter\x\string#1}%
+      \StringEncodingConvert\x\x{utf8}{utf16be}% convert to UTF-16BE
+      % Hexadecimal representation
+      \EdefEscapeHex\x\x
+      % Enhanced error message
+      \PackageError{inputenc}{Unicode\space char\space \string#1\space
+                              (U+\x)\MessageBreak
+                              not\space set\space up\space
+                              for\space use\space with\space LaTeX}\@eha
+    \endgroup
+  \else\expandafter
+    #1%
+  \fi
+}
+\makeatother
+\DeclareUnicodeCharacter{00AD}{-}
