@@ -43,17 +43,38 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 кількості постукувань для кожного часового проміжку $T_i$, а отримані
 результати використовувати в якості параметрів $\lambda_i$.
 
-Відомо, що найбільш поширені типи --- проміжний та опуклий (більше 50\%),
-інертний зустрічається трохи більше, ніж у 15\% випадків,
-а слабкий не більше ніж 20\%.
-На основі цих спостережень емпіричним способом було підібрано необхідну
-інтенсивність процесу Пуассона.
+Є наступні відомості щодо розподілу типів:
+\begin{itemize}
+  \item
+    Слабкий --- 29\%,
+  \item
+    Неврівноважений --- 38\%,
+  \item
+    Рухливий --- 23\%,
+  \item
+    Інертний --- 10\%.
+\end{itemize}
+Спростимо ці результати та додамо змішаний тип
+\begin{itemize}
+  \item
+    Змішаний --- 3\%,
+  \item
+    Слабкий --- 25\%,
+  \item
+    Неврівноважений --- 35\%,
+  \item
+    Рухливий --- 25\%,
+  \item
+    Інертний --- 12\%.
+\end{itemize}
+На основі цих спостережень за допомогою крітерію Пірсона
+було підібрано необхідну інтенсивність процесу Пуассона.
 На рис. \ref{fig:tapping:poisson} зображено різні реалізації послідовності
 випадкових величин, що розподілені за законом Пуассона з параметрами
 \begin{equation}\label{eq:tapping:poisson}
   \left[ \lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \lambda_{5},
          \lambda_{6} \right]
-  = \left[ 40, 44, 48, 40, 36, 34 \right].
+  = \left[ 40, 41, 46, 38, 35, 34 \right].
 \end{equation}
 
 \begin{figure}[h]
@@ -64,8 +85,8 @@ $\lambda_i$, де \cite{Bulinsky:2003}
         ylabel={Кількість точок}, ylabel near ticks,
         xlabel={час, с}]
 
-        \draw[dashed,color=gray!50] ({rel axis cs:0,43}|-{axis cs:0,43})
-                                 -- ({rel axis cs:1,43}|-{axis cs:0,43});
+        \draw[dashed,color=gray!50] ({rel axis cs:0,40}|-{axis cs:0,40})
+                                 -- ({rel axis cs:1,40}|-{axis cs:0,40});
         \addplot table [x, y, col sep=comma] {data/chartSynthesizedExample.csv};
       \end{axis}
     \end{tikzpicture}
@@ -336,8 +357,9 @@ $\lambda_i$, де \cite{Bulinsky:2003}
     $t_g$ --- точка глобального мінімуму
     \begin{equation*}
       \begin{cases}
+        V = 1, \\
+        t_g > t_6, \\
         M = 1, \\
-        L = 1, \\
         \sigma_P > \varepsilon;
       \end{cases}
     \end{equation*}
@@ -345,8 +367,9 @@ $\lambda_i$, де \cite{Bulinsky:2003}
     $t_g$ --- точка глобального максимуму
     \begin{equation*}
       \begin{cases}
+        V = 1, \\
+        t_g < t_6, \\
         M = -1, \\
-        L = 1, \\
         \sigma_P > \varepsilon.
       \end{cases}
     \end{equation*}
@@ -358,8 +381,8 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 \begin{equation*}
   \begin{cases}
     M = -1, \\
-    L = -1, \\
-    t_2 \le t_g \le t_3, \\
+    V = -1, \\
+    t_g < t_3, \\
     \sigma_F > \varepsilon.
   \end{cases}
 \end{equation*}
@@ -371,10 +394,9 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 \begin{equation*}
   \begin{cases}
     M = -1, \\
-    L = -1, \\
-    t_2 \le t_g \le t_3, \\
-    \sigma_S > \varepsilon, \\
-    \sigma_F \le \varepsilon.
+    V = -1, \\
+    t_g \ge t_3, \\
+    \sigma_F - \sigma_S > 0.
   \end{cases}
 \end{equation*}
 
@@ -384,8 +406,8 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 \begin{equation*}
   \begin{cases}
     M = 1, \\
-    L = -1, \\
-    0 \le \sigma_S - \sigma_F \le \varepsilon
+    V = -1, \\
+    0 \le \sigma_S - \sigma_F \ge -\varepsilon.
   \end{cases}
 \end{equation*}
 
@@ -399,17 +421,17 @@ $\lambda_i$, де \cite{Bulinsky:2003}
 Опис:
 \begin{itemize}
   \item
-    Не вдалося віднести до того чи іншого типу $9\%$ студентів.
+    Не вдалося віднести до того чи іншого типу $11\%$ студентів.
   \item
     $2\%$ студентів мають змішаний тип вищої нервової діяльності;
   \item
-    Слабкий тип зустрівся у $20\%$ випадків;
+    Слабкий тип зустрівся у $18\%$ випадків;
   \item
-    $23\%$ студентів відносяться до неврівноваженого типу;
+    $34\%$ студентів відносяться до неврівноваженого типу;
   \item
-    $29\%$ --- студенти рухливого типу;
+    $20\%$ --- студенти рухливого типу;
   \item
-    Студенти інертного типу зустрілися у $17\%$ випадків;
+    Студенти інертного типу зустрілися у $14\%$ випадків;
 \end{itemize}
 
 \begin{figure}[h!]
@@ -419,85 +441,3 @@ $\lambda_i$, де \cite{Bulinsky:2003}
   \label{fig:tapping:poisson:types}
 \end{figure}
 
-\section{Моделювання результатів виконання тестових завдань}
-
-\subsection{Інформаційний метод прогнозування часу розв’язання завдань}
-
-Один з методів прогнозування часу розв’язання завдання людиною,
-що використовується в інженерній психології, є інформаційний метод.
-Вважаємо, що студент виконує завдання одне за одним.
-Кожне завдання має певну складність $H_i$ --- кількість інформації,
-що потрібно обробити для розв’язку завдання.
-Студент виконує кожне завдання з певною швидкістю $V_i$.
-Тоді час виконання тесту $\tau$ буде рахуватися за формулою
-\begin{equation*}
-  \tau = \sum_{i=1}^{l}\frac{H_i}{V_i},
-\end{equation*}
-де $l$ --- кількість задач. \cite{Lomov:1982}
-
-Вважаємо, що швидкість виконання завдання $i$ рахується за формулою
-\begin{equation*}
-  V_i\left( t \right) = \frac{1}{\tau_i},
-\end{equation*}
-де $\tau_i$ --- випадкова величина, що має показниковий розподіл
-з параметром $\lambda_i$, який залежить від типу вищої нервової діяльності
-людини та часу, що затрачено на виконання попередніх завдань:
-\begin{equation*}
-  \tau_i \sim Exp\left( \lambda_i \right).
-\end{equation*}
-Тоді $\tau_i$ буде часом, що витрачається на одиницю інформації
-завдання
-\begin{equation*}
-  \tau = \sum_{i=1}^{l} H_i \cdot \tau_i.
-\end{equation*}
-Якщо всі завдання мають однакову складність $H_i = H$, рівність приймає вигляд
-\begin{equation*}
-  \tau = H \cdot \sum_{i=1}^{l} \tau_i.
-\end{equation*}
-
-Щоб застосувати отримані з моделювання теппінг-тесту результаті,
-потрібно горизонтально масштабувати параболи, до яких було аппроксимовано
-ламані.
-Початкова парабола $y$ має вигляд
-\begin{equation*}
-  y \left( t \right) = a^2 \cdot t + b \cdot t + c.
-\end{equation*}
-Потрібно отримати параболу $\lambda$
-\begin{equation*}
-  \lambda \left( t \right) = A^2 \cdot t + B \cdot t + C
-\end{equation*}
-таку, для якої виконується
-\begin{equation*}
-  \begin{split}
-    \lambda\left( 0 \right) &= y\left( 0 \right), \\
-    \lambda\left( T \right) &= y\left( t_t \right), \\
-    \lambda\left( \frac{T}{2} \right) &= y \left( \frac{t_t}{2} \right)
-  \end{split}
-\end{equation*}
-$t_t$ --- час виконання теппінг-тесту (30 секунд),
-$T$ --- час виконання тестових завдань (40 хвилин).
-Маємо розв’язок
-\begin{equation*}
-  \begin{split}
-    A &= a \cdot \left( \frac{t_t}{T} \right)^2, \\
-    B &= b \cdot \frac{t_t}{T}, \\
-    C &= c,
-  \end{split}
-\end{equation*}
-тобто
-\begin{equation*}
-  \lambda\left( t \right)
-  = a \cdot \left( \frac{t_t}{T} \right)^2 \cdot t^2
-    + b \cdot \frac{t_t}{T} \cdot t
-    + c.
-\end{equation*}
-
-Отже маємо
-\begin{equation*}
-  \begin{split}
-    \tau_1 &\sim Exp\left\{ \lambda\left( 0 \right) \right\}, \\
-    \tau_i &\sim
-      Exp\left\{ \lambda\left( \sum_{j=1}^{i} H_j \cdot \tau_j \right) \right\},
-      \qquad i>1.
-  \end{split}
-\end{equation*}

@@ -14,7 +14,6 @@ sample.time <- seq(5, 30, 5)
 sample.size = length(sample.time)
 sample.prediction_degree = 2
 sample.poly = poly(sample.time, sample.prediction_degree, raw=TRUE)
-#lambda.default = c(40, 40, 40, 40, 40, 40)
 lambda.default = rep(40, 6)
 
 groups.number <- 4
@@ -46,26 +45,6 @@ calculate.lambda <- function(lambda.current) {
 }
 
 iterate.lambdas.seq <- function(lambda.current, lambda.pos) {
-    #lambda.min <- -5
-    #lambda.max <- 5
-    # LAMBDA 40
-    #if (lambda.pos == 2) {
-    #    lambda.min <- -10
-    #    lambda.max <- -5
-    #} else if (lambda.pos == 3) {
-    #    lambda.min <- 5
-    #    lambda.max <- 10
-    #} else if (lambda.pos == 4) {
-    #    lambda.min <- -5
-    #    lambda.max <- 0
-    #} else if (lambda.pos == 5) {
-    #    lambda.min <- -4
-    #    lambda.max <- -1
-    #} else if (lambda.pos == 6) {
-    #    lambda.min <- -10
-    #    lambda.max <- -5
-    #}
-    # LAMBDA 35
     if (lambda.pos == 2) {
         lambda.min <- 0
         lambda.max <- 5
@@ -88,9 +67,6 @@ iterate.lambdas.seq <- function(lambda.current, lambda.pos) {
         return(lambda.current)
     }
     lambdas <- Map(get_lambda, lambda.min:lambda.max)
-    #result <- foreach(i=lambdas) %do% {
-    #    iterate.lambdas(i, lambda.pos+1)
-    #}
     for (l in lambdas) {
         iterate.lambdas(l, lambda.pos+1)
     }
