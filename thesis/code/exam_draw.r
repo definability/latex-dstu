@@ -48,10 +48,11 @@ get.gg.students.pc <- function (exam, rotations, pca.number) {
         geom_histogram(aes(fill=..count..)) + theme_bw() +
         labs(x=sprintf("Значення головної компоненти %d", pca.number),
              y="Кількість студентів") +
+        theme(legend.position="none") +
         scale_fill_gradient("Кількість")
 }
 
-groups.names <- c("Не класифіковано", "Зміший", "Слабкий",
+groups.names <- c("Не класифіковано", "Змішаний", "Слабкий",
                   "Невріважений", "Рухливий", "Інертний")
 
 get.gg.students.pc.classified <- function (exam, rotation, groups) {
@@ -62,5 +63,6 @@ get.gg.students.pc.classified <- function (exam, rotation, groups) {
     }, groups, c())
     ggplot(pca.distribution, aes(Значення, fill=Тип)) +
            ylab("Щільність") +
+           theme(legend.position="bottom") +
            geom_density(alpha = 0.2)
 }
