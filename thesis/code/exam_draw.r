@@ -61,7 +61,7 @@ get.gg.students.pc.classified <- function (exam, rotation, groups) {
               Значення=c(exam$values[exam$groups == g,]%*% rotation),
               Тип=groups.names[g+2], stringsAsFactors=FALSE))
     }, groups, c())
-    ggplot(pca.distribution, aes(Значення, fill=Тип)) +
+    ggplot(pca.distribution, aes(Значення, fill=Тип)) + theme_bw() +
            ylab("Щільність") +
            theme(legend.position="bottom") +
            geom_density(alpha = 0.2)
