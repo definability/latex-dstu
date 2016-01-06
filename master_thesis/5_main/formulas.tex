@@ -57,12 +57,13 @@
   \begin{split}
     E\left( \Phi \right) =
       \sum_{tt' \in \tau} \max\limits_{k, k' \in K}{
-        \left\{g_{tt'}\left( k_{t}, k'_{t'} \right)\right\} +
+        \left\{g_{tt'}\left( k_{t}, k'_{t'} \right) +
         \varphi_{tt'}\left( k_{t} \right) + \varphi_{t't}\left( k'_{t'} \right)
-      } + \\ +
+      \right\}} + \\ +
       \sum_{t \in T} \max\limits_{k \in K}{
-        \left\{q_{t} \left( k_{t} \right)\right\} -
-      \sum_{t' \in N\left( t \right)} \varphi_{tt'} \left( k_{t} \right)}
+        \left\{q_{t} \left( k_{t} \right) -
+        \sum_{t' \in N\left( t \right)} \varphi_{tt'} \left( k_{t}
+      \right)\right\}}
     \rightarrow min
   \end{split}
 \end{equation*}
