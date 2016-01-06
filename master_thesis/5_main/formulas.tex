@@ -37,3 +37,33 @@
   \end{split}
 \end{equation*}
 
+\section{Задача}
+
+\begin{equation*}
+  \varphi \in \Phi
+\end{equation*}
+
+\begin{equation*}
+  g'_{tt'} \left( k_{t}, k'_{t'} \right) = g_{tt'} \left( k_{t}, k'_{t'} \right)
+    + \varphi_{tt'}\left( k_{t} \right) + \varphi_{t't}\left( k'_{t'} \right)
+\end{equation*}
+
+\begin{equation*}
+  q'_{t} \left( k_{t} \right) = q_{t}\left( k_{t} \right)
+    - \sum_{t' \in N\left( t \right)} \varphi_{tt'} \left( k_{t} \right)
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    E\left( \Phi \right) =
+      \sum_{tt' \in \tau} \max\limits_{k, k' \in K}{
+        \left\{g_{tt'}\left( k_{t}, k'_{t'} \right)\right\} +
+        \varphi_{tt'}\left( k_{t} \right) + \varphi_{t't}\left( k'_{t'} \right)
+      } + \\ +
+      \sum_{t \in T} \max\limits_{k \in K}{
+        \left\{q_{t} \left( k_{t} \right)\right\} -
+      \sum_{t' \in N\left( t \right)} \varphi_{tt'} \left( k_{t} \right)}
+    \rightarrow min
+  \end{split}
+\end{equation*}
+
