@@ -1,0 +1,39 @@
+\section{Формули}
+
+\begin{equation*}
+  Z = <T, K, \tau, g, q>
+\end{equation*}
+
+\begin{equation*}
+  \tau \subset T^2
+\end{equation*}
+
+\begin{equation*}
+  g: \tau \times K^2 \rightarrow \mathbb{R}
+\end{equation*}
+
+\begin{equation*}
+  q: T \times K \rightarrow \mathbb{R}
+\end{equation*}
+
+\begin{equation*}
+  \vec{k}^* = \argmax\limits_{\vec{k} \in K} \left\{
+    \sum_{tt' \in \tau} g_{tt'}\left( k_{t}, k_{t'} \right) +
+    \sum_{t \in T} q_{t} \left( k_{t} \right)
+  \right\}
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    E\left( Z \right) =
+      \sum_{tt' \in \tau} \max\limits_{k, k' \in K}{
+        \left\{g_{tt'}\left( k_{t}, k'_{t'} \right)\right\}} +
+      \sum_{t \in T} \max\limits_{k \in K}{
+        \left\{q_{t} \left( k_{t} \right)\right\}}
+    \ge \\ \ge
+      \max\limits_{k \in K}{\left\{
+        \sum_{tt' \in \tau} g_{tt'}\left( k_{t}, k_{t'} \right) +
+      \sum_{t \in T} q_{t} \left( k_{t} \right)\right\}}
+  \end{split}
+\end{equation*}
+
