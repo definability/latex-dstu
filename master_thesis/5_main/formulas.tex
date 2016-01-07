@@ -68,3 +68,25 @@
   \end{split}
 \end{equation*}
 
+\section{Розв'язок}
+
+\begin{equation*}
+  \begin{split}
+    k_{t}^{q}
+      =& \argmax\limits_{k \in K}{
+        \left\{q_{t} \left( k_{t} \right)\right\}} \\
+    \left( k_{t}^{g}, k_{t'}^{g} \right)
+      =& \argmax\limits_{k, k' \in K}{
+        \left\{g_{tt'}\left( k_{t}, k'_{t'} \right)\right\}}
+  \end{split}
+\end{equation*}
+
+\begin{equation*}
+  \frac{\partial E\left( \Phi \right)}{\partial \varphi_{tt'}\left( k \right)} =
+  \begin{cases}
+    1,& k_{t}^{g} = k \neq k_{t}^{q} \\
+    -1,& k_{t}^{g} \neq k = k_{t}^{g} \\
+    0,& otherwise
+  \end{cases}
+\end{equation*}
+
