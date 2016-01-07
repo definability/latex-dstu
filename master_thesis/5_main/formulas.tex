@@ -90,3 +90,29 @@
   \end{cases}
 \end{equation*}
 
+\begin{algorithm}
+  \caption{Крок}
+  \begin{algorithmic}[1]
+    \FORALL{$\left( t, t' \right) \in \tau$}
+      \STATE $\left( k, k' \right) \gets \argmax\limits_{k, k' \in K}{
+          \left\{g_{tt'}\left( k_{t}, k'_{t'} \right) +
+          \varphi_{tt'}\left( k \right) + \varphi_{t't}\left( k' \right)
+        \right\}}$
+      \STATE $\varphi_{tt'}\left( k \right)
+        \gets \varphi_{tt'}\left( k \right) - \gamma_{i}$
+      \STATE $\varphi_{t't}\left( k' \right)
+        \gets \varphi_{t't}\left( k' \right) - \gamma_{i}$
+    \ENDFOR
+    \FORALL{$t \in T$}
+      \STATE $k \gets \argmax\limits_{k \in K}{\left\{
+          q_{t} \left( k_{t} \right) -
+              \sum_{t' \in N\left( t \right)} \varphi_{tt'} \left( k \right)
+        \right\}}$
+      \FORALL{$t' \in N\left( t \right)$}
+        \STATE $\varphi_{tt'}\left( k \right)
+          \gets \varphi_{tt'}\left( k \right) + \gamma_{i}$
+      \ENDFOR
+    \ENDFOR
+  \end{algorithmic}
+\end{algorithm}
+
