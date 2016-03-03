@@ -1,0 +1,38 @@
+\fancypagestyle{firststyle}
+{
+    \fancyfoot[C]{Київ --- \passYear~року}
+    \fancyhead{}
+}
+\begin{titlepage}
+\thispagestyle{firststyle}
+\begin{center}
+      \MakeUppercase{\textbf{національний технічний університет україни}}\\[-0.5ex]
+      \MakeUppercase{\textbf{``київський політехнічний інститут''}}\\[-0.5ex]
+      \MakeUppercase{\textbf{\faculty}}\\
+      \MakeUppercase{\department}\\[10ex]
+
+    \MakeUppercase{Реферат}\\
+
+    Дисципліна: <<\subject>>
+
+    Тема: <<\theme>>\\[15ex]
+\end{center}
+\begin{flushright}
+    \begin{tabular}{l}
+        \ifx\gender\male
+          Виконав\\ студент
+        \else
+          Виконала\\ студентка
+        \fi
+        \course~курсу групи \group\\
+        \name \\
+        \ifx\mentorGender\male
+          Перевірив \\
+        \else
+          Перевірила \\
+        \fi
+        \mentorRank,
+        \mentorName
+    \end{tabular}
+\end{flushright}
+\end{titlepage}
