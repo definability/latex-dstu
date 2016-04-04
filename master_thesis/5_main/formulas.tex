@@ -116,3 +116,82 @@
   \end{algorithmic}
 \end{algorithm}
 
+
+\section{МНК}
+
+\begin{equation*}
+  R\left( \vec{l}, c \right)
+  = \sum_{p \in I} \left( \vec{n}^p \cdot \vec{l} + c - y^p \right)^2
+  \rightarrow \min.
+\end{equation*}
+
+\begin{equation*}
+  \frac{\partial R}{\partial l_e}
+  = 2 \cdot \sum_{p \in I}
+    \left( \vec{n}^p \cdot \vec{l} + c - y^p \right) \cdot n_e^p
+  = 0,
+  \qquad e \in \left\{ x, y, z \right\},
+\end{equation*}
+
+\begin{equation*}
+  \frac{\partial R}{\partial c}
+  = 2 \cdot \sum_{p \in I}
+    \left( \vec{n}^p \cdot \vec{l} + c - y^p \right)
+  = 0.
+\end{equation*}
+
+\begin{equation*}
+  n_e = \left\| \vec{n}^p \right\|_{p \in I},
+  \qquad e \in \left\{ x, y, z \right\},
+\end{equation*}
+
+\begin{equation*}
+  \mathbb{I} = \left\| 1 \right\|_{p \in I},
+\end{equation*}
+
+\begin{equation*}
+  N_e = n_e \cdot \mathbb{I},
+  \qquad e \in \left\{ x, y, z \right\},
+\end{equation*}
+
+\begin{equation*}
+  N_{ij} = n_i \cdot n_j,
+  \qquad i, j \in \left\{ x, y, z \right\},
+\end{equation*}
+
+\begin{equation*}
+  y = \left\| y^p \right\|_{p \in I}
+\end{equation*}
+
+\begin{equation*}
+  Y = y \cdot \mathbb{I}
+\end{equation*}
+
+\begin{equation*}
+  Y_e = y \cdot n_e,
+  \qquad e \in \left\{ x, y, z \right\}.
+\end{equation*}
+
+\begin{equation*}
+  \begin{bmatrix}
+    N_{xx} & N_{xy} & N_{xz} & N_{x} \\
+    N_{xy} & N_{yy} & N_{yz} & N_{y} \\
+    N_{xz} & N_{yz} & N_{zz} & N_{z} \\
+    N_{x} & N_{y} & N_{z} & \mathbb{I}
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+    l_x \\
+    l_y \\
+    l_z \\
+    c
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    Y_x \\
+    Y_y \\
+    Y_z \\
+    Y
+  \end{bmatrix}.
+\end{equation*}
+
