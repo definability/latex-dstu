@@ -1,5 +1,5 @@
 # LaTeX DSTU 3008-95
-DSTU LaTeX template with Dockerfile
+DSTU 3008-95 TeXLive template with Dockerfile to create thesis
 
 ## DSTU 3008-95 Template
 
