@@ -1,35 +1,35 @@
 \ProvidesPackage{dsturep}
-\usepackage{cmap}                            % поиск по тексту в готовом pdf
-\usepackage[T2A]{fontenc}                    % поддержка кодировок, отличных от латиницы
-\usepackage[utf8]{inputenc}                  % поддержка UTF8
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
 
-\usepackage[ukrainian]{babel}                  % поддержка русского языка
+\usepackage[ukrainian]{babel}
 \usepackage{pscyr}
 \renewcommand{\rmdefault}{ftm}
 %\renewcommand*{\familydefault}{\sfdefault}
 %\renewcommand{\rmdefault}{\ttdefault}
 
-\usepackage[hidelinks]{hyperref}             % гиперссылки в содержании и ссылках
-\usepackage{titlesec}                        % оформление разделов, пунктов и т. п.
-\usepackage{graphicx}                        % вставка картинок
-\usepackage{amssymb,amsfonts,amsmath,amsthm} % математические дополнения от American Math. Society
-\usepackage{icomma}                          % запятая, разделяющая целую и дробную части
-\usepackage{indentfirst}                     % отделять первую строку раздела абзацным отступом
-\usepackage{multirow}                        % улучшенное форматирование таблиц
-\usepackage{fancyhdr}                        % колонтитулы
-\usepackage[tableposition=top]{caption}      % подписи к рисункам/таблицам
-\usepackage{subcaption}                      % подписи к подрисункам/подтаблицам
-\usepackage[left=2.5cm, right=1.0cm, top=2.5cm, bottom=2.5cm]{geometry} % отступы от края страницы
-\usepackage{enumitem}                        % списки
-\usepackage{titletoc}                        % содержание документа
-\usepackage[title,titletoc]{appendix}        % приложения
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{amssymb,amsfonts,amsmath,amsthm}
+\usepackage{icomma}
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage[tableposition=top]{caption}
+\usepackage{subcaption}
+\usepackage[left=2.5cm, right=1.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titletoc}
+\usepackage[title,titletoc]{appendix}
 
-\frenchspacing                    % для одиночного пробела после точки в конце предложения
-\linespread{1.5}                  % увеличение междустрочного интервала
-\setlength\parindent{2.5em}         % абзацный отступ
-\renewcommand{\arraystretch}{1.3} % увеличение вертикального пробела в массивах и таблицах
+\frenchspacing
+\linespread{1.5}
+\setlength\parindent{2.5em}
+\renewcommand{\arraystretch}{1.3}
 
-% Колонтитулы
+
 %\pagestyle{fancy}
 \fancyhf{}
 \fancyhead[R]{\small\thepage}
@@ -43,7 +43,7 @@
     \fancyhf{}
     \rhead{\small\thepage}}
 
-% Подписи к рисункам/таблицам
+
 %\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
 %\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 \DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
@@ -84,7 +84,7 @@ labelsep=gost}
 \titlespacing*{\subsection}{0pt}{2em}{2em}
 \titlespacing*{\subsubsection}{0pt}{2em}{2em}
 
-% Списки
+
 \makeatletter
     \AddEnumerateCounter{\asbuk}{\@asbuk}{ю)}
 \makeatother
@@ -94,14 +94,14 @@ labelsep=gost}
 \renewcommand{\labelenumii}{\asbuk{enumii})}
 \setenumerate{leftmargin=\parindent}
 
-% Заголовок раздела в содержании
+
 %\dottedcontents{chapter}[1.6em]{}{1.6em}{1pc}
 \dottedcontents{chapter}[1em]{}{1em}{1pc}
 \dottedcontents{section}[2em]{}{2em}{1pc}
 \dottedcontents{subsection}[3em]{}{3em}{1pc}
 \dottedcontents{subsubsection}[3em]{}{3em}{1pc}
 
-% Заголовки приложений
+
 \newcommand{\empline}{\mbox{}\newline}
  
 \newcommand{\append}[1]{ 
@@ -113,12 +113,12 @@ labelsep=gost}
     \end{center}
     \addcontentsline{toc}{chapter}{\Asbuk{chapter} #1}}
 
-% Ненумерованные разделы в содержании
+
 \newcommand\chap[1]{%
   \chapter*{#1}%
   \addcontentsline{toc}{chapter}{#1}}
 
-% Номер сноски со скобкой
+
 \renewcommand*{\thefootnote}{\arabic{footnote})}
 
 \AtBeginDocument{%
