@@ -12,3 +12,24 @@ http://dkhramov.dp.ua/Comp/NIRReportDSTU300895
 Following instruction was used to install PSCyr to enable Times New Roman font
 http://alice.saske.sk/wiki/TeXLive#PSCyr
 
+## Docker
+
+Based on Docker package provided by @harshjv
+https://github.com/harshjv/docker-texlive-2015
+
+Link on Dockerhub
+https://hub.docker.com/r/harshjv/texlive-2015
+
+## Usage
+
+Just go to folder with project and run
+```
+docker run --rm -it -v $(pwd):/var/texlive babbage/latex-dstu pdflatex index.tex
+```
+
+To use your own `common` styles folder
+```
+docker run --rm -it -v $(pwd):/var/texlive -v $(pwd)/../common:/var/common \
+           babbage/latex-dstu pdflatex index.tex
+```
+
