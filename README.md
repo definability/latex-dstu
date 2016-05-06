@@ -24,12 +24,7 @@ https://hub.docker.com/r/harshjv/texlive-2015
 
 Just go to folder with project and run
 ```
-docker run --rm -it -v $(pwd):/var/texlive babbage/latex-dstu pdflatex index.tex
-```
-
-To use your own `common` styles folder
-```
-docker run --rm -it -v $(pwd):/var/texlive -v $(pwd)/../common:/var/common \
-           babbage/latex-dstu pdflatex index.tex
+docker run --rm -it -v $(pwd):/var/texlive \
+           babbage/latex-dstu:texlive pdflatex index.tex
 ```
 
