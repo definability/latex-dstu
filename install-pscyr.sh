@@ -30,7 +30,7 @@ mv PSCyr/doc/PROBLEMS     $DEST_DIR/doc/fonts/pscyr
 mv PSCyr/doc/fonts-ex.tex $DEST_DIR/doc/fonts/pscyr
 iconv -f KOI8-R -t UTF8 < PSCyr/doc/README.koi > $DEST_DIR/doc/fonts/pscyr/README.utf8
 
-mktexlsr 
+mktexlsr
 updmap-sys --enable Map=pscyr.map
 
 cd -
