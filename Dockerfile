@@ -6,5 +6,3 @@ RUN mkdir /tmp/shell-scripts
 COPY install-pscyr.sh /tmp/shell-scripts/
 RUN bash /tmp/shell-scripts/install-pscyr.sh
 
-COPY common /var/common
-
