@@ -1,4 +1,4 @@
-FROM babbage/latex-dstu
+FROM babbage/latex-dstu:texlive
 
 RUN tlmgr update --all
 
