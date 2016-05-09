@@ -25,6 +25,6 @@ https://hub.docker.com/r/harshjv/texlive-2015
 Just go to folder with project and run
 ```
 docker run --rm -it -v $(pwd):/var/texlive \
-           babbage/latex-dstu:texlive pdflatex index.tex
+           babbage/latex-dstu:texlive pdflatex_full index
 ```
 
