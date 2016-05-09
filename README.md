@@ -25,6 +25,9 @@ https://github.com/harshjv/docker-texlive-2015
 Link on Dockerhub
 https://hub.docker.com/r/harshjv/texlive-2015
 
+Link to this image on Dockerhub
+https://hub.docker.com/r/babbage/latex-dstu/
+
 ## Usage
 
 Just go to folder with project and run
