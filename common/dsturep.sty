@@ -3,7 +3,6 @@
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\usepackage[ukrainian]{babel}
 \usepackage{pscyr}
 \renewcommand{\rmdefault}{ftm}
 %\renewcommand*{\familydefault}{\sfdefault}
@@ -46,8 +45,8 @@
 
 %\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
 %\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
-\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
-\DeclareCaptionLabelFormat{gosttable}{Таблиця #2}
+\DeclareCaptionLabelFormat{gostfigure}{\FigureCaption #2}
+\DeclareCaptionLabelFormat{gosttable}{\TableCaption #2}
 \DeclareCaptionLabelSeparator{gost}{~---~}
 \captionsetup{labelsep=gost}
 \captionsetup[figure]{labelformat=gostfigure, justification=centering,
