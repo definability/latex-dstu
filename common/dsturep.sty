@@ -39,7 +39,7 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-\fancypagestyle{plain}{ 
+\fancypagestyle{plain}{
     \fancyhf{}
     \rhead{\small\thepage}}
 
@@ -55,7 +55,6 @@ labelsep=gost}
 \captionsetup[table]{labelformat=gosttable, labelsep=gost}
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}
 
-% Заголовки структурных элементов
 \setcounter{secnumdepth}{5}
 
 \titleformat{\chapter}[block]
@@ -63,7 +62,7 @@ labelsep=gost}
     {\thechapter}
     {1em}
     {\MakeUppercase}{}
- 
+
 \titleformat{\section}[block]
     {\hspace{\parindent}\bfseries}
     {\thesection}
@@ -73,12 +72,12 @@ labelsep=gost}
     {\hspace{\parindent}\bfseries}
     {\thesubsection}
     {1em}{}
-    
+
 \titleformat{\subsubsection}[block]
     {\hspace{\parindent}\bfseries}
     {\thesubsubsection}
     {1em}{}
-    
+
 \titlespacing*{\chapter}{0pt}{-30pt}{2em}
 \titlespacing*{\section}{0pt}{2em}{2em}
 \titlespacing*{\subsection}{0pt}{2em}{2em}
@@ -95,7 +94,6 @@ labelsep=gost}
 \setenumerate{leftmargin=\parindent}
 
 
-%\dottedcontents{chapter}[1.6em]{}{1.6em}{1pc}
 \dottedcontents{chapter}[1em]{}{1em}{1pc}
 \dottedcontents{section}[2em]{}{2em}{1pc}
 \dottedcontents{subsection}[3em]{}{3em}{1pc}
@@ -103,8 +101,8 @@ labelsep=gost}
 
 
 \newcommand{\empline}{\mbox{}\newline}
- 
-\newcommand{\append}[1]{ 
+
+\newcommand{\append}[1]{
     \clearpage
     \phantomsection
     \stepcounter{chapter}
@@ -114,13 +112,13 @@ labelsep=gost}
     \addcontentsline{toc}{chapter}{\Asbuk{chapter} #1}}
 
 
-\newcommand\chap[1]{%
-  \chapter*{#1}%
+\newcommand\chap[1]{
+  \chapter*{#1}
   \addcontentsline{toc}{chapter}{#1}}
 
 
 \renewcommand*{\thefootnote}{\arabic{footnote})}
 
-\AtBeginDocument{%
+\AtBeginDocument{
   \setlength\abovedisplayskip{2em}
   \setlength\belowdisplayskip{2em}}
