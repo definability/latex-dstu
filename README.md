@@ -31,14 +31,14 @@ Just go to folder with project and run
 ```bash
 docker run --rm -it -v $(pwd):/var/texlive \
            babbage/latex-dstu \
-           sh -c "pdflatex index.tex && bibtex index && pdflatex index.tex && pdflatex index.tex"
+           pdflatex_full
 ```
 
 To use your own `common` styles folder
 ```bash
 docker run --rm -it -v $(pwd):/var/texlive -v $(pwd)/../common:/var/common \
            babbage/latex-dstu \
-           sh -c "pdflatex index.tex && bibtex index && pdflatex index.tex && pdflatex index.tex"
+           pdflatex_full index
 ```
 
 ### Notes
@@ -53,4 +53,8 @@ Assuming that your index file called `index.tex`:
 sudo rm -f index.bbl index.blg index.log index.toc \
            index.aux index.out index.ist index.glo
 ```
+
+Parameter `index` for `pdflatex_full` is optional.
+You should specify your index file name. If it's `index.tex`,
+you can use `pdflatex_full index` either `pdflatex_full`.
 
