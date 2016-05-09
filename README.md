@@ -37,6 +37,20 @@ docker run --rm -it -v $(pwd):/var/texlive \
 To use your own `common` styles folder
 ```bash
 docker run --rm -it -v $(pwd):/var/texlive -v $(pwd)/../common:/var/common \
-           babbage/latex-dstu pdflatex index.tex
+           babbage/latex-dstu \
+           sh -c "pdflatex index.tex && bibtex index && pdflatex index.tex && pdflatex index.tex"
+```
+
+### Notes
+
+You have to run `pdflatex` multiple times to
+- generate correct bibliography citations,
+- generate table of contents.
+
+It's recommended to delete temporary files before compile.
+Assuming that your index file called `index.tex`:
+```bash
+sudo rm -f index.bbl index.blg index.log index.toc \
+           index.aux index.out index.ist index.glo
 ```
 
