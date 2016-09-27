@@ -1,0 +1,65 @@
+\fancypagestyle{firststyle}
+{
+    \fancyfoot[C]{Київ --- \passYear~року}
+    \fancyhead{}
+}
+\begin{titlepage}
+  \thispagestyle{firststyle}
+  \begin{center}
+      \MakeUppercase{\textbf{національний технічний університет україни}}\\[-0.5ex]
+      \MakeUppercase{\textbf{``київський політехнічний інститут''}}\\[-0.5ex]
+      \MakeUppercase{\textbf{\faculty}}\\
+      \MakeUppercase{\department}
+  \end{center}
+  \begin{adjustwidth}{21em}{1em}
+    \begin{flushright}
+    <<До захисту допущено>>\\
+    Завідувач кафедри\\
+    $\underset{\text{\textit{\tiny(підпис)}}}
+    {\text{\underline{\phantom{(підпис)}}}}$
+    $\underset{\text{\textit{\tiny(ініціали, прізвище)}}}
+    {\text{\underline{\departmentHead}}}$\\
+    ``${\text{\underline{\hspace{2em}}}}$''
+    ${\text{\underline{\hspace{6em}}}}$
+    \passYear~р.
+    \end{flushright}
+  \end{adjustwidth}
+  \begin{center}
+      \textbf{\Large \kind }\\[1ex]
+      освітньо-кваліфікаційного рівня ``\level''\\[1ex]
+  \end{center}
+  за спеціальністю \specialityCode~<<\specialityTitle>>\\
+  на тему <<\theme>>\\
+  \ifx\gender\male
+    Виконав студент
+  \else
+    Виконала студентка
+  \fi
+  \course~курсу групи \group\\
+  \name
+  \hfill$\underset{\text{\textit{\tiny(підпис)}}}
+  {\text{\underline{\phantom{(підпис)}}}}$\\
+  Керівник
+  \mentorRank,
+  \mentorName
+  \hfill$\underset{\text{\textit{\tiny(підпис)}}}
+  {\text{\underline{\phantom{(підпис)}}}}$\\
+  Рецензент
+  \reviewerRank,
+  \reviewerName
+  \hfill$\underset{\text{\textit{\tiny(підпис)}}}
+  {\text{\underline{\phantom{(підпис)}}}}$\\
+
+  \begin{adjustwidth}{16em}{1em}
+    Засвідчую, що у цій дипломній роботі
+    немає запозичень з праць інших
+    авторів без відповідних посилань.\\
+    \ifx\gender\male
+      Студент
+    \else
+      Студентка
+    \fi
+    \underline{\phantom{(підпис)}}
+  \end{adjustwidth}
+
+\end{titlepage}
