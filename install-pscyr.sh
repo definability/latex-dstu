@@ -34,4 +34,3 @@ mktexlsr
 updmap-sys --enable Map=pscyr.map
 
 cd -
-
