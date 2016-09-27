@@ -1,0 +1,123 @@
+\ProvidesPackage{dsturep}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{pscyr}
+\renewcommand{\rmdefault}{ftm}
+%\renewcommand*{\familydefault}{\sfdefault}
+%\renewcommand{\rmdefault}{\ttdefault}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{amssymb,amsfonts,amsmath,amsthm}
+\usepackage{icomma}
+\usepackage{indentfirst}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage[tableposition=top]{caption}
+\usepackage{subcaption}
+\usepackage[left=2.5cm, right=1.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titletoc}
+\usepackage[title,titletoc]{appendix}
+
+\frenchspacing
+\linespread{1.5}
+\setlength\parindent{2.5em}
+\renewcommand{\arraystretch}{1.3}
+
+
+%\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\thepage}
+\fancyheadoffset{0mm}
+\fancyfootoffset{0mm}
+\setlength{\headheight}{17pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \rhead{\small\thepage}}
+
+
+%\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+%\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
+\DeclareCaptionLabelFormat{gosttable}{Таблица #2}
+\DeclareCaptionLabelSeparator{gost}{~---~}
+\captionsetup{labelsep=gost}
+\captionsetup[figure]{labelformat=gostfigure, justification=centering,
+labelsep=gost}
+\captionsetup[table]{labelformat=gosttable, labelsep=gost}
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
+
+\setcounter{secnumdepth}{5}
+
+\titleformat{\chapter}[block]
+    {\filcenter\bfseries}
+    {\thechapter}
+    {1em}
+    {\MakeUppercase}{}
+
+\titleformat{\section}[block]
+    {\hspace{\parindent}\bfseries}
+    {\thesection}
+    {1em}{}
+
+\titleformat{\subsection}[block]
+    {\hspace{\parindent}\bfseries}
+    {\thesubsection}
+    {1em}{}
+
+\titleformat{\subsubsection}[block]
+    {\hspace{\parindent}\bfseries}
+    {\thesubsubsection}
+    {1em}{}
+
+\titlespacing*{\chapter}{0pt}{-30pt}{2em}
+\titlespacing*{\section}{0pt}{2em}{2em}
+\titlespacing*{\subsection}{0pt}{2em}{2em}
+\titlespacing*{\subsubsection}{0pt}{2em}{2em}
+
+
+\makeatletter
+    \AddEnumerateCounter{\asbuk}{\@asbuk}{ю)}
+\makeatother
+\setlist{nolistsep}
+\renewcommand{\labelitemi}{-}
+\renewcommand{\labelenumi}{\arabic{enumi})}
+\renewcommand{\labelenumii}{\asbuk{enumii})}
+\setenumerate{leftmargin=\parindent}
+
+
+\dottedcontents{chapter}[1em]{}{1em}{1pc}
+\dottedcontents{section}[2em]{}{2em}{1pc}
+\dottedcontents{subsection}[3em]{}{3em}{1pc}
+\dottedcontents{subsubsection}[3em]{}{3em}{1pc}
+
+
+\newcommand{\empline}{\mbox{}\newline}
+
+\newcommand{\append}[1]{
+    \clearpage
+    \phantomsection
+    \stepcounter{chapter}
+    \begin{center}
+      \textbf{\MakeUppercase{\chaptertitlename~\Asbuk{chapter} #1}}
+    \end{center}
+    \addcontentsline{toc}{chapter}{\Asbuk{chapter} #1}}
+
+
+\newcommand\chap[1]{
+  \chapter*{#1}
+  \addcontentsline{toc}{chapter}{#1}}
+
+
+\renewcommand*{\thefootnote}{\arabic{footnote})}
+
+\AtBeginDocument{
+  \setlength\abovedisplayskip{2em}
+  \setlength\belowdisplayskip{2em}}

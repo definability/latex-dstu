@@ -12,6 +12,11 @@ http://dkhramov.dp.ua/Comp/NIRReportDSTU300895
 Following instruction was used to install PSCyr to enable Times New Roman font
 http://alice.saske.sk/wiki/TeXLive#PSCyr
 
+Inserted in Docker with tag `texlive`:
+```bash
+docker pull babbage/latex-dstu:texlive
+```
+
 ## Docker
 
 Based on Docker package provided by @harshjv
@@ -26,8 +31,33 @@ https://hub.docker.com/r/babbage/latex-dstu/
 ## Usage
 
 Just go to folder with project and run
-```
+```bash
 docker run --rm -it -v $(pwd):/var/texlive \
-           babbage/latex-dstu:texlive pdflatex_full index
+           babbage/latex-dstu \
+           pdflatex_full
 ```
+
+To use your own `common` styles folder
+```bash
+docker run --rm -it -v $(pwd):/var/texlive -v $(pwd)/../common:/var/common \
+           babbage/latex-dstu \
+           pdflatex_full index
+```
+
+### Notes
+
+You have to run `pdflatex` multiple times to
+- generate correct bibliography citations,
+- generate table of contents.
+
+It's recommended to delete temporary files before compile.
+Assuming that your index file called `index.tex`:
+```bash
+sudo rm -f index.bbl index.blg index.log index.toc \
+           index.aux index.out index.ist index.glo
+```
+
+Parameter `index` for `pdflatex_full` is optional.
+You should specify your index file name. If it's `index.tex`,
+you can use `pdflatex_full index` either `pdflatex_full`.
 
