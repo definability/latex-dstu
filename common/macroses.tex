@@ -1,0 +1,64 @@
+\newcommand{\indicatorof}[1]{\mathbbm{1}_{#1}}
+\newcommand{\indicator}[1]{\mathbbm{1}\!\left( #1 \right)}
+\newcommand{\Indicator}[1]{\mathbbm{1}\!\left\{ #1 \right\}}
+\newcommand{\probability}[1]{\mathbb{P}\left( #1 \right)}
+\newcommand{\Probability}[1]{\mathbb{P}\left\{ #1 \right\}}
+\newcommand{\cdfof}[2]{F^{#1}\left(#2\right)}
+\newcommand{\cdf}[1]{\cdfof{}{#1}}
+\def\Tau{\mathrm{T}}
+\newcommand{\meanof}[2]{\operatorname{M}_{#1} #2}
+\newcommand{\Meanof}[2]{\meanof{#1}{\left[ #2 \right]}}
+\newcommand{\mean}[1]{\meanof{}{#1}}
+\newcommand{\Mean}[1]{\Meanof{}{#1}}
+\newcommand{\dispersionof}[2]{\operatorname{D}_{#1} #2}
+\newcommand{\Dispersionof}[2]{\dispersionof{#1}{\left[ #2 \right]}}
+\newcommand{\dispersion}[1]{\dispersionof{}{#1}}
+\def \mcond {\;\middle|\;}
+\newcommand{\Covergencen}[1]{\xrightarrow[#1\to\infty]{}}
+\newcommand{\cov}[1]{\operatorname{cov}\!\left( #1 \right)}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\drawHist}[1]{\begin{tikzpicture}[scale=1]
+  \begin{axis}[ymin=-5, ymax=5, xmin=5, xmax=30, ytick=\empty,
+    xmajorgrids={true},
+    ylabel={Кількість точок}, ylabel near ticks,
+    xlabel={час, с}]
+
+\draw[dashed,color=gray!50] ({rel axis cs:0,0}|-{axis cs:0,0}) -- ({rel axis cs:1,0}|-{axis cs:0,0});
+\addplot table [x, y, col sep=comma] {data/#1.csv};
+\end{axis}
+\end{tikzpicture}}
+
+\captionsetup[subfigure]{skip=0ex} % global setting for subfigure
+
+\usepackage{stringenc}
+\usepackage{pdfescape}
+
+\makeatletter
+\renewcommand*{\UTFviii@defined}[1]{%
+  \ifx#1\relax
+    \begingroup
+      % Remove prefix "\u8:"
+      \def\x##1:{}%
+      % Extract Unicode char from command name
+      % (utf8.def does not support surrogates)
+      \edef\x{\expandafter\x\string#1}%
+      \StringEncodingConvert\x\x{utf8}{utf16be}% convert to UTF-16BE
+      % Hexadecimal representation
+      \EdefEscapeHex\x\x
+      % Enhanced error message
+      \PackageError{inputenc}{Unicode\space char\space \string#1\space
+                              (U+\x)\MessageBreak
+                              not\space set\space up\space
+                              for\space use\space with\space LaTeX}\@eha
+    \endgroup
+  \else\expandafter
+    #1%
+  \fi
+}
+\makeatother
+\DeclareUnicodeCharacter{00AD}{-}
+
+\def\chapterConclusion{\section*{Висновки до розділу \arabic{chapter}}
+\addcontentsline{toc}{section}{Висновки до розділу \arabic{chapter}}}
