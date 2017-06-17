@@ -46,10 +46,11 @@ You have to run `pdflatex` multiple times to
 - generate correct bibliography citations,
 - generate table of contents.
 
-It's recommended to delete temporary files before compile.
+It's recommended to delete temporary files before compilation
+or when strange error occur.
 Assuming that your index file called `index.tex`:
 ```bash
-sudo rm -f index.bbl index.blg index.log index.toc index.aux index.out index.ist index.glo
+sudo rm -f index.{bbl,blg,log,toc,aux,out,ist,glo,dat}
 ```
 
 Parameter `index` for `pdflatex_full` is optional.
